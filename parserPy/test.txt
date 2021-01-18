@@ -1,0 +1,69 @@
+----------------------------------------------------------------------
+//     (C) Copyright 2020
+//     JSC MERI
+//     All Rights Reserved.  
+//  ----------------------------------------------------------------------
+//
+//                        =============================
+//                        CALIBRE cmos090rf DRC RULES FILE
+//                        =============================
+//
+// TITLE "CALIBRE cmos090rf DRC RULES FILE"
+
+INCLUDE $DKHCMOS10LP/physical/calibre/calibredrc
+INCLUDE $DKHCMOS10LP/physical/calibre/device.drc
+
+#IFDEF ClassPAD ClassI4
+#DEFINE ClassI4C090
+#ENDIF
+
+
+
+// //////////////////////////////////////////////////////////////////////////////
+// /                EWS VARIABLES                        /
+// //////////////////////////////////////////////////////////////////////////////
+
+#IFNDEF ClassPAD
+#IFNDEF SWI_ClassPAD    
+#DEFINE ClassPAD ClassH1 
+#ENDIF
+#ENDIF
+
+#IFDEF ClassPAD ClassB1
+#DEFINE ClassB1
+#ENDIF
+#IFDEF ClassPAD ClassB2
+
+RPO.R.3 { @ Rud2
+    }
+
+RPO.R.4 { @ Rule RPO.R.4: Psd2
+    }
+
+
+#ENDIF // CHECK_PAD_ASSEMBLY
+#ENDIF // ClassPAD
+
+#IFDEF ClassPAD ClassFlipChip_SA_ADV
+
+// ---------------------------------------------------------------------------
+//        BUMPING  PADS  ASSEMBLY  RULES  for DEVICE  CLASS  FlipChip_SA_ADV
+// ---------------------------------------------------------------------------
+
+#IFDEF CHECK_PAD_ASSEMBLY
+
+
+RBP4_A_FlipChip_S_SP3 { @ Ru5 
+ 
+   
+    }
+
+//        BUMPING  PADS  ASSEMBLY  RULES  for DEVICE  CLASS  FlipChip_SA_ADV
+//
+
+RBP4_B_FlipChip_S_SP3 { @ Ru50um
+  
+    }
+    
+RBP6_FlipChip_S_SP3 { @ Rule BP6 : Number of rows (min=max) for
+    }

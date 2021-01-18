@@ -1,0 +1,135 @@
+/ //////////////////////////////////////////////////////////////////////////////
+// /              CAPA POLYWELL ANTENNA  RULES                                           /
+// //////////////////////////////////////////////////////////////////////////////
+// $Id: calibre.drc 265 2020-10-27 19:00:53Z akononov $
+//
+//  ----------------------------------------------------------------------
+//     (C) Copyright 2020
+//     JSC MERI
+//     All Rights Reserved.  
+//  ----------------------------------------------------------------------
+//
+//                        =============================
+//                        CALIBRE cmos090rf DRC RULES FILE
+//                        =============================
+//
+// TITLE "CALIBRE cmos090rf DRC RULES FILE"
+
+INCLUDE /home/vbox/PycharmProjects/traning/test.txt
+INCLUDE $DKHCMOS10LP/physical/calibre/device.drc
+
+#IFDEF ClassPAD ClassI4
+#DEFINE ClassI4C090
+
+//RBPCorners { @ Rule CGO2.A.1 : maximum poly top plate area of polywell capacitor = 1000 um2
+//          AREA ((POLYGi AND CNWPO_C1) NOT FILTER_CGO2.A.1)  > 1000 
+//          AREA ((POLYGi AND CPWPO_C1) NOT FILTER_CGO2.A.1) > 1000 
+//}
+
+    
+#IFDEF RECOMMENDED_RULES
+
+RCGO2.ANT.3 { @ Rule CGO2.ANT.3 : max nb of contact on poly per capa = 4*sqrt(area of capa)
+      Y = CAPAPOLYWELL_C1 NOT INTERACT FILTER_CGO2.ANT.3
+          X = NET AREA RATIO Y > 12 [AREA(Y)]
+      NET AREA RATIO X COi_CAPAWELL > 16 [(count(COi_CAPAWELL)*count(COi_CAPAWELL))/AREA(X)]
+    }
+
+RCGO2.ANT.4 { @ Rule CGO2.ANT.4 : If S< 1μm2,o Max Number of contacts per capacitor = 4
+          X = NET AREA RATIO CAPAPOLYWELL_C1 < 12 [AREA(CAPAPOLYWELL_C1)]
+      NET AREA RATIO X COi_CAPAWELL > 4 [count(COi_CAPAWELL)]
+    }
+
+#ENDIF
+
+// //////////////////////////////////////////////////////////////////////////////
+// /             CAPA MOM  SPECIFIC  DESIGN  RULES                            /
+// //////////////////////////////////////////////////////////////////////////////
+
+//------------------------------------------------------------------------------
+//       M2_M5 fingers rules 
+//------------------------------------------------------------------------------
+
+
+
+RMOM.W.1 { @ Rule MOM.W.1 : Metal finger width (min=max) = 0.14
+
+         (M2i INTERACT evenFRINGE) NOT WITH WIDTH == 0.14
+    ((M4i NOT bus_MOMRF) INTERACT evenFRINGE) NOT WITH WIDTH == 0.14
+    ((M3i NOT bus_MOMRF) INTERACT oddFRINGE) NOT WITH WIDTH == 0.14
+    ((M5i NOT bus_MOMRF) INTERACT oddFRINGE) NOT WITH WIDTH == 0.14
+    }
+
+RMOM.S.1 { @ Rule MOM.S.1 : Metal finger space (min=max) = 0.14    
+        EXT evenFRINGE < 0.14  ABUT >0<90 SINGULAR REGION
+    EXT oddFRINGE < 0.14 ABUT >0<90 SINGULAR REGION
+    ZONE_MOMRF NOT INTERACT ((SIZE evenFRINGE BY 0.07 OVERUNDER) AND (SIZE oddFRINGE BY 0.07 OVERUNDER)) ==1
+    }
+
+RMOM.L.1 { @ Rule MOM.L.1 : Minimum  finger length = 2.80
+        A = evenFRINGE WITH WIDTH == 0.14
+    B = oddFRINGE WITH WIDTH == 0.14
+    A NOT ENCLOSE RECTANGLE 0.14 2.80 
+    B NOT ENCLOSE RECTANGLE 0.14 2.80
+
+    }
+
+RMOM.R.1 { @ Rule MOM.R.1 : Minimum  finger number = 10
+    ZONE_MOMRF INTERACT ((evenFRINGE NOT INTERACT oddFRINGE >= 10) OR (oddFRINGE NOT INTERACT evenFRINGE >= 10))
+
+    }
+
+
+RMOM.W.2 { @ Rule MOM.W.2 : Metal bus width (M4-M5-M6 + 2 via4 & via5 columns) (min=max) = 0.58
+     INT bus_MOMRF < 0.58 SINGULAR REGION
+}
+    
+RMOM.D.1{ @ Rule MOM.D.1:  Space between Metal bus and finger (min=max) = 0.36
+M4_bus    = (M4i INTERACT bus_MOMRF) NOT ZONE_MOMRF
+M5_bus    = (M5i INTERACT bus_MOMRF) NOT ZONE_MOMRF
+M6_bus    = M6i INTERACT bus_MOMRF
+EXT ZONE_MOMRF ((M4_bus OR M5_bus) OR M6_bus) < 0.36 ABUT >0<90 SINGULAR OPPOSITE REGION
+//detect when not all part of a bus is at correct distance:
+FRINGE_ZONE = (SIZE POSSIBLE_evenFRINGE:2 BY 0.07) AND (SIZE POSSIBLE_oddFRINGE:2 BY 0.07)
+MOM2BUS_DIST = EXPAND EDGE (FRINGE_ZONE TOUCH EDGE evenFRINGE) OUTSIDE BY 0.36
+//detect when a bus is too close:
+MOM2BUS_DIST NOT (EXT bus_MOMRF FRINGE_ZONE <= 0.36 OPPOSITE REGION)
+    }
+
+
+//------------------------------------------------------------------------------
+//       POLY/OD SHIELD 
+//------------------------------------------------------------------------------
+
+
+RMOM.W.3 { @ Rule MOM.W.3: Poly shield finger width (min=max) 0.16
+     POshield_MOMRF NOT WITH WIDTH == 0.16 
+    }
+
+RMOM.W.4 { @ Rule MOM.W.4: OD shield finger width (min = max) 0.20
+    ODshield_MOMRF NOT WITH WIDTH == 0.20
+    }
+
+RMOM.D.2 { @ Rule RMOM.D.2: distance between OD and PO shield fingers (min = max) 0.10
+    SHIELD_bad = (ODshield_MOMRF NOT TOUCH (SIZE POshield_MOMRF BY 0.10) ==2) OR (POshield_MOMRF NOT TOUCH (SIZE ODshield_MOMRF BY 0.10) ==2)
+    SHIELD_edge = (ODshield_MOMRF TOUCH (SIZE POshield_MOMRF BY 0.10) ==1) OR (POshield_MOMRF TOUCH (SIZE ODshield_MOMRF BY 0.10) ==1)
+    (MOMRF_SHIELD NOT INTERACT SHIELD_edge ==2) OR (MOMRF_SHIELD INTERACT (SHIELD_bad NOT SHIELD_edge))
+    }
+
+RMOM.W.5 { @ Rule MOM.W.5 : Minimum M1 bus with = 0.40
+    INT SHIELD_PIN_MOMRF < 0.40 SINGULAR REGION
+
+    }
+
+RMOM.R.2 { @ Rule MOM.R.2 : Two rows of contacts on OD/PO bus required .
+    (ODshield_MOMRF OR POshield_MOMRF) NOT INTERACT COi == 4
+    }
+
+RMOM.D.3 { @ Rule MOM.D.3: Metal1 Shield bus distance MOM >= 0.5.
+    (SIZE MOMRF_SHIELD BY 0.5) NOT TOUCH SHIELD_PIN_MOMRF >=2
+
+    }
+
+//------------------------------------------------------------------------------
+//  MOMRF_3pins density rules       
+//--------------------------------------

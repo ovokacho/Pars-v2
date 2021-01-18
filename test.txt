@@ -1,0 +1,25 @@
+//------------------------------ metal7 user inductor device
+INDUCTOR_M7 = ((M7 AND M7_markerLA) OR ( M7 AND  M7_markerLS)) OR ( M7 AND M7_markerL)         
+INDUCTOR_ALUCAP_ML = ALUCAP AND AP_markerL        
+INDUCTOR_ALUCAP_MLS = ALUCAP AND AP_markerLA        
+INDUCTOR_ALUCAP_MLA = ALUCAP AND AP_markerLS    
+INDUCTOR_ALUCAP = (INDUCTOR_ALUCAP_ML OR INDUCTOR_ALUCAP_MLS) OR INDUCTOR_ALUCAP_MLA    //select all the alucap with inductors marker
+
+INCLUDE /home/vbox/PycharmProjects/traning/test2.txt
+
+RI.DUM.D.1a {@ Rule I.DUM.D.1a: Minimum Metal Tiles Distance to Metal : 
+}
+
+RI.AP.W.1 {@ Rule I.AP.W.1: Maximum AP width within INDDMY : 60
+}
+
+
+#IFDEF SHRINK_COMPATIBILITY
+
+RCO.D.5_rec {@ Rule CO.D.5_rec: 0.13 ABUT <90 INSIDE ALSO SINGULAR
+    }
+#ENDIF
+
+
+// //////////////////////////////////////////////////////////////////////////////
+// /              CAPA POLYWELL ANTENNA  RULES                                   

@@ -1,0 +1,10 @@
+RI.DUM.D.1a {@ Rule I.DUM.D.1a: Minimum Metal Tiles Distance to Metal : 
+}
+htrhtrf
+RI.AP.W.1 {@ Rule I.AP.W.1: Maximum AP width within INDDMY : 60
+}
+bgfdbgb
+gfbgfdb
+RCO.D.5_rec {@ Rule CO.D.5_rec: 0.13 ABUT <90 INSIDE ALSO SINGULAR
+    }
+
