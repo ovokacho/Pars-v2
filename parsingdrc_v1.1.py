@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 from pyparsing import *
 from itertools import chain
-#test
+
+
 class DrcFileParser:
     def __init__(self, file):
         self.pathslist = []
         self.allRuleList = []
+        self.densityRulesList = []
+        self.densityPathsList = []
         self.search_includes(file)
+        self.search_density_rules()
+        self.search_density_paths()
 
     def search_includes(self, file):
         self.initfile = file
@@ -38,6 +43,12 @@ class DrcFileParser:
     def get_parse_results(self):
         return self.allRuleList
 
+    def get_density_rules(self):
+        return self.densityRulesList
+
+    def get_density_paths_list(self):
+        return self.densityPathsList
+
     def search_drc_rules(self):
         keyName = Word(printables)
         params = Word(printables + " " + 'μ' + "\n", excludeChars='{}')
@@ -46,8 +57,34 @@ class DrcFileParser:
         allNotes = OneOrMore(Group(keyName + Optional(" ") + paramsWord))
         self.allRuleList.extend(list(chain.from_iterable(allNotes.searchString(self.drcString).asList())))
 
+    def search_density_rules(self):
+        for rule in self.allRuleList:
+            if ("density" or "DENSITY") in rule[1]:
+                self.densityRulesList.append(rule)
 
-def pasreDrcFile(File):
+    def search_density_paths(self):
+        denspaths = []
+
+        denspath = Word(printables + "./_", excludeChars='"')
+        denspathfull = Suppress('"') + denspath + Suppress('"')
+        # completeNote = keyName + denspathfull
+        #allNotes = OneOrMore(denspathfull)
+
+        for rule in enumerate(self.densityRulesList):
+            self.densityPathsList.append([rule[1][0]] + list(
+                chain.from_iterable(denspathfull.searchString(rule[1]).asList())))  # список [[имя, ]]
+
+        # Удаление пустых полей
+        fix = []
+        for i in enumerate(self.densityPathsList):
+            if len(i[1]) == 1:
+                fix.append(i[0])
+
+        for i in reversed(fix):
+            self.densityPathsList.pop(i)
+
+
+def parse_drc_file(File):
     drcString = File.read()
     outputFile = open('parseddrc.txt', 'w')
 
@@ -78,12 +115,37 @@ if __name__ == "__main__":
     drcFile = open('calibretest.drc', 'r')
     drcTest = DrcFileParser(drcFile)
     Presults = drcTest.get_parse_results()
+    DensityRules = drcTest.get_density_rules()
+    DensityPaths = drcTest.get_density_paths_list()
 
     Otuputfile = open('output.txt', 'w')
+    print >> Otuputfile, len(Presults)
+    print >> Otuputfile
     for element in Presults:
         print >>Otuputfile, element
         print >>Otuputfile
     Otuputfile.close()
+
+    Otuputfile1 = open('outputdens.txt', 'w')
+
+    print >> Otuputfile1, len(DensityRules)
+    print >> Otuputfile1
+
+    for element1 in DensityRules:
+        print >> Otuputfile1, element1
+        print >> Otuputfile1
+    Otuputfile1.close()
+
+    Otuputfiledenspaths = open('outputdenspaths.txt', 'w')
+
+    print >> Otuputfiledenspaths, len(DensityPaths)
+    print >> Otuputfiledenspaths
+
+    for element2 in DensityPaths:
+        print >> Otuputfiledenspaths, element2
+        print >> Otuputfiledenspaths
+    Otuputfiledenspaths.close()
+
     #print ('parse results: ', drcTest.get_parse_results())
     drcFile.close()
 

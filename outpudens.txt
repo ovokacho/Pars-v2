@@ -1,0 +1,48 @@
+['R2.du15', '@ Rule 2.du15 : Min ACTIVE density by 1x1mm window >= 0.2.\n            DENSITY XALLACT < 0.2 WINDOW 1000 1000 STEP 500 PRINT "./densWIN1_ACT" BACKUP\n        ']
+
+['R2.du16', '@ Rule 2.du16 : Min ACTIVE density across full chip >= 0.25.\n            DENSITY XALLACT < 0.25  PRINT "./densTOT_ACT"\n        ']
+
+['R13.12', '@ Rule 13.12 : Minimum POLY total density >= 0.15.\n           DENSITY XALLPOL < 0.15 PRINT "./densTOT_POLY" \n       ']
+
+['R23.6', '@ Rule 23.6 : Minimum metal1 density by 0.5x0.5mm window >= 0.2.\n          DENSITY XALLM1 < 0.2 WINDOW 500 500 STEP 250 PRINT "./min_densWIN_M1" BACKUP\n      ']
+
+['R23.7', '@ Rule 23.7 : Maximum metal1 density by 0.5x0.5mm window =< 0.55.\n          DENSITY XALLM1 > 0.55 WINDOW 500 500 STEP 250 PRINT "./max_densWIN_M1" BACKUP\n      ']
+
+['R27.6', '@ Rule 27.6 : Minimum metal2 density by 0.5x0.5mm window >= 0.2.\n          DENSITY XALLM2 < 0.2 WINDOW 500 500 STEP 250 PRINT "./min_densWIN_M2" BACKUP\n      ']
+
+['R27.7', '@ Rule 27.7 : Maximum metal2 density by 0.5x0.5mm window =< 0.55.\n          DENSITY XALLM2 > 0.55 WINDOW 500 500 STEP 250 PRINT "./max_densWIN_M2" BACKUP\n      ']
+
+['R34.6', '@ Rule 34.6 : Minimum metal3 density by 0.5x0.5mm window >= 0.2.\n          DENSITY XALLM3 < 0.2 WINDOW 500 500 STEP 250 PRINT "./min_densWIN_M3" BACKUP\n      ']
+
+['R34.7', '@ Rule 34.7 : Maximum metal3 density by 0.5x0.5mm window =< 0.55.\n          DENSITY XALLM3 > 0.55 WINDOW 500 500 STEP 250 PRINT "./max_densWIN_M3" BACKUP\n      ']
+
+['R36.6', '@ Rule 36.6 : Minimum metal4 density by 0.5x0.5mm window >= 0.2.\n          DENSITY XALLM4 < 0.2 WINDOW 500 500 STEP 250 PRINT "./min_densWIN_M4" BACKUP\n      ']
+
+['R36.7', '@ Rule 36.7 : Maximum metal4 density by 0.5x0.5mm window =< 0.85.\n          DENSITY XALLM4 > 0.85 WINDOW 500 500 STEP 250 PRINT "./max_densWIN_M4" BACKUP\n      ']
+
+['R53.6', '@ Rule 53.6 : Minimum metal5 density by 0.5x0.5mm window >= 0.33.\n          DENSITY XALLM5 < 0.33 WINDOW 500 500 STEP 250 PRINT "./min_densWIN_M5" BACKUP\n      ']
+
+['R53.7', '@ Rule 53.7 : Maximum metal5 density by 0.5x0.5mm window =< 0.85.\n          DENSITY XALLM5 > 0.85 WINDOW 500 500 STEP 250 PRINT "./max_densWIN_M5" BACKUP\n      ']
+
+['RMT80.8', '@ Rule MT80.8 : Minimum MIM5 density by 1x1mm window around MIM5 >= 0.05.\n            DENSITY XALLMIM5 < 0.05 WINDOW 1000 1000 STEP 100 INSIDE OF LAYER WINDOWMIM5 PRINT "./min_densWIN_MIM5"\n        ']
+
+['RMT80.9', '@ Rule MT80.9 : Maximum MIM5 density by 1x1mm window around MIM5 =< 0.85.\n            DENSITY XALLMIM5 > 0.85 WINDOW 1000 1000 STEP 100 INSIDE OF LAYER WINDOWMIM5 PRINT "./max_densWIN_MIM5"\n        ']
+
+['RM92.8', '@ Rule M92.8 : Minimum HKMIM5 density by 1x1mm window around HKMIM5 >= 0.05.\n             DENSITY XALLHKMIM5 < 0.05 WINDOW 1000 1000 STEP 100 INSIDE OF LAYER WINDOWHKMIM5 PRINT "./min_densWIN_HKMIM5"  \n         ']
+
+['R55.5', '@ Rule 55.5 : Minimum metal6 density across full chip >= 0.33.\n          DENSITY XALLM6 < 0.33 PRINT "./densTOT_M6"\n      ']
+
+['RALLHD', "@ Rule ALLHD : high density purpose present outside high density memories.\n           R = OR HD\n           M = FDRC INSIDE CELL 'FR_ALLHD_*'\n           R INTERACT (SIZE (R XOR M) BY -0.001)\n    "]
+
+['RSL.2_M1', '@ Rule SL.2_M1 : Minimum slot density in wide ME1 lines = 9%.\n             DENSITY ME1WIDHOL INSIDE OF LAYER ME1WIDH BY RECTANGLE RDB dens_M1.rdb < 0.09\n         ']
+
+['RSL.2_M2', '@ Rule SL.2_M2 : Minimum slot density in wide ME2 lines = 9%.\n             DENSITY ME2WIDHOL INSIDE OF LAYER ME2WIDH BY RECTANGLE RDB dens_M2.rdb < 0.09\n         ']
+
+['RSL.2_M3', '@ Rule SL.2_M3 : Minimum slot density in wide ME3 lines = 9%.\n             DENSITY ME3WIDHOL INSIDE OF LAYER ME3WIDH BY RECTANGLE RDB dens_M3.rdb < 0.09\n         ']
+
+['RSL.2_M4', '@ Rule SL.2_M4 : Minimum slot density in wide ME4 lines = 9%.\n             DENSITY ME4WIDHOL INSIDE OF LAYER ME4WIDH BY RECTANGLE RDB dens_M4.rdb < 0.09\n         ']
+
+['RSL.2_M5', '@ Rule SL.2_M5 : Minimum slot density in wide ME5 lines = 9%.\n             DENSITY ME5WIDHOL INSIDE OF LAYER ME5WIDH BY RECTANGLE RDB dens_M5.rdb < 0.09\n         ']
+
+['RSL.2_M6', '@ Rule SL.2_M6 : Minimum slot density in wide ME6 lines = 9%.\n             DENSITY ME6WIDHOL INSIDE OF LAYER ME6WIDH BY RECTANGLE RDB dens_M6.rdb < 0.09\n         ']
+

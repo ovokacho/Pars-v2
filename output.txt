@@ -1,3 +1,5 @@
+1469
+
 ['RPO.R.3', '@ Rule RPO.R.3: Partially non-siliced gate must be covered by MKR_ESD2\n        X = GATE CUT (RPO NOT FILTER_RPO.R.3)\n    X NOT MKR_esd2\n    ']
 
 ['RPO.OL.1', '@ RPO.OL.1  RPO overlap of Gate if covered by ESD marker == 0.060 um\n      X = GATE_ESD AND MKR_esd2\n    INT X (RPO NOT FILTER_RPO.OL.1) < 0.060\n    ']
@@ -1165,4 +1167,1774 @@
 ['RBP6_FlipChip_P_SP6', '@ Rule BP6 : Number of rows (min=max) for peripheral class : 1\n    COPY EXTPAD_FC_2    \n    ']
 
 ['//RBPCorners', '@ Rule BPCorners : Corner Bump Should be avoided : Minimum distance from passivation opening center to internal edge of seal ring is 250um\n//      COPY CORNER_PAD_FC \n//']
+
+['Mask_Rule_1', '@ Mask Rule 1 : mask patterns must not overlap circuit.\n                ADHVTN_0 INTERACT FNOSIZE:42\n            ']
+
+['Mask_Rule_2', '@ Mask Rule 2 : corners patterns distance to circuit >= 3.\n                EXT MFGPP_0 ADHVTN_0 < 3 ABUT<90 SINGULAR\n            ']
+
+['Mask_Rule_3', '@ Mask Rule 3 : mask patterns except corners distance to circuit >= 3.\n                EXT MFGPP_nsz ADHVTN_0 < 3 ABUT<90 SINGULAR\n            ']
+
+['Mask_Rule_4', '@ Mask Rule 4 : mask patterns must not overlap circuit.\n                ADHVTP_0 INTERACT FNOSIZE:42\n            ']
+
+['Mask_Rule_5', '@ Mask Rule 5 : corners patterns distance to circuit >= 3.\n                EXT MFGPP_0 ADHVTP_0 < 3 ABUT<90 SINGULAR\n            ']
+
+['Mask_Rule_6', '@ Mask Rule 6 : mask patterns except corners distance to circuit >= 3.\n                EXT MFGPP_nsz ADHVTP_0 < 3 ABUT<90 SINGULAR\n            ']
+
+['Rany.imp1', '@ Rule any.imp1 : All auxiliary layers with purposes fsizing and nosizing must be\n            @ inside of MFGPP_0 layer.\n              FNOSIZE:1 NOT MFGPP_0\n      ']
+
+['Rany.imp2', "@ Rule any.imp2 : Layer with purposes fsizing and nosizing mustn't interact\n            @ with proper layer with purpose drawing.\n              (NWELL_nsz OR NWELL_fsz) INTERACT NWELL SINGULAR ALSO\n          (ACTIVE_nsz OR ACTIVE_fsz) INTERACT ACTIVE SINGULAR ALSO\n          (POLY_nsz OR POLY_fsz) INTERACT POLY SINGULAR ALSO\n          (PRESIST_nsz OR PRESIST_fsz) INTERACT PRESIST SINGULAR ALSO\n          (SIPROT_nsz OR SIPROT_fsz) INTERACT SIPROT SINGULAR ALSO\n          NITRIDE_nsz INTERACT NITRIDE SINGULAR ALSO\n          (NLDD_nsz OR NLDD_fsz) INTERACT NLDD SINGULAR ALSO\n          (PLDD_nsz OR PLDD_fsz) INTERACT PLDD SINGULAR ALSO\n          (NPLUS_nsz OR NPLUS_fsz) INTERACT NPLUS SINGULAR ALSO\n          (PPLUS_nsz OR PPLUS_fsz) INTERACT PPLUS SINGULAR ALSO\n          (ADHVTN_nsz OR ADHVTN_fsz) INTERACT ADHVTN SINGULAR ALSO\n          (ADHVTP_nsz OR ADHVTP_fsz) INTERACT ADHVTP SINGULAR ALSO\n          (CONTACT_nsz OR CONTACT_fsz) INTERACT CONTACT SINGULAR ALSO\n          (METAL1_nsz OR METAL1_fsz) INTERACT ME1 SINGULAR ALSO\n          (VI1_nsz OR VI1_fsz) INTERACT VI1 SINGULAR ALSO\n          (METAL2_nsz OR METAL2_fsz) INTERACT ME2 SINGULAR ALSO\n          (VI2_nsz OR VI2_fsz) INTERACT VI2 SINGULAR ALSO\n          (METAL3_nsz OR METAL3_fsz) INTERACT ME3 SINGULAR ALSO\n          (VI3_nsz OR VI3_fsz) INTERACT VI3 SINGULAR ALSO\n          (METAL4_nsz OR METAL4_fsz) INTERACT ME4 SINGULAR ALSO\n          (VI4_nsz OR VI4_fsz) INTERACT VI4 SINGULAR ALSO\n          (METAL5_nsz OR METAL5_fsz) INTERACT ME5 SINGULAR ALSO\n          (MIM5_nsz OR MIM5_fsz) INTERACT MIM5 SINGULAR ALSO\n          (HKMIM5_nsz OR HKMIM5_fsz) INTERACT HKMIM5 SINGULAR ALSO\n          (VI5_nsz OR VI5_fsz) INTERACT VI5 SINGULAR ALSO\n          (METAL6_nsz OR METAL6_fsz) INTERACT ME6 SINGULAR ALSO\n          (LIL_nsz OR LIL_fsz) INTERACT LIL SINGULAR ALSO\n          (NWELL2_nsz OR NWELL2_fsz) INTERACT NWELL2 SINGULAR ALSO\n          (PWELL2_nsz OR PWELL2_fsz) INTERACT PWELL2 SINGULAR ALSO\n          (OTP_nsz OR OTP_fsz) INTERACT OTP SINGULAR ALSO\n          (VFB_nsz OR VFB_fsz) INTERACT VFB SINGULAR ALSO\n          (PRL_nsz OR PRL_fsz) INTERACT PRL SINGULAR ALSO\n          (NEXT_nsz OR NEXT_fsz) INTERACT NEXT SINGULAR ALSO\n          (PEXT_nsz OR PEXT_fsz) INTERACT PEXT SINGULAR ALSO\n          (NEXT_5V_nsz OR NEXT_5V_fsz) INTERACT NEXT_5V SINGULAR ALSO\n          (PEXT_5V_nsz OR PEXT_5V_fsz) INTERACT PEXT_5V SINGULAR ALSO\n          (GO2_nsz OR GO2_fsz) INTERACT GO2 SINGULAR ALSO\n          (GO2_5V_nsz OR GO2_5V_fsz) INTERACT GO2_5V SINGULAR ALSO\n          (NISO_nsz OR NISO_fsz) INTERACT NISO SINGULAR ALSO\n      "]
+
+['Rany.imp3', "@ Rule any.imp3 : MFGPP_0 layer mustn't overlap ACTIVE, POLY, metals.\n              (MFGPP_0 AND ACTIVE) NOT SEALRING_LAY\n              (MFGPP_0 AND POLY) NOT SEALRING_LAY\n              (MFGPP_1 AND ME1) NOT SEALRING_LAY\n              (MFGPP_2 AND ME2) NOT SEALRING_LAY\n              (MFGPP_3 AND ME3) NOT SEALRING_LAY\n              (MFGPP_4 AND ME4) NOT SEALRING_LAY\n              (MFGPP_5 AND ME5) NOT SEALRING_LAY\n              (MFGPP_6 AND ME6) NOT SEALRING_LAY\n          "]
+
+['Rany.imp4', '@ Rule any.imp4 : MFGPP_0 distance to external metals >= 3.0.\n              EXT MFGPP_1 ME1 < 3.0 ABUT<90 SINGULAR REGION\n              EXT MFGPP_2 ME2 < 3.0 ABUT<90 SINGULAR REGION\n              EXT MFGPP_3 ME3 < 3.0 ABUT<90 SINGULAR REGION\n              EXT MFGPP_4 ME4 < 3.0 ABUT<90 SINGULAR REGION\n              EXT MFGPP_5 ME5 < 3.0 ABUT<90 SINGULAR REGION\n              EXT MFGPP_6 ME6 < 3.0 ABUT<90 SINGULAR REGION\n          ']
+
+['R2.du1', '@ Rule 2.du1 : dummy ACTIVE is not allowed on ACTIVE.\n         @ Rule 2.du1 : dummy ACTIVE distance to ACTIVE >= 2.\n           ACTIVE_4 AND ACTIVE\n           EXT ACTIVE_4 ACTIVE < 2 ABUT<90 SINGULAR\n       ']
+
+['R2.du2', '@ Rule 2.du2 : dummy ACTIVE is not allowed under POLY.\n         @ Rule 2.du2 : dummy ACTIVE distance to poly >= 2.\n           ACTIVE_4 AND POLY\n           EXT ACTIVE_4 POLY < 2 ABUT<90 SINGULAR\n       ']
+
+['R2.du3_R2.du3a', '@ Rule 2.du3 - 2.du3a : dummy ACTIVE crossing NWELL/PWELL or NWELL/PWELL2 boundary is not allowed.\n                 @ Rule 2.du3 - 2.du3a : dummy ACTIVE distance to NWELL >= 2.\n                 @ Rule 2.du3 - 2.du3a : dummy ACTIVE enclosure by NWELL >= 2.\n                   EXT DUMINW DUMONW < 0.025 ABUT<90 SINGULAR\n                   EXT ACTIVE_4 NWELL < 2 ABUT<90 SINGULAR\n                   ENC ACTIVE_4 NWELL < 2 ABUT<90 SINGULAR\n               ']
+
+['R2.du3a', '@ Rule 2.du3a : dummy ACTIVE crossing NWELL2/PWELL and NWELL2/PWELL2 boundary is not allowed.\n          @ Rule 2.du3a : dummy ACTIVE distance to NWELL2 >= 2.\n          @ Rule 2.du3a : dummy ACTIVE enclosure by NWELL2 >= 2.\n            EXT DUMINW2 DUMONW2 < 0.025 ABUT<90 SINGULAR\n            EXT ACTIVE_4 NWELL2 < 2 ABUT<90 SINGULAR\n            ENC ACTIVE_4 NWELL2 < 2 ABUT<90 SINGULAR\n        ']
+
+['R2.du4', '@ Rule 2.du4 : dummy ACTIVE is not allowed on RNWELL.\n         @ Rule 2.du4 : dummy ACTIVE distance to RNWELL >= 2.\n           ACTIVE_4 AND RNWELL_0\n           EXT ACTIVE_4 RNWELL_0 < 2 ABUT<90 SINGULAR\n       ']
+
+['R2.du5', '@ Rule 2.du5 : dummy ACTIVE is not allowed under LIL \n         @ Rule 2.du5 : dummy ACTIVE distance to LIL >= 2\n           ACTIVE_4 AND LIL\n           EXT ACTIVE_4 LIL < 2 ABUT<90 SINGULAR\n       ']
+
+['R2.du6', '@ Rule 2.du6 : dummy ACTIVE is not allowed under pad.\n         @ Rule 2.du6 : dummy ACTIVE distance to pad >= 5.\n           ACTIVE_4 AND PAD\n           EXT ACTIVE_4 PAD < 5 ABUT<90 SINGULAR\n       ']
+
+['R2.du7a', '@ Rule 2.du7a : dummy ACTIVE is not allowed under masks patterns.\n            ACTIVE_4 AND MASKPAT\n        ']
+
+['R2.du7b', '@ Rule 2.du7b : dummy ACTIVE distance to Corner L >= 3.\n            EXT ACTIVE_4 MFGPPDG < 3 ABUT<90 SINGULAR REGION\n        ']
+
+['R2.du7c', '@ Rule 2.du7c : dummy ACTIVE distance to others masks patterns >= 3.\n            EXT ACTIVE_4 MFGPPNG < 3 ABUT<90 SINGULAR REGION\n        ']
+
+['R2.du8', '@ Rule 2.du8 : dummy ACTIVE width = 4 x 4.\n           NOT RECTANGLE ACTIVE_4 == 4 BY == 4\n       ']
+
+['R2.du9', '@ Rule 2.du9 : dummy ACTIVE space = 2.\n          EXT ACTIVE_4 < 2 SPACE ABUT>0<90 SINGULAR\n       ']
+
+['//R2.du.10_11_12_13', '@ Rule 2.du.10_11_12_13 : maximum width in both direction of areas without dummy active = 10.0\n//  COPY EPTYDAC:1\n//']
+
+['R2.du14', '@ Rule 2.du14 : maximum area width without active < 200.\n          @ The check works for chips with length of sides > 200u.\n            ACTSIZED = SIZE TMPACT_4 BY 100\n            VOID = (BULK_3 NOT ACTSIZED) NOT CORBULK_3\n        (SIZE VOID BY 100) AND BULK_3\n    ']
+
+['R13.du1', '@ Rule 13.du1 : dummy POLY is not allowed on ACTIVE.\n          @ Rule 13.du1 : dummy POLY distance to ACTIVE >= 2.\n            POLY_4 AND ACTIVE\n            EXT POLY_4 ACTIVE < 2 ABUT<90 SINGULAR\n        ']
+
+['R13.du2', '@ Rule 13.du2 : dummy POLY is not allowed under POLY.\n          @ Rule 13.du2 : dummy POLY distance to POLY >= 2.\n            POLY_4 AND POLY\n            EXT POLY_4 POLY < 2 ABUT<90 SINGULAR\n        ']
+
+['R13.du6', '@ Rule 13.du6 : dummy POLY is not allowed under pad.\n         @ Rule 13.du6 : dummy POLY distance to pad >= 5.\n           POLY_4 AND PAD\n           EXT POLY_4 PAD < 5 ABUT<90 SINGULAR\n        ']
+
+['R13.du7a', '@ Rule 13.du.7a : dummy POLY is not allowed under masks patterns.\n             POLY_4 AND MASKPAT\n         ']
+
+['R13.du7b', '@ Rule 13.du.7b : dummy POLY distance to Corner L >= 3.\n             EXT POLY_4 MFGPPDG < 3 ABUT<90 SINGULAR REGION\n         ']
+
+['R13.du7c', '@ Rule 13.du.7c : dummy POLY distance to others masks patterns >= 3.\n             EXT POLY_4 MFGPPNG < 3 ABUT<90 SINGULAR REGION\n         ']
+
+['R13.du8', '@ Rule 13.du8 : dummy POLY width = 3 x 3.\n            NOT RECTANGLE POLY_4 == 3 BY == 3\n        ']
+
+['R13.du9', '@ Rule 13.du9 : dummy poly space = 3.\n            EXT POLY_4 < 3 SPACE ABUT>0<90 SINGULAR\n        ']
+
+['R23.du1', '@ Rule 23.du1 : dummy metal1 is not allowed on metal1.\n          @ Rule 23.du1 : dummy metal1 distance to metal1 >= 1.5.\n            ME1_4 AND ME1\n            EXT ME1_4 ME1 < 1.5 ABUT<90 SINGULAR\n        ']
+
+['R23.du2a', '@ Rule 23.du2a : dummy metal1 is not allowed under masks patterns.\n             ME1_4 AND MASKPAT\n         ']
+
+['R23.du2b', '@ Rule 23.du2b : dummy metal1 distance to Corner L >= 3.\n             EXT ME1_4 MFGPPDG < 3 ABUT<90 SINGULAR REGION\n         ']
+
+['R23.du2c', '@ Rule 23.du2c : dummy metal1 distance to others masks patterns >= 3.\n             EXT ME1_4 MFGPPNG < 3 ABUT<90 SINGULAR REGION\n         ']
+
+['R23.du3', '@ Rule 23.du3 : min dummy metal1 size 0.32 x 0.96.\n            NOT RECTANGLE ME1_4 >= 0.32 BY >= 0.96\n        ']
+
+['R23.du4', '@ Rule 23.du4 : dummy metal1 space = 0.32.\n            EXT ME1_4 < 0.32 SPACE ABUT>0<90 SINGULAR\n        ']
+
+['R23.du6', '@ Rule 23.du6 : dummy metal1 is not allowed under pad.\n          @ Rule 23.du6 : dummy metal1 distance to pad >= ^SIZE_PAD.\n            ME1_4 AND PAD\n            EXT ME1_4 PAD < SIZE_PAD ABUT<90 SINGULAR\n        ']
+
+['//R23.du5', '@ Rule 23.du5 : maximum width in both direction of areas without dummy metal1 = 30.0.\n//            COPY EPTYDM1:1\n//        ']
+
+['R27.du1', '@ Rule 27.du1 : dummy metal2 is not allowed on metal2.\n          @ Rule 27.du1 : dummy metal2 distance to metal2 >= 1.5.\n            ME2_4 AND ME2\n            EXT ME2_4 ME2 < 1.5 ABUT<90 SINGULAR\n        ']
+
+['R27.du2a', '@ Rule 27.du2a : dummy metal2 is not allowed under masks patterns.\n             ME2_4 AND MASKPAT\n         ']
+
+['R27.du2b', '@ Rule 27.du2b : dummy metal2 distance to Corner L >= 3.\n             EXT ME2_4 MFGPPDG < 3 ABUT<90 SINGULAR REGION\n         ']
+
+['R27.du2c', '@ Rule 27.du2c : dummy metal2 distance to others masks patterns >= 3.\n             EXT ME2_4 MFGPPNG < 3 ABUT<90 SINGULAR REGION\n         ']
+
+['R27.du3', '@ Rule 27.du3 : min dummy metal2 size 0.32 x 0.96.\n            NOT RECTANGLE ME2_4 >= 0.96 BY >= 0.32\n        ']
+
+['R27.du4', '@ Rule 27.du4 : dummy metal2 space = 0.32.\n            EXT ME2_4 < 0.32 SPACE ABUT>0<90 SINGULAR\n        ']
+
+['R27.du6', '@ Rule 27.du6 : dummy metal2 is not allowed under pad.\n          @ Rule 27.du6 : dummy metal2 distance to pad >= ^SIZE_PAD.\n            ME2_4 AND PAD\n            EXT ME2_4 PAD < SIZE_PAD ABUT<90 SINGULAR\n        ']
+
+['//R27.du5', '@ Rule 27.du5 : maximum width in both direction of areas without dummy metal2 = 30.0.\n//            COPY EPTYDM2:1\n//        ']
+
+['R34.du1', '@ Rule 34.du1 : dummy metal3 is not allowed on metal3.\n          @ Rule 34.du1 : dummy metal3 distance to metal3 >= 1.5.\n            ME3_4 AND ME3\n            EXT ME3_4 ME3 < 1.5 ABUT<90 SINGULAR\n        ']
+
+['R34.du2a', '@ Rule 34.du2a : dummy metal3 is not allowed under masks patterns.\n             ME3_4 AND MASKPAT\n         ']
+
+['R34.du2b', '@ Rule 34.du2b : dummy metal3 distance to Corner L >= 3.\n            EXT ME3_4 MFGPPDG < 3 ABUT<90 SINGULAR REGION\n        ']
+
+['R34.du2c', '@ Rule 34.du2c : dummy metal3 distance to others masks patterns >= 3.\n            EXT ME3_4 MFGPPNG < 3 ABUT<90 SINGULAR REGION\n        ']
+
+['R34.du3', '@ Rule 34.du3 : min dummy metal3 size 0.32 x 0.96.\n            NOT RECTANGLE ME3_4 >= 0.32 BY >= 0.96\n        ']
+
+['R34.du4', '@ Rule 34.du4 : dummy metal3 space = 0.32.\n            EXT ME3_4 < 0.32 SPACE ABUT>0<90 SINGULAR\n        ']
+
+['R34.du6', '@ Rule 34.du6 : dummy metal3 is not allowed under pad.\n          @ Rule 34.du.6 : dummy metal3 distance to pad >= ^SIZE_PAD.\n            ME3_4 AND PAD\n            EXT ME3_4 PAD < SIZE_PAD ABUT<90 SINGULAR\n        ']
+
+['//R34.du5', '@ Rule 34.du5 : maximum width in both direction of areas without dummy metal3 = 30.0.\n//           COPY EPTYDM3:1\n//        ']
+
+['R36.du1', '@ Rule 36.du1 : dummy metal4 is not allowed on metal4.\n          @ Rule 36.du1 : dummy metal4 distance to metal4 >= 1.5.\n            ME4_4 AND ME4\n            EXT ME4_4 ME4 < 1.5 ABUT<90 SINGULAR\n        ']
+
+['R36.du2a', '@ Rule 36.du2a : dummy metal4 is not allowed under masks patterns.\n             ME4_4 AND MASKPAT\n         ']
+
+['R36.du2b', '@ Rule 36.du2b : dummy metal4 distance to Corner L >= 3.\n             EXT ME4_4 MFGPPDG < 3 ABUT<90 SINGULAR REGION\n         ']
+
+['R36.du2c', '@ Rule 36.du2c : dummy metal4 distance to others masks patterns >= 3.\n             EXT ME4_4 MFGPPNG < 3 ABUT<90 SINGULAR REGION\n         ']
+
+['R36.du3', '@ Rule 36.du3 : min dummy metal4 size 0.32 x 0.96.\n            NOT RECTANGLE ME4_4 >= 0.96 BY >= 0.32\n        ']
+
+['R36.du4', '@ Rule 36.du4 : dummy metal4 space = 0.32.\n            EXT ME4_4 < 0.32 SPACE ABUT>0<90 SINGULAR\n        ']
+
+['R36.du6', '@ Rule 36.du6 : dummy metal4 is not allowed under pad.\n          @ Rule 36.du6 : dummy metal4 distance to pad >= ^SIZE_PAD.\n            ME4_4 AND PAD\n            EXT ME4_4 PAD < SIZE_PAD ABUT<90 SINGULAR\n        ']
+
+['//R36.du5', '@ Rule 36.du5 : maximum width in both direction of areas without dummy metal4 = 30.0.\n//           COPY EPTYDM4:1\n//        ']
+
+['R53.du1', '@ Rule 53.du1 : dummy metal5 is not allowed on metal5.\n          @ Rule 53.du1 : dummy metal5 distance to metal5 >= 2.\n            ME5_4 AND ME5\n            EXT ME5_4 ME5 < 2 ABUT<90 SINGULAR\n        ']
+
+['R53.du2a', '@ Rule 53.du2a : dummy metal5 is not allowed under masks patterns.\n             ME5_4 AND MASKPAT\n         ']
+
+['R53.du2b', '@ Rule 53.du.2b : dummy metal5 distance to Corner L >= 3.\n             EXT ME5_4 MFGPPDG < 3 ABUT<90 SINGULAR REGION\n         ']
+
+['R53.du2c', '@ Rule 53.du.2c : dummy metal5 distance to others masks patterns >= 3.\n             EXT ME5_4 MFGPPNG < 3 ABUT<90 SINGULAR REGION\n         ']
+
+['R53.du3', '@ Rule 53.du3 : min dummy metal5 width >= 2.\n           INT ME5_4 < 2 ABUT>0<90 REGION\n        ']
+
+['R53.du4', '@ Rule 53.du4 : dummy metal5 space = 1.4.\n           EXT ME5_4 < 1.4 SPACE ABUT>0<90 SINGULAR\n        ']
+
+['R53.du6', '@ Rule 53.du6 : dummy metal5 is not allowed under pad.\n          @ Rule 53.du6 : dummy metal5 distance to pad >= ^SIZE_PAD.\n            ME5_4 AND PAD\n            EXT ME5_4 PAD < SIZE_PAD ABUT<90 SINGULAR\n        ']
+
+['//R53.du5', '@ Rule 53.du5 : maximum width in both direction of areas without dummy metal5 = 30.0.\n//           COPY EPTYDM5:1\n//        ']
+
+['R55.du1', '@ Rule 55.du1 : dummy metal6 is not allowed on metal6.\n          @ Rule 55.du1 : dummy metal6 distance to metal6 >= 2.\n            ME6_4 AND ME6\n            EXT ME6_4 ME6 < 2 ABUT<90 SINGULAR\n        ']
+
+['R55.du2a', '@ Rule 55.du2a : dummy metal6 is not allowed under masks patterns.\n             ME6_4 AND MASKPAT\n         ']
+
+['R55.du2b', '@ Rule 55.du2b : dummy metal6 distance to Corner L >= 3.\n             EXT ME6_4 MFGPPDG < 3 ABUT<90 SINGULAR REGION\n         ']
+
+['R55.du2c', '@ Rule 55.du2c : dummy metal6 distance to others masks patterns >= 3.\n             EXT ME6_4 MFGPPNG < 3 ABUT<90 SINGULAR REGION\n         ']
+
+['R55.du3', '@ Rule 55.du3 : min dummy metal6 width >= 2.\n            INT ME6_4 < 2 ABUT>0<90 REGION\n        ']
+
+['R55.du4', '@ Rule 55.du4 : dummy metal6 space = 1.4.\n            EXT ME6_4 < 1.4 SPACE ABUT>0<90 SINGULAR\n        ']
+
+['R55.du6', '@ Rule 55.du6 : dummy metal6 is not allowed under pad.\n          @ Rule 55.du6 : dummy metal6 distance to pad >= ^SIZE_PAD.\n            ME6_4 AND PAD\n            EXT ME6_4 PAD < SIZE_PAD ABUT<90 SINGULAR\n        ']
+
+['//R55.du5', '@ Rule 55.du5 : maximum width in both direction of areas without dummy metal6 = 30.0.\n//            COPY EPTYDM6:1\n//        ']
+
+['R80.du1', '@ Rule 80.du1 : dummy MIM5 is not allowed on MIM5.\n          @ Rule 80.du1 : dummy MIM5 distance to mim5 >= 2.\n            MIM5_4 AND MIM5\n            EXT MIM5_4 MIM5 < 2 ABUT<90 SINGULAR\n        ']
+
+['R80.du2a', '@ Rule 80.du2a : dummy MIM5 is not allowed under masks patterns.\n             MIM5_4 AND MASKPAT\n         ']
+
+['R80.du2b', '@ Rule 80.du2b : dummy MIM5 distance to Corner L >= 3.\n             EXT MIM5_4 MFGPPDG < 3 ABUT<90 SINGULAR REGION\n         ']
+
+['R80.du2c', '@ Rule 80.du2c : dummy MIM5 distance to others masks patterns >= 3.\n             EXT MIM5_4 MFGPPNG < 3 ABUT<90 SINGULAR REGION\n         ']
+
+['R80.du3', '@ Rule 80.du3 : dummy MIM5 is not allowed under pad.\n          @ Rule 80.du3 : dummy MIM5 distance to pad >= ^SIZE_PAD.\n            MIM5_4 AND PAD\n            EXT MIM5_4 PAD < SIZE_PAD ABUT<90 SINGULAR\n        ']
+
+['R80.du4', '@ Rule 80.du4 : dummy metal5 is required under dummy MIM5.\n           MIM5_4 NOT ME5_4\n        ']
+
+['R80.du5', '@ Rule 80.du5 : dummy MIM5 is not allowed on metal5.\n            MIM5_4 AND ME5\n        ']
+
+['R80.du6', '@ Rule 80.du6 : dummy MIM5 is required over dummy metal5.\n            (ME5_4 NOT INTERACT MIM5_4) NOT (BULK NOT INTERACT MIM5)\n        ']
+
+['R92.du1', '@ Rule 92.du1 : dummy HKMIM5 is not allowed on HKMIM5.\n          @ Rule 92.du1 : dummy HKMIM5 distance to hkmim5 >= 2.\n            HKMIM5_4 AND HKMIM5\n            EXT HKMIM5_4 HKMIM5 < 2 ABUT<90 SINGULAR\n         ']
+
+['R92.du2a', '@ Rule 92.du2a : dummy HKMIM5 is not allowed under masks patterns.\n             HKMIM5_4 AND MASKPAT\n         ']
+
+['R92.du2b', '@ Rule 92.du2b : dummy HKMIM5 distance to Corner L >= 3.\n             EXT HKMIM5_4 MFGPPDG < 3 ABUT<90 SINGULAR REGION\n         ']
+
+['R92.du2c', '@ Rule 92.du2c : dummy HKMIM5 distance to others masks patterns >= 3.\n             EXT HKMIM5_4 MFGPPNG < 3 ABUT<90 SINGULAR REGION\n         ']
+
+['R92.du3', '@ Rule 92.du3 : dummy HKMIM5 is not allowed under pad.\n          @ Rule 92.du3 : dummy HKMIM5 distance to pad >= ^SIZE_PAD.\n            HKMIM5_4 AND PAD\n            EXT HKMIM5_4 PAD < SIZE_PAD ABUT<90 SINGULAR\n        ']
+
+['R92.du4', '@ Rule 92.du4 : dummy metal5 is required under dummy HKMIM5.\n            HKMIM5_4 NOT ME5_4\n        ']
+
+['R92.du5', '@ Rule 92.du5 : dummy HKMIM5 is not allowed on metal5.\n            HKMIM5_4 AND ME5\n        ']
+
+['R92.du6', '@ Rule 92.du6 : dummy HKMIM5 is required over dummy metal5.\n            (ME5_4 NOT INTERACT HKMIM5_4) NOT (BULK NOT INTERACT HKMIM5)\n        ']
+
+['R2.du15', '@ Rule 2.du15 : Min ACTIVE density by 1x1mm window >= 0.2.\n            DENSITY XALLACT < 0.2 WINDOW 1000 1000 STEP 500 PRINT "./densWIN1_ACT" BACKUP\n        ']
+
+['R2.du16', '@ Rule 2.du16 : Min ACTIVE density across full chip >= 0.25.\n            DENSITY XALLACT < 0.25  PRINT "./densTOT_ACT"\n        ']
+
+['R13.12', '@ Rule 13.12 : Minimum POLY total density >= 0.15.\n           DENSITY XALLPOL < 0.15 PRINT "./densTOT_POLY" \n       ']
+
+['R23.6', '@ Rule 23.6 : Minimum metal1 density by 0.5x0.5mm window >= 0.2.\n          DENSITY XALLM1 < 0.2 WINDOW 500 500 STEP 250 PRINT "./min_densWIN_M1" BACKUP\n      ']
+
+['R23.7', '@ Rule 23.7 : Maximum metal1 density by 0.5x0.5mm window =< 0.55.\n          DENSITY XALLM1 > 0.55 WINDOW 500 500 STEP 250 PRINT "./max_densWIN_M1" BACKUP\n      ']
+
+['R27.6', '@ Rule 27.6 : Minimum metal2 density by 0.5x0.5mm window >= 0.2.\n          DENSITY XALLM2 < 0.2 WINDOW 500 500 STEP 250 PRINT "./min_densWIN_M2" BACKUP\n      ']
+
+['R27.7', '@ Rule 27.7 : Maximum metal2 density by 0.5x0.5mm window =< 0.55.\n          DENSITY XALLM2 > 0.55 WINDOW 500 500 STEP 250 PRINT "./max_densWIN_M2" BACKUP\n      ']
+
+['R34.6', '@ Rule 34.6 : Minimum metal3 density by 0.5x0.5mm window >= 0.2.\n          DENSITY XALLM3 < 0.2 WINDOW 500 500 STEP 250 PRINT "./min_densWIN_M3" BACKUP\n      ']
+
+['R34.7', '@ Rule 34.7 : Maximum metal3 density by 0.5x0.5mm window =< 0.55.\n          DENSITY XALLM3 > 0.55 WINDOW 500 500 STEP 250 PRINT "./max_densWIN_M3" BACKUP\n      ']
+
+['R36.6', '@ Rule 36.6 : Minimum metal4 density by 0.5x0.5mm window >= 0.2.\n          DENSITY XALLM4 < 0.2 WINDOW 500 500 STEP 250 PRINT "./min_densWIN_M4" BACKUP\n      ']
+
+['R36.7', '@ Rule 36.7 : Maximum metal4 density by 0.5x0.5mm window =< 0.85.\n          DENSITY XALLM4 > 0.85 WINDOW 500 500 STEP 250 PRINT "./max_densWIN_M4" BACKUP\n      ']
+
+['R53.6', '@ Rule 53.6 : Minimum metal5 density by 0.5x0.5mm window >= 0.33.\n          DENSITY XALLM5 < 0.33 WINDOW 500 500 STEP 250 PRINT "./min_densWIN_M5" BACKUP\n      ']
+
+['R53.7', '@ Rule 53.7 : Maximum metal5 density by 0.5x0.5mm window =< 0.85.\n          DENSITY XALLM5 > 0.85 WINDOW 500 500 STEP 250 PRINT "./max_densWIN_M5" BACKUP\n      ']
+
+['RMT80.8', '@ Rule MT80.8 : Minimum MIM5 density by 1x1mm window around MIM5 >= 0.05.\n            DENSITY XALLMIM5 < 0.05 WINDOW 1000 1000 STEP 100 INSIDE OF LAYER WINDOWMIM5 PRINT "./min_densWIN_MIM5"\n        ']
+
+['RMT80.9', '@ Rule MT80.9 : Maximum MIM5 density by 1x1mm window around MIM5 =< 0.85.\n            DENSITY XALLMIM5 > 0.85 WINDOW 1000 1000 STEP 100 INSIDE OF LAYER WINDOWMIM5 PRINT "./max_densWIN_MIM5"\n        ']
+
+['RM92.8', '@ Rule M92.8 : Minimum HKMIM5 density by 1x1mm window around HKMIM5 >= 0.05.\n             DENSITY XALLHKMIM5 < 0.05 WINDOW 1000 1000 STEP 100 INSIDE OF LAYER WINDOWHKMIM5 PRINT "./min_densWIN_HKMIM5"  \n         ']
+
+['R55.5', '@ Rule 55.5 : Minimum metal6 density across full chip >= 0.33.\n          DENSITY XALLM6 < 0.33 PRINT "./densTOT_M6"\n      ']
+
+['RNG1.fuse', '@ Rule NG1.fuse : NITRIDE opening for laser fuse enclosure by ACTIVE of guard (fuse end) >= 1.5.\n              OPENNG1 = TOUCH INSIDE EDGE FUSEOPEN FUSEM3IN \n              EXT OPENNG1 ACTIVE < 1.5 ABUT<90 REGION\n          ']
+
+['RNG2.fuse', '@ Rule NG2.fuse : NITRIDE opening for laser fuse enclosure by ACTIVE of guard (fuse side) >= 2.0.\n              OPENNG2 = NOT TOUCH INSIDE EDGE FUSEOPEN FUSEM3IN\n              EXT OPENNG2 ACTIVE < 2.0 ABUT<90 REGION\n          ']
+
+['RNM1.fuse.a', '@ Rule NM1.fuse : NITRIDE opening for laser fuse distance to ME4, ME3 (except fuse or fuse interconnect bridge). \n                EXT FUSEOPEN ME4NOTFUSE < 5.0 REGION INSIDE ALSO\n                EXT FUSEOPEN ME3NOTFUSE < 5.0 REGION INSIDE ALSO\n            ']
+
+['RNM1.fuse.b', '@ Rule NM1.fuse : NITRIDE opening for laser fuse distance to ME5 (except fuse or fuse interconnect bridge). \n                EXT FUSEOPEN ME5 < 5.0 REGION INSIDE ALSO\n        ']
+
+['RNM1.fuse.c', '@ Rule NM1.fuse : NITRIDE opening for laser fuse distance to ME6 (except fuse or fuse interconnect bridge).\n                EXT FUSEOPEN ME6 < 5.0 REGION INSIDE ALSO\n        ']
+
+['RNM2.fuse', '@ Rule NM2.fuse : NITRIDE opening for laser fuse distance to ME2, ME1 (except plug on active of guard biasing).\n              EXT FUSEOPEN ME2NOTFUSE < 2.5 REGION INSIDE ALSO\n              EXT FUSEOPEN ME1NOTFUSE < 2.5 REGION INSIDE ALSO\n          ']
+
+['RNM3.fuse', '@ Rule NM3.fuse : NITRIDE opening for laser fuse distance to ME2, ME1 ( only ME1, ME2 connected on guard ring).\n              EXT FUSEOPEN MET1RING < 1.5 REGION INSIDE ALSO\n              EXT FUSEOPEN MET2RING < 1.5 REGION INSIDE ALSO\n          ']
+
+['RNF2.fuse', '@ Rule NF2.fuse : NITRIDE opening for laser fuse enclosure of last fuse (fuse side) >= 5.0.\n              ENC TMPFUSE FUSEOPEN < 5.0 ABUT<90 PROJECTING > 7\n          ']
+
+['RNF1.fuse', '@ Rule NF1.fuse : NITRIDE opening for laser fuse enclosure of fuse end (end of W wide metal) >= 2.5.\n              INT FUSEOPEN MET3FUSE < 2.5 ABUT<90 REGION\n          ']
+
+['RNF3.fuse', '@ Rule NF3.fuse : NITRIDE opening for laser fuse enclosure of fuse metal (fuse metal including vias covering) >= 1.0.\n              ENC FUSHEAD FUSEOPEN  < 1.0 ABUT<90 PROJECTING <= 7\n          ']
+
+['RW.fuse', '@ Rule W.fuse : Fuse width (metal side) min = max = 1.0.\n            INT FUSEME4 < 1.0 REGION\n            WITH EDGE FUSHEAD FUSEME4\n        ']
+
+['RL.fuse', '@ Rule L.fuse : Fuse length (metal heads) >= 8.0.\n            X = FUSEME4 LENGTH < 8.0\n            Y = WITH EDGE FUSEM4IN X\n        Y NOT FUSHEAD\n        ']
+
+['RS.fuse', '@ Rule S.fuse : Fuse space (metal side) >= 4.0.\n            EXT FUSEME4 < 4.0 REGION\n        ']
+
+['RE1.target', '@ Rule E1.target : Alignment Target side dist to any level (Y) > 25.\n           TARGET_SIDE_VER CUT ALL_LAYER:31\n           TARGET_SIDE_VER INSIDE ALL_LAYER:31\n           ']
+
+['RE2.target', '@ Rule E2.target : Alignment Target side dist to any level (X) > 25.\n           TARGET_SIDE_HOR CUT ALL_LAYER:31\n           TARGET_SIDE_HOR INSIDE ALL_LAYER:31\n           ']
+
+['RE3.target', '@ Rule E3.target : Alignment Target end dist to any level > 3.\n           EXT END_EDGE:1 ALL_LAYER:31 < 3\n           ']
+
+['RWmin.target', '@ Rule Wmin.target : Alignment Target min Width >= 6.\n             INT ME4_28 < 6 OPPOSITE PARALLEL REGION\n             ']
+
+['RWmax.target', '@ Rule Wmax.target : Alignment Target max Width >= 10.\n             SIZE ME4_28 BY 5 UNDEROVER\n             ']
+
+['RL.target', '@ Rule L.target : Alignment Target min Length >= 27.\n          LENGTH TARGET_SIDE < 27\n          ']
+
+['R31.eb24', '@ Rule 31.eb24 : NITRIDE opening for micropad width >= 2.0.\n             INT NITRIDE_33 < 2.0 ABUT>0<90 SINGULAR\n         ']
+
+['R31.ebI1_R31.ebI3', '@ Rule 31.ebI1 : NITRIDE opening for micropad enclosure by ME6 >= 1.0.\n                    @ Rule 31.ebI3 : NITRIDE opening for micropad should be on ME6.\n                      ENC NITRIDE_33 ME6 < 1.0 ABUT<90 SINGULAR OUTSIDE ALSO\n                  ']
+
+['R31.ebI4', '@ Rule 31.ebI4 : NITRIDE opening for micropad must not be on PAD.\n             AND NITRIDE_33 NITRIDE_0\n         ']
+
+['R31.ebI5', '@ Rule 31.ebI5 : NITRIDE opening for micropad dist to PAD >= 50.\n             EXT NITRIDE_33 NITRIDE_0 < 50 ABUT<90 SINGULAR\n         ']
+
+['R31.ebI6', "@ Rule 31.ebI6 : NITRID opening for micropad not allowed if the design isn't a prototype\n           @ (the switch prototype for ebeam must then be set to yes).\n             OR NITRIDE_33\n         "]
+
+['OFFGRID_ADHVTN', '@ Offgrid vertex on ADHVTN.\n                   OFFGRID ADHVTN_0 20\n                   OFFGRID ADHVTN_30 20\n               ']
+
+['OFFGRID_ADHVTP', '@ Offgrid vertex on ADHVTP.\n                   OFFGRID ADHVTP_0 20\n                   OFFGRID ADHVTP_30 20\n               ']
+
+['OFFGRID_RNWELL', '@ Offgrid vertex on RNWELL.\n                   OFFGRID RNWELL_0 20\n               ']
+
+['OFFGRID_NWELL', '@ Offgrid vertex on NWELL.\n                  OFFGRID NWELL_0 20\n                  OFFGRID NWELL_30 20\n              ']
+
+['OFFGRID_NWELL2', '@ Offgrid vertex on NWELL2.\n                   OFFGRID NWELL2_0 20\n                   OFFGRID NWELL2_30 20\n               ']
+
+['OFFGRID_PWELL2', '@ Offgrid vertex on PWELL2.\n                   OFFGRID PWELL2_0 20\n                   OFFGRID PWELL2_30 20\n               ']
+
+['OFFGRID_OTP', '@ Offgrid vertex on OTP.\n                OFFGRID OTP_0 20\n                OFFGRID OTP_30 20\n            ']
+
+['OFFGRID_ACTIVE', '@ Offgrid vertex on ACTIVE.\n                   OFFGRID ACTIVE_0 20\n                   OFFGRID ACTIVE_30 20\n               ']
+
+['OFFGRID_ACTIVE_4', '@ Offgrid vertex on DUMMY ACTIVE.\n                     OFFGRID ACTIVE_4 20\n                 ']
+
+['OFFGRID_POLY', '@ Offgrid vertex on POLY.\n                 OFFGRID POLY_0 20\n                 OFFGRID POLY_30 20\n             ']
+
+['OFFGRID_NPLUS', '@ Offgrid vertex on NPLUS.\n                  OFFGRID NPLUS_0 20\n                  OFFGRID NPLUS_30 20\n              ']
+
+['OFFGRID_NLDD', '@ Offgrid vertex on NLDD.\n                 OFFGRID NLDD_0 20\n                 OFFGRID NLDD_30 20\n             ']
+
+['OFFGRID_PLDD', '@ Offgrid vertex on PLDD.\n                 OFFGRID PLDD_0  20\n                 OFFGRID PLDD_30 20\n             ']
+
+['OFFGRID_PPLUS', '@ Offgrid vertex on PPLUS.\n                  OFFGRID PPLUS_0 20\n                  OFFGRID PPLUS_30 20\n              ']
+
+['OFFGRID_SIPROT', '@ Offgrid vertex on SIPROT.\n                   OFFGRID SIPROT_0 20\n                   OFFGRID SIPROT_30 20\n               ']
+
+['OFFGRID_NITRIDE', '@ Offgrid vertex on NITRIDE.\n                    OFFGRID NITRIDE_0 20\n                ']
+
+['OFFGRID_NITRIDE_bg', '@ Offgrid vertex on NITRIDE_bg.\n                       OFFGRID NITRIDE_bumping 20\n                   ']
+
+['OFFGRID_LIL', '@ Offgrid vertex on LIL.\n                OFFGRID LIL_0 20\n                OFFGRID LIL_30 20\n            ']
+
+['OFFGRID_CONTACT', '@ Offgrid vertex on CONTACT.\n                    OFFGRID CONTACT_0 20\n                    OFFGRID CONTACT_30 20\n                ']
+
+['OFFGRID_ME1', '@ Offgrid vertex on ME1.\n                OFFGRID ME1_0 20\n                OFFGRID ME1_30 20\n            ']
+
+['OFFGRID_VI1', '@ Offgrid vertex on VI1.\n                OFFGRID VI1_0 20\n                OFFGRID VI1_30 20\n            ']
+
+['OFFGRID_ME2', '@ Offgrid vertex on ME2.\n                OFFGRID ME2_0 20\n                OFFGRID ME2_30 20\n            ']
+
+['OFFGRID_VI2', '@ Offgrid vertex on VI2.\n                OFFGRID VI2_0 20\n                OFFGRID VI2_30 20\n            ']
+
+['OFFGRID_ME3', '@ Offgrid vertex on ME3.\n                OFFGRID ME3_0 20\n                OFFGRID ME3_30 20\n            ']
+
+['OFFGRID_VI3', '@ Offgrid vertex on VI3.\n                OFFGRID VI3_0 20\n                OFFGRID VI3_30 20\n            ']
+
+['OFFGRID_ME4', '@ Offgrid vertex on ME4.\n                OFFGRID ME4_0 20\n                OFFGRID ME4_30 20\n            ']
+
+['OFFGRID_VI4', '@ Offgrid vertex on VI4.\n                OFFGRID VI4_0 20\n                OFFGRID VI4_30 20\n            ']
+
+['OFFGRID_ME5', '@ Offgrid vertex on ME5.\n                OFFGRID ME5_0 20\n                OFFGRID ME5_30 20\n            ']
+
+['OFFGRID_VI5', '@ Offgrid vertex on VI5.\n                OFFGRID VI5_0 20\n                OFFGRID VI5_30 20\n            ']
+
+['OFFGRID_ME6', '@ Offgrid vertex on ME6.\n                OFFGRID ME6_0 20\n                OFFGRID ME6_30 20\n            ']
+
+['OFFGRID_VFB', '@ Offgrid vertex on VFB.\n                OFFGRID VFB_0 20\n                OFFGRID VFB_30 20\n            ']
+
+['OFFGRID_PRL', '@ Offgrid vertex on PRL.\n                OFFGRID PRL_0 20\n                OFFGRID PRL_30 20\n            ']
+
+['OFFGRID_NATIVE', '@ Offgrid vertex on NATIVE.\n                   OFFGRID NATIVE_0 20\n               ']
+
+['OFFGRID_NEXT', '@ Offgrid vertex on NEXT.\n                 OFFGRID NEXT_0 20\n             ']
+
+['OFFGRID_NEXT_5V', '@ Offgrid vertex on NEXT_5V.\n                    OFFGRID NEXT_5V_0 20\n                ']
+
+['OFFGRID_PEXT', '@ Offgrid vertex on PEXT.\n                 OFFGRID PEXT_0 20\n             ']
+
+['OFFGRID_PEXT_5V', '@ Offgrid vertex on PEXT_5V.\n                    OFFGRID PEXT_5V_0 20\n                ']
+
+['OFFGRID_GO2', '@ Offgrid vertex on GO2.\n                OFFGRID GO2_0 20\n            ']
+
+['OFFGRID_GO2_5V', '@ Offgrid vertex on GO2_5V.\n                   OFFGRID GO2_5V_0 20\n               ']
+
+['OFFGRID_MIM5', '@ Offgrid vertex on MIM5.\n                 OFFGRID MIM5_0 20\n             ']
+
+['OFFGRID_HKMIM5', '@ Offgrid vertex on HKMIM5.\n                   OFFGRID HKMIM5_0 20\n               ']
+
+['OFFGRID_PRESIST', '@ Offgrid vertex on PRESIST.\n                    OFFGRID PRESIST 20\n                ']
+
+['OFFGRID_CTELEC2', '@ Offgrid vertex on CTELEC2.\n                    OFFGRID CTELEC2 20\n                ']
+
+['OFFGRID_CELLVT', '@ Offgrid vertex on CELLVT.\n                   OFFGRID CELLVT 20\n               ']
+
+['OFFGRID_CELLIMP', '@ Offgrid vertex on CELLIMP.\n                    OFFGRID CELLIMP 20\n                ']
+
+['OFFGRID_NEPI', '@ Offgrid vertex on EPI.\n                 OFFGRID NEPI_0 20\n             ']
+
+['OFFGRID_NISO', '@ Offgrid vertex on NISO.\n                 OFFGRID NISO_0 20\n             ']
+
+['NON_45_DEG_ADHVTN', '@ Non 45 degree angle ADHVTN.\n                      ANGLE ADHVTN_0 >0 <45\n                      ANGLE ADHVTN_0 >45 <90\n                      ANGLE ADHVTN_30 >0 <45\n                      ANGLE ADHVTN_30 >45 <90\n                  ']
+
+['NON_45_DEG_ADHVTP', '@ Non 45 degree angle ADHVTP.\n                      ANGLE ADHVTP_0  >0 <45\n                      ANGLE ADHVTP_0  >45 <90\n                      ANGLE ADHVTP_30 >0 <45\n                      ANGLE ADHVTP_30 >45 <90\n                  ']
+
+['NON_45_DEG_RNWELL', '@ Non 45 degree angle RNWELL.\n                      ANGLE RNWELL_0 >0 <45\n                      ANGLE RNWELL_0 >45 <90\n                  ']
+
+['NON_45_DEG_NWELL', '@ Non 45 degree angle NWELL.\n                     ANGLE NWELL_0 >0 <45\n                     ANGLE NWELL_0 >45 <90\n                     ANGLE NWELL_30 >0 <45\n                     ANGLE NWELL_30 >45 <90\n                 ']
+
+['NON_45_DEG_NWELL2', '@ Non 45 degree angle NWELL2.\n                      ANGLE NWELL2_0 >0 <45\n                      ANGLE NWELL2_0 >45 <90\n                      ANGLE NWELL2_30 >0 <45\n                      ANGLE NWELL2_30 >45 <90\n                  ']
+
+['NON_45_DEG_PWELL2', '@ Non 45 degree angle PWELL2.\n                      ANGLE PWELL2_0 >0 <45\n                      ANGLE PWELL2_0 >45 <90\n                      ANGLE PWELL2_30 >0 <45\n                      ANGLE PWELL2_30 >45 <90\n                  ']
+
+['NON_45_DEG_OTP', '@ Non 45 degree angle OTP.\n                   ANGLE OTP_0 >0 <45\n                   ANGLE OTP_0 >45 <90\n                   ANGLE OTP_30 >0 <45\n                   ANGLE OTP_30 >45 <90\n               ']
+
+['NON_45_DEG_ACTIVE', '@ Non 45 degree angle ACTIVE.\n                      ANGLE ACTIVE_0 >0 <45\n                      ANGLE ACTIVE_0 >45 <90\n                      ANGLE ACTIVE_30 >0 <45\n                      ANGLE ACTIVE_30 >45 <90\n                  ']
+
+['NON_45_DEG_POLY', '@ Non 45 degree angle POLY.\n                    ANGLE POLY_0 >0 <45\n                    ANGLE POLY_0 >45 <90\n                    ANGLE POLY_30 >0 <45\n                    ANGLE POLY_30 >45 <90\n                ']
+
+['NON_45_DEG_NPLUS', '@ Non 45 degree angle NPLUS.\n                     ANGLE NPLUS_0 >0 <45\n                     ANGLE NPLUS_0 >45 <90\n                     ANGLE NPLUS_30 >0 <45\n                     ANGLE NPLUS_30 >45 <90\n                 ']
+
+['NON_45_DEG_NLDD', '@ Non 45 degree angle NLDD.\n                    ANGLE NLDD_0 >0 <45\n                    ANGLE NLDD_0 >45 <90\n                    ANGLE NLDD_30 >0 <45\n                    ANGLE NLDD_30 >45 <90\n                ']
+
+['NON_45_DEG_PLDD', '@ Non 45 degree angle PLDD.\n                    ANGLE PLDD_0 >0 <45\n                    ANGLE PLDD_0 >45 <90\n                    ANGLE PLDD_30 >0 <45\n                    ANGLE PLDD_30 >45 <90\n                ']
+
+['NON_45_DEG_PPLUS', '@ Non 45 degree angle PPLUS.\n                     ANGLE PPLUS_0 >0 <45\n                     ANGLE PPLUS_0 >45 <90\n                     ANGLE PPLUS_30 >0 <45\n                     ANGLE PPLUS_30 >45 <90\n                 ']
+
+['NON_45_DEG_SIPROT', '@ Non 45 degree angle SIPROT.\n                      ANGLE SIPROT_0 >0 <45\n                      ANGLE SIPROT_0 >45 <90\n                      ANGLE SIPROT_30 >0 <45\n                      ANGLE SIPROT_30 >45 <90\n                  ']
+
+['NON_45_DEG_NITRIDE', '@ Non 45 degree angle NITRIDE.\n                       ANGLE NITRIDE >0 <45\n                       ANGLE NITRIDE >45 <90\n                   ']
+
+['NON_90_DEG_LIL', '@ Non 90 degree angle LIL.\n                   ANGLE LIL_0 >0 <45\n               ANGLE LIL_0 >45 <90\n                   ANGLE LIL_30 >0 <45\n               ANGLE LIL_30 >45 <90\n               ']
+
+['NON_45_DEG_CONTACT', '@ Non 45 degree angle CONTACT.\n                       ANGLE CONTACT_0 >0 <45\n                       ANGLE CONTACT_0 >45 <90\n                       ANGLE CONTACT_30 >0 <45\n                       ANGLE CONTACT_30 >45 <90\n                   ']
+
+['NON_45_DEG_ME1', '@ Non 45 degree angle ME1.\n                   ANGLE ME1_0 >0 <45\n                   ANGLE ME1_0 >45 <90\n                   ANGLE ME1_30 >0 <45\n                   ANGLE ME1_30 >45 <90\n               ']
+
+['NON_45_DEG_VI1', '@ Non 45 degree angle VI1.\n                   ANGLE VI1_0 >0 <45\n                   ANGLE VI1_0 >45 <90\n                   ANGLE VI1_30 >0 <45\n                   ANGLE VI1_30 >45 <90\n               ']
+
+['NON_45_DEG_ME2', '@ Non 45 degree angle ME2.\n                   ANGLE ME2_0 >0 <45\n                   ANGLE ME2_0 >45 <90\n                   ANGLE ME2_30 >0 <45\n                   ANGLE ME2_30 >45 <90\n               ']
+
+['NON_45_DEG_VI2', '@ Non 45 degree angle VI2.\n                   ANGLE VI2_0 >0 <45\n                   ANGLE VI2_0 >45 <90\n                   ANGLE VI2_30 >0 <45\n                   ANGLE VI2_30 >45 <90\n               ']
+
+['NON_45_DEG_ME3', '@ Non 45 degree angle ME3.\n                   ANGLE ME3_0 >0 <45\n                   ANGLE ME3_0 >45 <90\n                   ANGLE ME3_30 >0 <45\n                   ANGLE ME3_30 >45 <90\n               ']
+
+['NON_45_DEG_VI3', '@ Non 45 degree angle VI3.\n                   ANGLE VI3_0 >0 <45\n                   ANGLE VI3_0 >45 <90\n                   ANGLE VI3_30 >0 <45\n                   ANGLE VI3_30 >45 <90\n               ']
+
+['NON_45_DEG_ME4', '@ Non 45 degree angle ME4.\n                   ANGLE ME4_0 >0 <45\n                   ANGLE ME4_0 >45 <90\n                   ANGLE ME4_30 >0 <45\n                   ANGLE ME4_30 >45 <90\n               ']
+
+['NON_45_DEG_VI4', '@ Non 45 degree angle VI4.\n                   ANGLE VI4_0 >0 <45\n                   ANGLE VI4_0 >45 <90\n                   ANGLE VI4_30 >0 <45\n                   ANGLE VI4_30 >45 <90\n               ']
+
+['NON_45_DEG_ME5', '@ Non 45 degree angle ME5.\n                   ANGLE ME5_0 >0 <45\n                   ANGLE ME5_0 >45 <90\n                   ANGLE ME5_30 >0 <45\n                   ANGLE ME5_30 >45 <90\n               ']
+
+['NON_45_DEG_VI5', '@ Non 45 degree angle VI5.\n                   ANGLE VI5_0 >0 <45\n                   ANGLE VI5_0 >45 <90\n                   ANGLE VI5_30 >0 <45\n                   ANGLE VI5_30 >45 <90\n               ']
+
+['NON_45_DEG_ME6', '@ Non 45 degree angle ME6.\n                   ANGLE ME6_0 >0 <45\n                   ANGLE ME6_0 >45 <90\n                   ANGLE ME6_30 >0 <45\n                   ANGLE ME6_30 >45 <90\n               ']
+
+['NON_45_DEG_VFB', '@ Non 45 degree angle VFB.\n                   ANGLE VFB_0 >0 <45\n                   ANGLE VFB_0 >45 <90\n                   ANGLE VFB_30 >0 <45\n                   ANGLE VFB_30 >45 <90\n               ']
+
+['NON_45_DEG_PRL', '@ Non 45 degree angle PRL.\n                   ANGLE PRL_0 >0 <45\n                   ANGLE PRL_0 >45 <90\n                   ANGLE PRL_30 >0 <45\n                   ANGLE PRL_30 >45 <90\n               ']
+
+['NON_45_DEG_NATIVE', '@ Non 45 degree angle NATIVE.\n                      ANGLE NATIVE_0 >0 <45\n                      ANGLE NATIVE_0 >45 <90\n                  ']
+
+['NON_45_DEG_NEXT', '@ Non 45 degree angle NEXT.\n                    ANGLE NEXT_0 >0 <45\n                    ANGLE NEXT_0 >45 <90\n                ']
+
+['NON_45_DEG_NEXT_5V', '@ Non 45 degree angle NEXT_5V.\n                    ANGLE NEXT_5V_0 >0 <45\n                    ANGLE NEXT_5V_0 >45 <90\n                ']
+
+['NON_45_DEG_PEXT', '@ Non 45 degree angle PEXT.\n                    ANGLE PEXT_0 >0 <45\n                    ANGLE PEXT_0 >45 <90\n                ']
+
+['NON_45_DEG_PEXT_5V', '@ Non 45 degree angle PEXT_5V.\n                    ANGLE PEXT_5V_0 >0 <45\n                    ANGLE PEXT_5V_0 >45 <90\n                ']
+
+['NON_45_DEG_GO2', '@ Non 45 degree angle GO2.\n                   ANGLE GO2_0 >0 <45\n                   ANGLE GO2_0 >45 <90\n               ']
+
+['NON_45_DEG_GO2_5V', '@ Non 45 degree angle GO2_5V.\n                      ANGLE GO2_5V_0 >0 <45\n                      ANGLE GO2_5V_0 >45 <90\n                  ']
+
+['NON_45_DEG_MIM5', '@ Non 45 degree angle MIM5.\n                    ANGLE MIM5_0 >0 <45\n                    ANGLE MIM5_0 >45 <90\n                ']
+
+['NON_45_DEG_HKMIM5', '@ Non 45 degree angle HKMIM5.\n                      ANGLE HKMIM5_0 >0 <45\n                      ANGLE HKMIM5_0 >45 <90\n                  ']
+
+['NON_45_DEG_PRESIST', '@ Non 45 degree angle PRESIST.\n                       ANGLE PRESIST >0 <45\n                       ANGLE PRESIST >45 <90\n                   ']
+
+['NON_45_DEG_NEPI', '@ Non 45 degree angle EPI.\n                    ANGLE NEPI_0 >0 <45\n                ANGLE NEPI_0 >45 <90\n                ']
+
+['NON_45_DEG_CTELEC2', '@ Non 45 degree angle CTELEC2.\n                       ANGLE CTELEC2 >0 <45\n                       ANGLE CTELEC2 >45 <90\n                   ']
+
+['NON_45_DEG_CELLVT', '@ Non 45 degree angle CELLVT.\n                      ANGLE CELLVT >0 <45\n                      ANGLE CELLVT >45 <90\n                  ']
+
+['NON_45_DEG_CELLIMP', '@ Non 45 degree angle CELLIMP.\n                       ANGLE CELLIMP >0 <45\n                       ANGLE CELLIMP >45 <90\n                   ']
+
+['NON_45_DEG_NISO', '@ Non 45 degree angle NISO.\n                    ANGLE NISO_0 >0 <45\n                    ANGLE NISO_0 >45 <90\n                ']
+
+['RHC8REC.1_2_3', '@ Rule HC8REC.1 : Only metals crossing HC8REC are allowed.\n        @ Rule HC8REC.2 : HC8REC enclosure of all layers (except metal) >= 0.5.\n        @ Rule HC8REC.3 : HC8REC distance to all layers (except metal) >= 0.5.\n          ACTIVE INTERACT HC8REC:3\n          POLY INTERACT HC8REC:3\n          NLDD INTERACT HC8REC:3 \n          PLDD INTERACT HC8REC:3\n          NPLUS INTERACT HC8REC:3\n          PPLUS INTERACT HC8REC:3\n          ADHVTN INTERACT HC8REC:3\n          ADHVTP INTERACT HC8REC:3\n          NWELL INTERACT HC8REC:3\n          RNWELL INTERACT HC8REC:3\n          SIPROT INTERACT HC8REC:3\n          CONTACT INTERACT HC8REC:3\n          LIL INTERACT HC8REC:3\n          GO2 INTERACT HC8REC:3 \n          NEXT INTERACT HC8REC:3\n          PEXT INTERACT HC8REC:3\n          NISO INTERACT HC8REC:3\n          NATIVE INTERACT HC8REC:3 \n          ']
+
+['RHC8REC.4', '@ Rule HC8REC.4 : ADHVTN and/or ADHVTP not allowed on HC8REC.\n          ADHVTN AND HC8REC\n          ADHVTP AND HC8REC\n      ']
+
+['R2X1Xa', "@ Rule 2.1a : MOS transistor width >= 0.28.\n           R1 = INT GATEND < 0.28 ABUT>0<90 REGION\n           M = FDRC INSIDE CELL '*FR_2X1Xa_*'\n           R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n       "]
+
+['R2.1b', '@ Rule 2.1b : MOS transistor width for thick gate oxide >= 0.5.\n          INT NGO2D < 0.5 ABUT>0<90 OPPOSITE\n      INT PGO2D < 0.5 ABUT>0<90 OPPOSITE\n      ']
+
+['R2.1c', '@ Rule 2.1c : Channel width for 5V transistors >= 0.28.\n          INT GATEND_5V < 0.28 ABUT>0<90 REGION\n      ']
+
+['R2Ximp1', "@ Rule 2.imp1 ACTIVE without implant is not allowed.\n            R1 = COPY BADACTIVE:1\n            M = FDRC INSIDE CELL '*FR_2Ximp1_*'\n            R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n        "]
+
+['R2.imp2', '@ Rule 2.imp2 ACTIVE with PLDD or NLDD without NPLUS or PPLUS is not allowed.\n            PLDDACT AND NLDDACT\n    ']
+
+['R2X2', "@ Rule 2.2 : N+ active width > 0.28.\n         R1 = INT NACTIVE < 0.28 ABUT>0<90 SINGULAR REGION\n         M = FDRC INSIDE CELL '*FR_2X2_*'\n         R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n     "]
+
+['R2X3', "@ Rule 2.3 : P+ active  width > 0.28.\n         R1 = INT PACTIVE < 0.28 ABUT>0<90 SINGULAR REGION\n         M = FDRC INSIDE CELL '*FR_2X3_*'\n         R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n     "]
+
+['R2X5', "@ Rule 2.5 : ACTIVE space > 0.32.\n         R1 = EXT ACTIVE < 0.32 ABUT>0<90 SINGULAR REGION\n         M = FDRC INSIDE CELL '*FR_2X5_*'\n         R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n     "]
+
+['R2.6', '@ Rule 2.6 : NWELL strap distance to PWELL strap > 0.36.\n         EXT NSTRAP:2 PSTRAP < 0.36 ABUT>0<90 SINGULAR\n     ']
+
+['R2.7', '@ Rule 2.7 : ACTIVE minimum area 0.1.\n         R = NOT AREA ACTIVE >= 0.1\n     R OUTSIDE HC8REC\n     ']
+
+['R2.8', '@ Rule 2.8 : ACTIVE minimum enclosed area 0.32.\n         AREA ACTIVEH < 0.32\n     ']
+
+['R1X1', "@ Rule 1.1 : NWELL width >= 1.0.\n         R1 = INT NWELL < 1.0 ABUT>0<90 SINGULAR REGION\n         M = FDRC INSIDE CELL '*FR_1X1_*'\n         R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n     "]
+
+['R1.2a', '@ Rule 1.2a : NWELL space >= 1.0.\n          EXT NWELL < 1.0 ABUT>=0<90 SINGULAR REGION\n      ']
+
+['//R1.3', '@ Rule 1.3 : nwell space for different nets > 1.0.\n//         EXT NWELLC:1 < 1.0 NOT CONNECTED ABUT>0<90 SINGULAR\n//         X = BAD_NWELL OR NWELFT:1\n//         EXT X < 1.0 SPACE ABUT>=0<90 SINGULAR\n//         EXT X NWELLC:1 < 1.0 ABUT>=0<90 SINGULAR\n//     ']
+
+['R1.2b', '@ Rule 1.2b : NWELL space if one NWELL is at ground > 1.4.\n          EXT NWELLC_NOT NWELLC_GND < 1.4 ABUT>=0<90 SINGULAR REGION\n      ']
+
+['R1.5c', '@ Rule 1.5c : NWELL intersection with NWELL strap > 0.4.\n          INT NCRSNW NWELL < 0.4 ABUT>0<90 MEASURE COINCIDENT\n      ']
+
+['R1.7', '@ Rule 1.7 : NWELL distance to PWELL strap except pdrift >= 0.18.\n         EXT ( NWELL NOT INTERACT PDRACPO ) PSTRAP < 0.18 ABUT<90 SINGULAR REGION\n     ']
+
+['R1.9', '@ Rule 1.9 : NWELL space after +0.24um sizing >= 0.52.\n         EXT NWELLSZ < 0.52 ABUT>=0<90 SINGULAR REGION\n     ']
+
+['R1X4', "@ Rule 1.4 : NWELL enclosure of P+ active except pdrift >= 0.4.\n         R1 = ENC PINNW ( NWELL NOT INTERACT PDRACPO ) < 0.4 ABUT<90 SINGULAR REGION\n         M = FDRC INSIDE CELL '*FR_1X4_*'\n         R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n     "]
+
+['R1.5a', '@ Rule 1.5a : NWELL enclosure of NWELL strap,\n        @ if NWELL boundary does not cross NWELL strap > 0.18.\n          R1 = ENC NSTRAP:2 NWELL < 0.18 ABUT>0<45 SINGULAR REGION\n      R2 = ENC NSTRAP:2 NWELL < 0.18 ABUT>45<90 SINGULAR REGION\n      R1 OR R2\n      ']
+
+['R1X6', "@ Rule 1.6 : NWELL distance to N+ active >= 0.4.\n          R1 = EXT NWELL NINPWON < 0.4 ABUT<90 SINGULAR REGION\n          M = FDRC INSIDE CELL '*FR_1X6_*'\n          R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n      "]
+
+['R1.11', '@ Rule 1.11 : NWELL enclosure of P+ active with PEXT >= 0.8.\n          X = PACTIVE ENCLOSE PGO2IO\n          ENC X NWELL  < 0.8 ABUT<90\n      ']
+
+['R1.12', '@ Rule 1.12 : NWELL distance to N+ active with NEXT >= 0.8.\n      Y = NACTIVE ENCLOSE NGO2IO\n          EXT Y NWELL < 0.8 ABUT<90\n      ']
+
+['R1.imp1', '@ Rule 1.imp1 : Floating NWELL is not allowed.\n        NWELLC OUTSIDE ACTIVE\n    ']
+
+['R2.imp1', '@ Rule 2.imp1 : Floating NWELL2 is not allowed.\n        NWELL2C OUTSIDE ACTIVE\n    ']
+
+['R8.imp1', '@ Rule 8.imp1 : Floating PWELL is not allowed.\n            NWNISO OUTSIDE ACTIVE\n    ']
+
+['R89.1', '@ Rule 89.1 : NWELL2 width >= 1.0.\n          INT NWELL2 < 1.0 ABUT>0<90 SINGULAR REGION\n      ']
+
+['R89.2a', '@ Rule R89.2a : NWELL2 space >= 1.0\n           EXT NWELL2 < 1.0 ABUT>0<90 SINGULAR REGION\n']
+
+['R89.2b', '@ Rule 89.2b : NWELL2 space for different nets > 2.0.\n           EXT NWELL2:1 < 2.0 NOT CONNECTED ABUT>0<90 SINGULAR REGION\n       EXT BAD_NWELL2 < 2.0 SPACE ABUT>0<90 SINGULAR REGION\n       EXT BAD_NWELL2 NWELL2:1 < 2.0 ABUT>0<90 SINGULAR REGION\n       ']
+
+['R89.3', '@ Rule 89.3 : NWELL2 enclosure of P+ active >= 0.4.\n          ENC PACTIVE NWELL2 < 0.4 ABUT>=0<90 SINGULAR REGION\n      ']
+
+['R89.4', '@ Rule 89.4 : NWELL2 distance to P+ active, except for NWELL2 resistor >= 0.2.\n          EXT NW2_NOT_RNW2 PACTIVE < 0.2 ABUT>=0<90 SINGULAR REGION\n      ']
+
+['R89.5a', '@ Rule 89.5a : NWELL2 enclosure of N+ active >= 0.2.\n           ENC NACTIVENW2 NWELL2 < 0.2 ABUT>=0<90 SINGULAR REGION\n       ']
+
+['R89.5c', '@ Rule 89.5c : NWELL2 intersection with N+ active >= 0.4.\n           INT NCRSNW2 NWELL2 < 0.4 ABUT>0<90 MEASURE COINCIDENT\n       ']
+
+['R89.6', '@ Rule 89.6 : NWELL2 distance to N+ active, except for NWELL2 resistor >= 0.4.\n          EXT NW2_NOT_RNW2 NACTIVE < 0.4 ABUT>=0<90 SINGULAR REGION\n      ']
+
+['R89.7', '@ Rule 89.7 : NWELL2 enclosure of P+ active with PEXT_5V >= 0.8.\n          ENC PACT_PEXT_5V NWELL2 < 0.8 ABUT>=0<90 SINGULAR REGION\n      ']
+
+['R89.8', '@ Rule 89.8 : NWELL2 distance to N+ active with NEXT_5V >= 0.8.\n          EXT NACT_NEXT_5V NWELL2 < 0.8 ABUT>=0<90 SINGULAR REGION\n      ']
+
+['R89.9a', '@ Rule 89.9a : NWELL2 space to NWELL >= 1.2.\n     @ Rule 89.14 : Allowed the formation of NWELL and NWELL2 butt\n       EXT NWELL2 NWELL < 1.2 ABUT>0<90 SINGULAR REGION\n       ']
+
+['R89.9b', '@ Rule 89.9b : NWELL2 space to NWELL of different net >= 2.0.\n      @ Rule 89.14 : Allowed the formation of NWELL and NWELL2 butt\n           EXT NWELL2:1 NWELLC:1 < 2.0 NOT CONNECTED ABUT>0<90 SINGULAR REGION\n       EXT BAD_NWELL2 NWELLC:1 < 2.0 ABUT>0<90 SINGULAR REGION\n       EXT NWELL2:1 BAD_NWELL < 2.0 ABUT>0<90 SINGULAR REGION\n       EXT BAD_NWELL2 BAD_NWELL < 2.0 ABUT>0<90 SINGULAR REGION\n       ']
+
+['R89.12', '@ Rule 89.12 : NLDD or PLDD on NWELL2 are not allowed.\n           NLDD AND NWELL2\n           PLDD AND NWELL2\n       ']
+
+['R89.13_R89.11', '@ Rule 89.13 : NWELL2 space to PWELL2 >= 1.0.\n                @ Rule 89.11 : NWELL2/PWELL2 abutting cointact is allowed.\n                  EXT NWELL2 PWELL2 < 1.0 ABUT>0<90 SINGULAR REGION\n              ']
+
+['R89.15', '@ Rule 89.15 : Intersection NWELL/NWELL2 not allowed     \n        NWELL AND NWELL2\n    ']
+
+['R90.1', '@ Rule 90.1 : PWELL2 width >= 1.0.\n          INT PWELL2 < 1.0 ABUT>0<90 SINGULAR REGION\n      ']
+
+['R90.2', '@ Rule 90.2 : PWELL2 space >= 1.0.\n          EXT PWELL2 < 1.0 ABUT>0<90 SINGULAR REGION\n      ']
+
+['R90.3', '@ Rule 90.3 : PWELL2 enclosure of N+ active >= 0.4.\n          ENC NACTIVE PWELL2 < 0.4 ABUT>=0<90 SINGULAR REGION\n      ']
+
+['R90.4', '@ Rule 90.4 : PWELL2 distance to N+ active other than NWELL/NWELL2 strap >= 0.4.\n          EXT PWELL2 NACTNONSTRAP < 0.4 ABUT>=0<90 SINGULAR REGION\n      ']
+
+['R90.4a', '@ Rule 90.4a : PWELL2 distance to NWELL/NWELL2 strap >= 0.2.\n           EXT PWELL2 NSTRAP_ALL < 0.2 ABUT>=0<90 SINGULAR REGION\n       ']
+
+['R90.5a', '@ Rule 90.5a : PWELL2 enclosure of P+ active >= 0.2.\n           ENC PACTIVE PWELL2 < 0.2 ABUT>=0<90 SINGULAR REGION\n       ']
+
+['R90.5c', '@ Rule 90.5c : PWELL2 intersection with P+ active >= 0.4.\n           INT PCRSPW2 PWELL2 < 0.4 ABUT>0<90 MEASURE COINCIDENT\n       ']
+
+['R90.6', '@ Rule 90.6 : PWELL2 enclosure of N+ active with NEXT_5V\n        @ and in 5V ESD transistors >= 0.8.\n      ENC NACT_NEXT_5V PWELL2 < 0.8 ABUT>=0<90 SINGULAR REGION\n      ENC NACT_IN_ESD PWELL2 < 0.8 ABUT>=0<90 SINGULAR REGION\n      ']
+
+['R90.7', '@ Rule 90.7 : PWELL2 distance to P+ active with PEXT_5V >= 0.8.\n          EXT PACT_PEXT_5V PWELL2 < 0.8 ABUT>=0<90 SINGULAR REGION\n      ']
+
+['R90.9_R90.11', '@ Rule 90.9 : PWELL2 space to NWELL >= 1.0.\n               @ Rule 90.11 : PWELL2/NWELL abutting cointact is allowed.\n                 EXT PWELL2 NWELL < 1.0 ABUT>0<90 SINGULAR REGION\n             ']
+
+['R90.10', '@ Rule 90.10 : NLDD and PLDD on PWELL2 is not allowed.\n           NLDD AND PWELL2\n           PLDD AND PWELL2\n       ']
+
+['R90.12', '@ Rule 90.12 : Intersection NWELL/PWELL2 or NWELL2/PWELL2 not allowed     \n        NWELL AND PWELL2\n        NWELL2 AND PWELL2\n    ']
+
+['R112.1', '@ Rule 112.1 : RNWELL width >= 1.0.\n           INT RNWELL < 1.0 ABUT>0<90 SINGULAR\n    ']
+
+['R112.2', '@ Rule 112.2 : RNWELL space >= 1.0.\n           EXT RNWELL < 1.0 ABUT>0<90 SINGULAR\n    ']
+
+['R112.3a', '@ Rule 112.3a : RNWELL distance to NWELL >= 1.0.\n            EXT RNWELL NWELL < 1.0 ABUT<90 SINGULAR REGION\n    ']
+
+['R112.3b', '@ Rule 112.3.b : RNWELL distance to NWELL if NWELL is at ground >= 1.4.\n            EXT RNWELL NWELLC_GND < 1.4 ABUT>0<90 SINGULAR REGION\n    ']
+
+['R112.3c', '@ Rule 112.3c : RNWELL distance to NWELL2 >= 1.2.\n            EXT RNWELL NWELL2 < 1.2 ABUT<90 SINGULAR REGION\n    ']
+
+['R112.3d', '@ Rule 112.3.d : RNWELL distance to NWELL2 if NWELL2 is at ground >= 2.0.\n            EXT RNWELL NWELL2C_GND < 2.0 ABUT>0<90 SINGULAR REGION\n    ']
+
+['R112.5c', '@ Rule 112.5c : RNWELL intersection with N+ active >= 0.4.\n            INT NCRSRNW RNWELL < 0.4 ABUT>0<90 MEASURE COINCIDENT\n    ']
+
+['R112.6', '@ Rule 112.6 : RNWELL distance to N+ active >= 0.64.\n           X = NINPW NOT NCRSRNW\n           EXT RNWELL X < 0.64 ABUT<90 SINGULAR\n       ']
+
+['R112.7', '@ Rule 112.7 : RNWELL distance to PWELL strap >= 0.32.\n           EXT RNWELL PSTRAP < 0.32 ABUT<90 SINGULAR REGION\n    ']
+
+['R112.7a', '@ Rule 112.7a : RNWELL distance to PWELL2 strap >= 0.32.\n            EXT RNWELL PSTRAP_5V < 0.32 ABUT<90 SINGULAR REGION\n    ']
+
+['R112.8', '@ Rule 112.8 : RNWELL space after +0.24um sizing >= 0.52.\n         EXT RNWELSZ < 0.52 ABUT>0<90 SINGULAR\n    ']
+
+['R112.9', '@ Rule 112.9 : RNWELL distance to NWELL or NEPI after +0.24um sizing >= 0.52.\n         EXT RNWELSZ NWELLSZ < 0.52 ABUT<90 SINGULAR\n     NEPISZ = SIZE NEPI BY 0.24\n     EXT RNWELSZ NEPISZ < 0.52 ABUT<90 SINGULAR\n    ']
+
+['//R112.10', '@ Rule 112.10 : P+ active in RNWELL is not allowed.\n//          RNWELL AND PACTIVE\n//    ']
+
+['R112.11', '@ Rule 112.11 : POLY in RNWELL is not allowed.\n            RNWELL AND POLY\n    ']
+
+['R112.12', '@ Rule 112.12 : NWELL resistor width >= 0.7.\n            X = RESNW COINCIDENT INSIDE EDGE RNWELL\n            INT X < 0.7 ABUT>0<90\n    ']
+
+['R112.13', '@ Rule 112.13 : NWELL resistor length >= 1.4.\n            X = RESNW COINCIDENT OUTSIDE EDGE RNWELLT\n            INT X < 1.4 ABUT>0<90\n    ']
+
+['R112.imp1', '@ Rule 112.imp1 : floating RNWELL is not allowed under pads.\n              (RNWELL INTERACT PAD) OUTSIDE ACTIVE\n      ']
+
+['R112.14', '@ Rule 112.14 : N+ active head enclosure by RNWELL >= 0.3.\n          X = RESNWT NOT NCRSRNW\n          ENC X RNWELL < 0.3 ABUT< 90 SINGULAR\n    ']
+
+['R112.10', "@ Rule 112.10 : P+ active in RNWELL is not allowed.\n            (RNWELL_0 NOT INSIDE  CELL '*IOOTP_RNW*') AND PACTNOEM\n    "]
+
+['R112.15', '@ Rule 112.15 : NISO in RNWELL is not allowed.\n          NISO AND RNWELL\n        ']
+
+['R112.17_112.18', '@ Rule 112.18 : RNWELL distance to PWELL2 >= 1.0\n                 @ Rule 112.17 : Abutt formation of RNWELL and PWELL2 is allowed.\n                   EXT RNWELL PWELL2 < 1.0 ABUT>0<90 SINGULAR REGION\n           ']
+
+['R82.1', '@ Rule 82.1 : ADHVTN width >= 0.48.\n          INT ADHVTN < 0.48 ABUT>0<90 OPPOSITE SINGULAR\n      ']
+
+['R82.2', '@ Rule 82.2 : ADHVTN space >=0.48.\n          EXT ADHVTN < 0.48 ABUT>0<90 SINGULAR\n      ']
+
+['R82X3', "@ Rule 82.3 : ADHVTN enclosure of N+ gate >= 0.36.\n          R1 = ENC NGATELL:1 ADHVTN < 0.36 ABUT <90 SINGULAR REGION\n          M = FDRC INSIDE CELL '*FR_82X3_*'\n          R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n      "]
+
+['R82X4', "@ Rule 82.4 : ADHVTN distance to gate of mos without ADHVTN >= 0.26.\n          R1 = EXT ADHVTN GATENOADHN < 0.26 ABUT <90 SINGULAR REGION\n          M = FDRC INSIDE CELL '*FR_82X4_*'\n          R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n      "]
+
+['R82.5', '@ Rule 82.5 : ADHVTN distance to ACTIVE of mos without ADHVTN >= 0.08.\n          EXT ADHVTN ACTIVSDLVT < 0.08 ABUT <90 SINGULAR REGION\n      ']
+
+['R82.6', '@ Rule 82.6 : ADHVTN minimum diagonal width for inner corners only > 0.22.\n          INT ADHVTN < 0.22 ABUT>0<90 SINGULAR\n      ']
+
+['R82.imp1', '@ Rule 82.imp1 : ADHVTN not allowed on pgate sized by 0.26.\n             PGATESZ:1 AND ADHVTN\n     ']
+
+['R82.imp2', '@ Rule 82.imp2 : ADHVTN mandatory on gate of low leakage nmos.\n             (GATE_N INTERACT ADHVTN) NOT ADHVTN\n     ']
+
+['R83.1', '@ Rule 83.1 : ADHVTP width >= 0.48.\n          INT ADHVTP < 0.48 ABUT>0<90 OPPOSITE SINGULAR\n      ']
+
+['R83.2', '@ Rule 83.2 : ADHVTP space >= 0.48.\n         EXT ADHVTP < 0.48 ABUT>0<90 SINGULAR\n      ']
+
+['R83X3', "@ Rule 83.3 : ADHVTP enclosure of P+ gate >= 0.36.\n          R1 = ENC PGATELL:1 ADHVTP < 0.36 ABUT <90 SINGULAR REGION\n          M = FDRC INSIDE CELL '*FR_83X3_*'\n          R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n      "]
+
+['R83X4', "@ Rule 83.4 : ADHVTP distance to gate of mos without ADHVTP >= 0.26.\n          R1 = EXT ADHVTP GATENOADHP < 0.26 ABUT <90 SINGULAR REGION\n          M = FDRC INSIDE CELL '*FR_83X4_*'\n          R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n      "]
+
+['R83.5', '@ Rule 83.5 : ADHVTP distance to ACTIVE of mos without ADHVTP >= 0.08.\n          EXT ADHVTP ACTIVSDLVT < 0.08 ABUT <90 SINGULAR\n      ']
+
+['R83.6', '@ Rule 83.6 : ADHVTP minimum diagonal width for inner corners only > 0.22.\n          INT ADHVTP < 0.22 ABUT>0<90 SINGULAR\n      ']
+
+['R83.imp1', '@ Rule 83.imp1 : ADHVTP not allowed on ngate sized by 0.26.\n             NGATESZ:1 AND ADHVTP\n     ']
+
+['R83.imp2', '@ Rule 83.imp2 : ADHVTP mandatory on pgate of low leakage pmos.\n             (GATE_P INTERACT ADHVTP) NOT ADHVTP\n     ']
+
+['R13X1Xa', "@ Rule 13.1a : POLY width >= 0.18.\n            R1 = INT POLY < 0.18 ABUT>0<90 SINGULAR REGION\n            M = FDRC INSIDE CELL '*FR_13X1Xa_*'\n            R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n        "]
+
+['R13.1b', '@ Rule 13.1b : Min transistor length for thin gate oxide transistors >= 0.18.\n           INT GATENL < 0.18 ABUT>0<90\n       ']
+
+['R13.1c', "@ Rule 13.1c : Min transistor length for thick gate oxide I/O's transistors >= 0.34.\n           INT NGO2L < 0.34 ABUT>0<90\n           INT NGO2ESDL < 0.34 ABUT>0<90\n           INT PGO2L < 0.34 ABUT>0<90\n       "]
+
+['R13.1d', '@ Rule 13.1d : Chanel length for 5V transistors >= 0.5.\n           INT GATENL_5V < 0.5 ABUT>0<90\n       ']
+
+['R13X2Xa', "@ Rule 13.2a : POLY space >= 0.28.\n            R1 = EXT POLY < 0.28 ABUT>0<90 SINGULAR REGION\n            M = FDRC INSIDE CELL '*FR_13X2*'\n            R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n        "]
+
+['R13.2b', '@ Rule 13.2b : POLY space on ACTIVE without CONTACT >= 0.28.\n           X = ACTPOL:1 COINCIDENT INSIDE EDGE POLY\n           EXT X < 0.28 ABUT>0<90\n       ']
+
+['R13.2c', '@ Rule 13.2c : POLY space on ACTIVE when contacted.\n     @ if L is lower than 5 um >= 0.36.\n           X = ALLGATE COINCIDENT OUTSIDE EDGE DSC\n           EXT X < 0.36 ABUT>0<90\n       ']
+
+['R13.2d', '@ Rule 13.2d : POLY space on ACTIVE when contacted.\n     @ if L is higher or equal to 5 um >= 0.44.\n           X1 = ALLGATE COINCIDENT OUTSIDE EDGE DSC\n       X2 = LENGTH X1 >= 5\n           R = EXT X2 < 0.44 ABUT>0<90 PROJECTING OPPOSITE REGION\n       R OUTSIDE HC8REC\n       ']
+
+['R_13X3', "@ Rule 13.3 : poly extension on active (Endcap) >= 0.2\n           R0 = ENC GATENDANDH_5V LPOLY_0 < 0.2 ABUT< 90 REGION\n           R1 = ENC GATEND LPOLY_0 < 0.2 ABUT< 90 REGION\n           R2 = ENC NGO2D LPOLY_0 < 0.2 ABUT< 90 REGION\n           R3 = (R0 OR R1) OR R2\n           R4 = ENC PGO2D LPOLY_0 < 0.2 ABUT< 90 REGION\n           R5 = R3 OR R4\n           M = FDRC INSIDE CELL '*FR_13X3_*'\n           R5 INTERACT (SIZE (R5 XOR M) BY -0.001)\n       "]
+
+['R13X4Xa', "@ Rule 13.4a : POLY distance to ACTIVE corner >= 0.16.\n            R1N = EXT N_POLY_TR ACTINCORNEDG < 0.16 ABUT< 90 REGION\n        R1P = EXT P_POLY_TR ACTINCORPEDG < 0.16 ABUT< 90 REGION\n            R1 = R1N OR R1P\n            M = FDRC INSIDE CELL '*FR_13X4Xa_*'\n            R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n        "]
+
+['R13X4Xb', "@ Rule 13.4b : POLY corner distance to ACTIVE >= 0.16.\n            R1 = EXT POLYINCOR ACTIVEDRSRC < 0.16 ABUT< 90 OPPOSITE REGION\n//             R1 = EXT POLYINCOR ACTIVEDRSRC < 0.12 ABUT< 90 OPPOSITE REGION\n            M = FDRC INSIDE CELL '*FR_13X4*'\n            R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n        "]
+
+['R13X4Xc', "@ Rule 13.4c : POLY distance to ACTIVE >= 0.12.\n            R1 = EXT POLYNOHAMM ACTIVE < 0.12 ABUT< 90 SINGULAR REGION\n            M = FDRC INSIDE CELL '*FR_13X4*'\n            R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n        "]
+
+['R13X4i2', "@ Rule 13.4i2 : POLY space to ACTIVE when contacted by LIL >= 0.12.\n            R1 = EXT LILPOL ACTIVE < 0.12 ABUT<90 OVERLAP SINGULAR REGION\n            M = FDRC INSIDE CELL '*FR_13X4i2_*'\n            R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n        "]
+
+['R13X5Xa', '@ Rule 13.5a : Minimum uncontacted source and drain width if L is <= 5um equals 0.36um\n          @              "uncontacted" means - at distance more than 5um from contact window.\n            R1 = ENC NGATW ACTIVE < 0.36 ABUT<90 OPPOSITE REGION\n            R2 = ENC PGATW ACTIVE < 0.36 ABUT<90 OPPOSITE REGION\n            R3 = R1 OR R2\n            M = FDRC INSIDE CELL \'*FR_13X5*\'\n            R3 INTERACT (SIZE (R3 XOR M) BY -0.001)\n        ']
+
+['R13.5b', '@ Rule 13.5b : Minimum uncontacted source and drain width if L is higher 5um equals 0.44\n         @              "uncontacted" means - at distance more than 5um from contact window.\n       R = ENC LAYER7 ACTIVE < 0.44 ABUT<90 OPPOSITE REGION\n       R OUTSIDE HC8REC\n       ']
+
+['R13.5_H8', '@ Rule 13.5_H8 : Minimum N & P Source/Drain Width limited by active = 0.36um.\n       R = ENC LAYER7 ACTIVE < 0.36 ABUT<90 OPPOSITE REGION\n       R INSIDE HC8REC\n     ']
+
+['R13.6', '@ Rule 13.6 : POLY over inward ACTIVE corner is not allowed.\n          EXT ACTOVPO:2 < 0.1 ABUT >0 < 180 INTERSECTING ONLY\n      ']
+
+['R13.6.', '@ Rule 13.6. : POLY over outward ACTIVE corner not allowed.\n           INT ACTOVPO:2 < 0.1 ABUT >0 < 180 INTERSECTING ONLY\n       ']
+
+['R13X7', "@ Rule 13.7 : POLY on ACTIVE distance to edge of non mos ACTIVE > 0.32.\n          X = PNOTMOS COINCIDENT INSIDE EDGE POLY\n          R1 = ENC X ACTIVE < 0.32 ABUT<90 REGION\n          M = FDRC INSIDE CELL '*FR_13X7_*'\n          R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n      "]
+
+['R13.8', '@ Rule 13.8 : 90deg angles on ACTIVE are forbiden.\n      POLYINCOR:2 AND ACTIVE\n      POOVACT = POLYNOCPONW:2 INSIDE EDGE ACTIVE\n      INT POOVACT < 0.02 ABUT >0 < 45 INTERSECTING ONLY\n      INT POOVACT < 0.02 ABUT >45 < 135 INTERSECTING ONLY\n      INT POOVACT < 0.02 ABUT >135 < 180 INTERSECTING ONLY\n      ']
+
+['R13.8_H8', '@ Rule 13.8_H8 : POLY space >= 0.36.\n           X1 = ALLGATE COINCIDENT OUTSIDE EDGE DSC\n       X2 = LENGTH X1 > 5\n           R = EXT X2 < 0.36 ABUT>0<90 PROJECTING OPPOSITE REGION\n       R INSIDE HC8REC\n        ']
+
+['R13.9', '@ Rule 13.9 : Min length of 45deg POLY line between two inside corners in the same direction = 0.3.\n      POOVACT = POLY INSIDE EDGE ACTIVE\n      POLYX5 = EXT POOVACT < 0.02 ABUT == 135 INTERSECTING ONLY REGION\n      POOVACTSZ = RECTANGLE (EXPAND EDGE POOVACT INSIDE BY 0.02 )\n      BADPOLY45 = NOT LENGTH ( POOVACTSZ TOUCH POLYX5 == 2 ) > 0.3\n      R = BADPOLY45 COINCIDENT INSIDE EDGE POLY\n      R OUTSIDE EDGE HC8REC\n      ']
+
+['R13.10', '@ Rule 13.10 : POLY distance to NWELL on ACTIVE in case this ACTIVE crosses NWELL boundary >= 0.56.\n           X = NWELL INSIDE EDGE NCRSNW\n           Y:1 = COPY ACTPOL:1  \n           Y:2 = Y:1 NOT NDRACPO \n       Z = Y:2 COINCIDENT INSIDE EDGE POLY\n       EXT Z X < 0.56  ABUT<90 INSIDE ALSO\n           (Y:2 COINCIDENT INSIDE EDGE NCRSNW ) COINCIDENT INSIDE EDGE NWELL\n']
+
+['R13.10a', '@ Rule 13.10a : POLY distance to NWELL2 on ACTIVE in case this ACTIVE crosses NWELL2 boundary >= 0.56.\n            X = NWELL2 INSIDE EDGE NCRSNW2\n        Z = ACTPOL:1 COINCIDENT INSIDE EDGE POLY\n        EXT Z X < 0.56  ABUT<90\n    ']
+
+['R13.11', '@ Rule 13.11 POLY distance to RNWELL on ACTIVE in case this ACTIVE crosses the RNWELL boundary >= 0.56.\n           X = RNWELL INSIDE EDGE NCRSRNW\n           Y:3 = COPY ACTPOL:1  \n           Y:4 = Y:3 NOT NDRACPO \n           Z = ACTPOL:1 COINCIDENT INSIDE EDGE POLY\n           EXT Z X < 0.56  ABUT<90 INSIDE ALSO\n           (Y:4 COINCIDENT INSIDE EDGE NCRSRNW ) COINCIDENT INSIDE EDGE RNWELL\n    ']
+
+['R13.13', '@ Rule 13.13 : POLY without implant is not allowed except for RHIPO resistor.\n           (( POLY NOT ALLIMPLANT:1 ) NOT HC8REC ) NOT PRESIST\n       ']
+
+['R14.imp1a', '@ Rule 14.imp1 : NMOS gate must be inside NLDD.\n              NGATE:7 CUT NLDD\n          NGATELL:1 CUT NLDD\n          ']
+
+['R14.imp2a', '@ Rule 14.imp2 : PMOS gate must not be inside NLDD.\n              PGATE:8 AND NLDD\n          PGATELL:1 AND NLDD\n          ']
+
+['R14.1', '@ Rule 14.1 : NLDD width >= 0.48.\n          INT NLDD < 0.48 ABUT>0<90 SINGULAR\n      ']
+
+['R14.2', '@ Rule 14.2 : NLDD space >= 0.48.\n          EXT NLDD < 0.48 ABUT>0<90 SINGULAR\n      ']
+
+['R14X3', "@ Rule 14.3 : NLDD enclosure of N+ gate >= 0.58.\n          R1 = ENC NGATE:7 NLDD < 0.58 ABUT<90 SINGULAR REGION\n          R2 = ENC NGATELL:1 NLDD < 0.58 ABUT<90 SINGULAR REGION\n          R3 = R1 OR R2\n          M = FDRC INSIDE CELL '*FR_14X3_*'\n          R3 INTERACT (SIZE (R3 XOR M) BY -0.001)\n      "]
+
+['R14.4', '@ Rule 14.4 : NLDD distance to active resistors > 0.26.\n      EXT ACTIVERES NLDD < 0.26 ABUT<90\n      NLDD  INSIDE EDGE ACTIVERES\n      ']
+
+['R14.5', '@ Rule 14.5 : NLDD distance to poly resistors > 0.26.\n      EXT RPOLY NLDD < 0.26 ABUT<90\n      NLDD  INSIDE EDGE RPOLY\n      ']
+
+['R14X8', "@ Rule 14.8 : NLDD distance to P+ active other than PWELL strap > 0.22.\n          R1 = EXT PACTNOSTRP NLDD < 0.22 ABUT<90 REGION\n          R2 = EXPAND EDGE (NLDD INSIDE EDGE PACTNOSTRP) OUTSIDE BY 0.02\n          R3 = R1 OR R2\n          M = FDRC INSIDE CELL '*FR_14X8_*'\n          R3 INTERACT (SIZE (R3 XOR M) BY -0.001)\n      "]
+
+['R14.6', '@ Rule 14.6 : NLDD distance to ACTIVE covered with NEXT or PEXT > 0.26.\n      EXT ACTIVEXT NLDD < 0.26 ABUT<90\n      NLDD  INSIDE EDGE ACTIVEXT\n      ']
+
+['R14.imp3', '@ Rule 14.imp3 : ACTIVE strap with NLDD without nplus is not allowed.\n             COPY NLDDSTRAP\n     ']
+
+['R15.imp1a', '@ Rule 15.imp1 : PMOS gate must be inside PLDD.\n              PGATE:8 CUT PLDD\n          PGATELL:1 CUT PLDD\n          ']
+
+['R15.imp2a', '@ Rule 15.imp2 : NMOS gate must not be inside PLDD.\n              NGATE:7 AND PLDD\n          NGATELL:1 AND PLDD\n          ']
+
+['R15.1', '@ Rule 15.1 : PLDD width >= 0.48.\n          INT PLDD < 0.48 ABUT>0<90 SINGULAR\n      ']
+
+['R15.2', '@ Rule 15.2 : PLDD space >= 0.48.\n          EXT PLDD < 0.48 ABUT>0<90 SINGULAR\n      ']
+
+['R15X3', "@ Rule 15.3 : PLDD enclosure of P+ gate >= 0.58.\n          R1 = ENC PGATE:8 PLDD < 0.58 ABUT<90 SINGULAR REGION\n          R2 = ENC PGATELL:1 PLDD < 0.58 ABUT<90 SINGULAR REGION\n          R3 = R1 OR R2\n          M = FDRC INSIDE CELL '*FR_15X3_*'\n          R3 INTERACT (SIZE (R3 XOR M) BY -0.001)\n      "]
+
+['R15.4', '@ Rule 15.4 : PLDD distance to active resistors > 0.26.\n      EXT ACTIVERES PLDD < 0.26 ABUT<90\n      PLDD  INSIDE EDGE ACTIVERES\n      ']
+
+['R15.5', '@ Rule 15.5 : PLDD distance to poly resistors > 0.26.\n      EXT RPOLY PLDD < 0.26 ABUT<90\n      PLDD  INSIDE EDGE RPOLY\n      ']
+
+['R15X8', "@ Rule 15.8 : PLDD distance to  N active other than NWELL strap > 0.22.\n          R1 = EXT NACTNOSTRN PLDD < 0.22 ABUT<90 REGION\n          R2 = EXPAND EDGE (PLDD  INSIDE EDGE NACTNOSTRN) OUTSIDE BY 0.02\n          R3 = R1 OR R2\n          M = FDRC INSIDE CELL '*FR_15X8_*'\n          R3 INTERACT (SIZE (R3 XOR M) BY -0.001)\n      "]
+
+['R15.6', '@ Rule 15.6 : PLDD distance to ACTIVE covered with NEXT or PEXT > 0.26.\n      EXT ACTIVEXT PLDD < 0.26 ABUT<90\n      PLDD  INSIDE EDGE ACTIVEXT\n      ']
+
+['R15.imp3', '@ Rule 15.imp3 : ACTIVE strap with PLDD without pplus is not allowed.\n             COPY PLDDSTRAP\n     ']
+
+['R16.1', '@ Rule 16.1 : nplus width >= 0.48.\n          INT NPLUS < 0.48 ABUT>0<90 SINGULAR\n    ']
+
+['R16.2', '@ Rule 16.2 : nplus space >= 0.48.\n          EXT NPLUS < 0.48 ABUT>0<90 SINGULAR\n    ']
+
+['R16X3', "@ Rule 16.3 : nplus minimum area 0.36.\n          R1 = NOT AREA NPLUS >= 0.36\n          M = FDRC INSIDE CELL '*FR_16X3_*'\n          R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n      "]
+
+['R16X4_R16X4a', "@ Rule 16.4_16.4a : NPLUS enclosure of N+ active other than NWELL/NWELL2 strap >= 0.26.\n                 R2 = ENC ACTNONSTRAPEDGE NPLUS < 0.26 ABUT<90 REGION\n         R3 = ENC ACTNONSTRAP NPLUS < 0.26 ABUT<90 SINGULAR REGION\n         R4 = R3 NOT ACTIVE\n         R = R2 OR R4\n                 R1 = R OUTSIDE HC8REC\n                 M = FDRC INSIDE CELL '*FR_16X4_*'\n                 R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n             "]
+
+['R16.3_H8a', '@ Rule 16.3_H8 : nplus enclosure of N+ active >= 0.20.\n              R = ENC ACTNONSTRAPEDGE NPLUS < 0.20 ABUT<90 REGION\n          R INSIDE HC8REC\n      ']
+
+['R16.5_R16.5a', '@ Rule 16.5_16.5a : NPLUS distance to ACTIVE other than PWELL/PWELL2 strap >= 0.26.\n             R = EXT ACTNOPSTRAP NPLUS < 0.26 ABUT<90 SINGULAR REGION\n             R OUTSIDE HC8REC\n             ']
+
+['R16.4_H8', '@ Rule 16.4_H8 : nplus dist to P+ active >0.20.\n         R = EXT ACTNOSTRAP NPLUS < 0.20 ABUT>0<90 REGION\n         R INSIDE HC8REC\n     ']
+
+['R16X6Xa_R16X6Xc', "@ Rule 16.6a_16.6c: NPLUS enclosure of NWELL/NWELL2 strap >= 0.1.\n                    NSTRAPEDGE = NSTRAP:2_ALL COINCIDENT INSIDE EDGE ACTIVE\n            R2 = ENC NSTRAPEDGE NPLUS < 0.1 ABUT<90 REGION\n            R3 = ENC NSTRAP:2_ALL NPLUS < 0.1 ABUT<90 SINGULAR REGION\n            R4 = R3 NOT ACTIVE\n            R1 = R2 OR R4\n                    M = FDRC INSIDE CELL '*FR_16X6Xa_*'\n                    R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n                "]
+
+['R16.6b', '@ Rule 16.6b: NPLUS enclosure of NWELL strap on that NWELL side,\n         @ where distance from NWELL strap to NWELL boundary is <= 0.24, >= 0.18.\n           X = ENC NSTRAP:2 NWELL <= 0.24 ABUT<90 REGION\n       Y = NSTRAP:2 COINCIDENT EDGE X\n       ENC Y NPLUS < 0.18 ABUT>=0<90 REGION\n       ']
+
+['R16.6d', '@ Rule 16.6d: NPLUS enclosure of NWELL2 strap on that NWELL2 side,\n         @ where distance from NWELL2 strap to NWELL2 boundary is <= 0.24, >= 0.18.\n       X = ENC NSTRAP:1_5V NWELL2 <= 0.24 ABUT<90 REGION\n       Y = NSTRAP:1_5V COINCIDENT EDGE X\n       ENC Y NPLUS < 0.18 ABUT>=0<90 REGION\n       ']
+
+['R16.7a_R16.7c', '@ Rule 16.7a_16.7c: NPLUS distance to PWELL/PWELL2 strap >= 0.1.\n              R1 = EXT PSTRAP NPLUS < 0.1 ABUT<90 SINGULAR REGION\n              R2 = EXT PSTRAP_5V NPLUS < 0.1 ABUT<90 SINGULAR REGION\n          R3 = R1 OR R2\n          R3 NOT ACTIVE\n          ']
+
+['R16.7b_R16.7d', '@ Rule 16.7b_16.7d: NPLUS distance to PWELL/PWELL2 strap on NWELL/NWELL2 side,\n                @ if distance from PWELL/PWELL2 strap to NWELL/NWELL2 is <= 0.24, >= 0.18.\n              X1 = EXT PSTRAP NWELL <= 0.24 ABUT<90 REGION\n              Y1 = PSTRAP COINCIDENT EDGE X1\n              EXT Y1 NPLUS < 0.18 ABUT>0<90 REGION\n\n              X2 = EXT PSTRAP NWELL2 <= 0.24 ABUT<90 REGION\n              Y2 = PSTRAP COINCIDENT EDGE X2\n              EXT Y2 NPLUS < 0.18 ABUT>0<90 REGION\n\n              X3 = EXT PSTRAP_5V NWELL <= 0.24 ABUT<90 REGION\n              Y3 = PSTRAP_5V COINCIDENT EDGE X3\n              EXT Y3 NPLUS < 0.18 ABUT>0<90 REGION\n\n              X4 = EXT PSTRAP_5V NWELL2 <= 0.24 ABUT<90 REGION\n              Y4 = PSTRAP_5V COINCIDENT EDGE X4\n              EXT Y4 NPLUS < 0.18 ABUT>0<90 REGION\n          ']
+
+['R16X8_R16X8a', "@ Rule 16.8_16.8a : N+ active width of abutting NWELL/NWELL2 strap >= 0.28.\n                 R1 = INT NPLUS NSTRTP_ALL < 0.28 ABUT>0<90 SINGULAR MEASURE COINCIDENT REGION\n                 M = FDRC INSIDE CELL '*FR_16X8_*'\n                 R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n             "]
+
+['R16.9', '@ Rule 16.9 : POLY gate distance to N+ active of abutting NWELL strap >= 0.4.\n          X = PINNW COINCIDENT OUTSIDE EDGE NSTRTP\n          ENC PGATW X < 0.4 ABUT<90 PROJECTING\n          ENC PGATW X < 0.4 CORNER TO CORNER\n      ']
+
+['R16.9a', '@ Rule 16.9a : POLY gate distance to N+ active of abutting NWELL2 strap,\n         @              except for H-type devices and OTP >= 0.4.\n           X = PINNW2 COINCIDENT OUTSIDE EDGE NSTRTP_5V\n           ENC PGATE_5V X < 0.4 ABUT<90 PROJECTING\n           ENC PGATE_5V X < 0.4 CORNER TO CORNER\n       ']
+
+['R16.imp1', '@ Rule 16.imp1 : nplus crossing POLY gate not allowed.\n            X = GATE NOT SIPROT:1\n            NPLUS COINCIDENT INSIDE EDGE X\n    ']
+
+['R16X11', "@ Rule 16.11 : nplus distance to p+ implant in case of abutting strap = 0 (min=max).\n           X1 = (ACTIVE NOT PPLUS) AND (ACTIVE NOT NPLUS)\n           R1 = ( X1 TOUCH NSTRAP:2 ) OR ( X1 TOUCH PDIFF0:1 )\n           M = FDRC INSIDE CELL '*FR_16X11_*'\n           R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n       "]
+
+['R16.12', '@ Rule 16.12 : extension on POLY in case of N+ silicided poly resistor >= 0.26.\n       R = ENC POLYR NPLUS < 0.26 ABUT <90 REGION\n       R OUTSIDE HC8REC\n       ']
+
+['R70.1', '@ Rule 70.1 : NATIVE width >= 0.48.\n          INT NATIVE < 0.48 ABUT>0<90 SINGULAR\n      ']
+
+['R70.2', '@ Rule 70.2 : NATIVE space >= 0.48.\n          EXT NATIVE < 0.48 ABUT>0<90 SINGULAR\n      ']
+
+['R70.3', '@ Rule 70.3 : NATIVE enclosure of unsalicided poly >= 0.3.\n          X = POLY AND SIPO\n          ENC X NATIVE < 0.3 ABUT<90\n      ']
+
+['R70.4', '@ Rule 70.4 : All unsilicided N+ poly must be covered by NATIVE layer.\n          X = ((POLY AND SIPO) AND NPLUS) INTERACT NATIVE\n      X NOT NATIVE\n      ']
+
+['R70.5', '@ Rule 70.5 : All unsilicided P+ POLY must be covered by NATIVE.\n          X = ((POLY AND SIPO) AND PPLUS) INTERACT NATIVE\n      X NOT NATIVE\n      ']
+
+['R70.imp1', '@ Rule 70.imp1 : rpo1p are not recommended.\n             (( RPOLY AND PPLUS ) NOT PRESIST) NOT MRHBD:1\n     ']
+
+['R17.1', '@ Rule 17.1 : pplus width >= 0.48.\n          INT PPLUS < 0.48 ABUT>0<90 SINGULAR\n      ']
+
+['R17.2', '@ Rule 17.2 : pplus space >= 0.48.\n          EXT PPLUS < 0.48 ABUT>0<90 SINGULAR\n      ']
+
+['R17.3', '@ Rule 17.3 : pplus minimum area 0.36.\n          NOT AREA PPLUS >= 0.36\n      ']
+
+['R17.4_R17.4a', '@ Rule 17.4_17.4a : PPLUS enclosure of P+ active other than PWELL/PWELL2 strap >= 0.26.\n                 ACTNOPSTRAPEDGE = ACTNOPSTRAP COINCIDENT INSIDE EDGE ACTIVE\n         R1 = ENC ACTNOPSTRAPEDGE PPLUS < 0.26 ABUT<90 REGION\n         R2 = ENC ACTNOPSTRAP PPLUS < 0.26 ABUT<90 SINGULAR REGION\n         R3 = R2 NOT ACTIVE\n         R = R1 OR R3\n             R OUTSIDE HC8REC\n             ']
+
+['R17.3_H8', '@ Rule 17.3_H8 : pplus enclosure of P+ active >= 0.20.\n             R = ENC ACTNOSTRAPEDGE PPLUS < 0.20 ABUT<90 REGION\n         R INSIDE HC8REC \n     ']
+
+['R17X5_R17X5a', "@ Rule 17.5_17.5a : PPLUS distance to ACTIVE other than NWELL/NWELL2 strap > 0.26.\n             R = EXT ACTNONSTRAP PPLUS < 0.26 ABUT<90 SINGULAR REGION\n                 R1 = R OUTSIDE HC8REC\n                 M = FDRC INSIDE CELL '*FR_17X5_*'\n                 R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n             "]
+
+['R17.4_H8', '@ Rule 17.4_H8 : pplus distance to N+ active > 0.20.\n         R = EXT ACTNOSTRAP PPLUS < 0.20 ABUT>0<90 REGION\n         R INSIDE HC8REC\n     ']
+
+['R17X6Xa_R17X6Xc', "@ Rule 17.6a_17.6c : PPLUS enclosure of PWELL/PWELL2 strap >= 0.1.\n                    PSTRAPEDGE = PSTRAP_ALL COINCIDENT INSIDE EDGE ACTIVE\n                    R2 = ENC PSTRAPEDGE PPLUS < 0.1 ABUT<90 REGION\n            R3 = ENC PSTRAP_ALL PPLUS < 0.1 ABUT<90 SINGULAR REGION\n            R4 = R3 NOT ACTIVE\n            R1 = R2 OR R4\n                    M = FDRC INSIDE CELL '*FR_17X6Xa_*'\n                    R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n                "]
+
+['R17.6b', '@ Rule 17.6b: PPLUS enclosure of PWELL strap on that PWELL side,\n         @ where distance from PWELL strap to PWELL boundary is <= 0.24, >= 0.18.\n       X = EXT PSTRAP WELL_ALL <= 0.24 ABUT<90 PROJECTING REGION\n       Y = PSTRAP COINCIDENT EDGE X\n       ENC Y PPLUS < 0.18 ABUT>0<90\n    ']
+
+['R17.6d', '@ Rule 17.6d : PPLUS enclosure of PWELL2 strap on that PWELL2 side,\n         @ where distance from PWELL2 strap to PWELL2 boundary is <= 0.24, >= 0.18.\n       X = ENC PSTRAP_5V PWELL2 <= 0.24 ABUT<90 PROJECTING REGION\n       Y = PSTRAP_5V COINCIDENT EDGE X\n       ENC Y PPLUS < 0.18 ABUT>0<90\n    ']
+
+['R17.7a_R17.7c', '@ Rule 17.7a_17.7c : PPLUS distance to NWELL/NWELL2 strap >= 0.1.\n              R = EXT NSTRAP:2_ALL PPLUS < 0.1 ABUT<90 SINGULAR REGION\n          R NOT ACTIVE\n          ']
+
+['R17.7b_R17.7d', '@ Rule 17.7b_17.7d : PPLUS distance to NWELL/NWELL2 strap on PWELL/PWELL2 side,\n                  @ if distance from NWELL/NWELL2 strap to PWELL/PWELL2 is <= 0.24, >= 0.18.\n                X1 = ENC NSTRAP:1 NWELL_ALL <= 0.24 ABUT<90 REGION\n                Y1 = NSTRAP:1 COINCIDENT EDGE X1\n                EXT Y1 PPLUS < 0.18 ABUT>0<90 REGION\n        \n                X2 = EXT NSTRAP:1 PWELL2 <= 0.24 ABUT<90 REGION\n                Y2 = NSTRAP:1 COINCIDENT EDGE X2\n                EXT Y2 PPLUS < 0.18 ABUT>0<90 REGION\n        \n                X3 = ENC NSTRAP:1_5V NWELL_ALL <= 0.24 ABUT<90 REGION\n                Y3 = NSTRAP:1_5V COINCIDENT EDGE X3\n                EXT Y3 PPLUS < 0.18 ABUT>0<90 REGION\n        \n                X4 = EXT NSTRAP:1_5V PWELL2 <= 0.24 ABUT<90 REGION\n                Y4 = NSTRAP:1_5V COINCIDENT EDGE X4\n                EXT Y4 PPLUS < 0.18 ABUT>0<90 REGION\n            ']
+
+['R17.8_R17.8a', '@ Rule 17.8_17.8a : P+ active width of abutting PWELL/PWELL2 strap >= 0.28.\n                 INT PPLUS PSTRTN_ALL < 0.28 ABUT>0<90 SINGULAR MEASURE COINCIDENT\n         ']
+
+['R17.9', '@ Rule 17.9 : POLY gate space to P+ active of abutting PWELL strap >= 0.4.\n          X = NINPW COINCIDENT OUTSIDE EDGE PSTRTN\n          ENC NGATW X < 0.4 ABUT<90 PROJECTING\n          ENC NGATW X < 0.4 CORNER TO CORNER\n      ']
+
+['R17.9a', '@ Rule 17.9a : POLY gate space to P+ active of abutting PWELL2 strap,\n         @              except for H-type devices and OTP >= 0.4.\n           X = NINPW2 COINCIDENT OUTSIDE EDGE PSTRTN_5V\n           ENC NGATE_5V X < 0.4 ABUT<90 PROJECTING\n           ENC NGATE_5V X < 0.4 CORNER TO CORNER\n       ']
+
+['R17.imp1', '@ Rule 17.imp1 : pplus crossing POLY gate is not allowed.\n             X = GATE NOT SIPROT:1\n             PPLUS COINCIDENT INSIDE EDGE X\n    ']
+
+['R17.11', '@ Rule 17.11 : pplus distance to n+ implant in case of abutting strap = 0 (min=max).\n            X1 = (ACTIVE NOT PPLUS) AND (ACTIVE NOT NPLUS)\n       (X1 TOUCH PSTRAP ) OR (X1 TOUCH NDIFF0:1 )\n    ']
+
+['R17.12', '@ Rule 17.12 : Superposition of N+ and P+ implant is not allowed.\n      NPLUS AND PPLUS\n       ']
+
+['R18.1', '@ Rule 18.1 : SIPROT width >= 0.48.\n          INT SIPROT < 0.48 ABUT>0<90 SINGULAR\n      ']
+
+['R18.1.special_app', '@ Rule 18.1 : SIPROT width >= 0.40 (special application).\n                      INT SIPROT_RHBD:1 < 0.48 ABUT>0<90 SINGULAR\n                  ']
+
+['R18.2', '@ Rule 18.2 : SIPROT space >= 0.48.\n          EXT SIPROT < 0.48 ABUT>0<90 SINGULAR\n      ']
+
+['R18.2.special_app', '@ Rule 18.2 : SIPROT space >= 0.40 (special application).\n                      EXT SIPROT_RHBD:1 < 0.40 ABUT>0<90 SINGULAR\n              ']
+
+['R18.3', '@ Rule 18.3 : SIPROT extension on ACTIVE for unsalicided S/D >= 0.3.\n          ENC ACTIVE SIPROT < 0.3 ABUT<90 SINGULAR\n      ']
+
+['R18.3.special_app', '@ Rule 18.3 (special application): SIPROT extension on ACTIVE for unsalicided S/D >= 0.26.\n                      ENC ACTIVE SIPROT_RHBD:1 < 0.26 ABUT<90 SINGULAR\n              ']
+
+['R18.4', '@ Rule 18.4 : SIPROT intersection of ACTIVE for unsalicided S/D >= 0.24.\n          INT SIPROT ACTIVE < 0.24 ABUT<90 SINGULAR MEASURE COINCIDENT\n      ']
+
+['R18.4.special_app', '@ Rule 18.4 : SIPROT intersection of ACTIVE for unsalicided S/D >= 0.22 (special application).\n                      INT SIPROT_RHBD:1 ACTIVE < 0.22 ABUT<90 SINGULAR MEASURE COINCIDENT\n              ']
+
+['R18.5', '@ Rule 18.5 : ACTIVE extension on salicide protection >= 0.32.\n          ENC SIPROT ACTIVE < 0.32 ABUT<90 SINGULAR\n      ']
+
+['R18.5.special_app', '@ Rule 18.5 : ACTIVE extension on salicide protection >= 0.28 (special application).\n                      ENC SIPROT_RHBD:1 ACTIVE < 0.28 ABUT<90 SINGULAR\n              ']
+
+['R18.6', '@ Rule 18.6 : SIPROT extension on POLY on ACTIVE >= 0.56.\n          ENC NGATW SIPAC < 0.56 ABUT<90\n          ENC PGATW SIPAC < 0.56 ABUT<90\n      ']
+
+['R18.6.special_app', '@ Rule 18.6 : SIPROT extension on POLY on ACTIVE >= 0.50 (special application).\n                      ENC NGATW SIPAC_RHBD:1 < 0.50 ABUT<90\n                      ENC PGATW SIPAC_RHBD:1 < 0.50 ABUT<90\n              ']
+
+['R18.7', '@ Rule 18.7 : distance to CONTACT (on ACTIVE or on POLY) >= 0.2.\n          EXT SIPROT CTA:4 < 0.2 ABUT<90 SINGULAR\n          EXT SIPROT CTP:3 < 0.2 ABUT<90 SINGULAR\n    ']
+
+['R18.7.special_app', '@ Rule 18.7 (special application): distance to CONTACT (on ACTIVE or on POLY) >= 0.18.\n                      EXT SIPROT_RHBD:1 CTA:4 < 0.18 ABUT<90 SINGULAR\n                      EXT SIPROT_RHBD:1 CTP:3 < 0.18 ABUT<90 SINGULAR\n              ']
+
+['R18.8', '@ Rule 18.8 : SIPROT space to ACTIVE on field >= 0.24.\n          EXT SIPROT ACTIVE < 0.24 ABUT<90 SINGULAR\n      ']
+
+['R18.8.special_app', '@ Rule 18.8 (special application): SIPROT space to ACTIVE on field >=0.22.\n                      EXT SIPROT_RHBD:1 ACTIVE < 0.22 ABUT<90 SINGULAR\n              ']
+
+['R18.9', '@ Rule 18.9 : SIPROT space to POLY on field >= 0.24.\n          EXT SIPROT POFIELD < 0.24 ABUT<90 SINGULAR\n      ']
+
+['R18.9.special_app', '@ Rule 18.9 (special application): SIPROT space to POLY on field >= 0.22.\n                      EXT SIPROT_RHBD:1 POFIELD < 0.22 ABUT<90 SINGULAR\n              ']
+
+['R18.10', '@ Rule 18.10 : SIPROT distance to LIL >= 0.2.\n           EXT LIL SIPROT < 0.2 ABUT<90 SINGULAR\n       ']
+
+['R18.10.special_app', '@ Rule 18.10 (special application): SIPROT distance to LIL >= 0.18.\n                       EXT LIL SIPROT_RHBD:1 < 0.18 ABUT<90 SINGULAR\n               ']
+
+['R18.11', '@ Rule 18.11 : SIPROT extension on POLY on field >= 0.3\n           ENC POFIELD SIPROT < 0.3 ABUT<90 SINGULAR\n       ']
+
+['R18.11.special_app', '@ Rule 18.11 (special application): SIPROT extension on POLY on field >= 0.26.\n                       ENC POFIELD SIPROT_RHBD:1 < 0.26 ABUT<90 SINGULAR\n               ']
+
+['R18.12', '@ Rule 18.12 : salicide protection must overlap gate on both sides.\n          ALLGATE CUT SIPROT\n    ']
+
+['R18.13', '@ Rule 18.13 : SIPROT on ACTIVE distance to POLY gate >= 0.4.\n           EXT NGATW SIPAC < 0.4 ABUT<90\n           EXT PGATW SIPAC < 0.4 ABUT<90\n       ']
+
+['R18.13.special_app', '@ Rule 18.13 : SIPROT on ACTIVE distance to POLY gate >= 0.36.\n                       EXT NGATW SIPAC_RHBD:1 < 0.36 ABUT<90\n                       EXT PGATW SIPAC_RHBD:1 < 0.36 ABUT<90\n               ']
+
+['R18.14', '@ Rule 18.14 : pplus or nplus crossing unsalicided POLY not allowed except for RHIPO resistor.\n        PPLUS INSIDE EDGE ( (POLY AND SIPROT) NOT PRESIST )\n       NPLUS INSIDE EDGE ( (POLY AND SIPROT) NOT PRESIST )\n       ']
+
+['R18.15', '@ Rule 18.15 : N+ poly extension on SIPROT >= 0.48.\n           ENC SIPROT PPOLN < 0.48 ABUT<90\n       ']
+
+['R18.15.special_app', '@ Rule 18.15 (special application): N+ poly extension on SIPROT >= 0.44.\n                       ENC SIPROT_RHBD:1 PPOLN < 0.44 ABUT<90\n               ']
+
+['R18.16', '@ Rule 18.16 : P+ poly extension on SIPROT >= 0.48.\n           ENC SIPROT PPOLP < 0.48 ABUT<90\n       ']
+
+['R18.16.special_app', '@ Rule 18.16 (special application): P+ poly extension on SIPROT >= 0.44.\n                       ENC SIPROT_RHBD:1 PPOLP < 0.44 ABUT<90\n               ']
+
+['R18.17', '@ Rule 18.17 : SIPROT must cross P+ implant boundary in case of abutting strap.\n           ACT_NOT_SIPROT INSIDE STRT\n       ']
+
+['R18.18', '@ Rule 18.18 : N+ ACTIVE extention on SIPROT in case of abutting PWELL strap >= 0.48.\n           X = PSTRTN COINCIDENT OUTSIDE EDGE NACTIVE\n           EXT X SIPAC < 0.48 ABUT<90\n       ']
+
+['R18.18.special_app', '@ Rule 18.18 (special application): N+ ACTIVE extention on SIPROT in case of abutting PWELL strap >= 0.44.\n                       X = PSTRTN COINCIDENT OUTSIDE EDGE NACTIVE\n                       EXT X SIPAC_RHBD:1 < 0.44 ABUT<90\n               ']
+
+['R18.18a', '@ Rule 18.18a : N+ ACTIVE extention on SIPROT in case of abutting PWELL2 strap >= 0.48.\n                          X = PSTRTN_5V COINCIDENT OUTSIDE EDGE NACTIVE\n                          EXT X SIPAC < 0.48 ABUT<90\n    ']
+
+['R18.19', '@ Rule 18.19 : P+ ACTIVE extention on SIPROT in case of abutting NWELL strap >= 0.48.\n           X = PPLUS COINCIDENT OUTSIDE EDGE NSTRTP\n           ENC SIPAC X < 0.48 ABUT<90\n       ']
+
+['R18.19.special_app', '@ Rule 18.19 (special application): P+ ACTIVE extention on SIPROT in case of abutting NWELL strap >= 0.44.\n                       X = PPLUS COINCIDENT OUTSIDE EDGE NSTRTP\n                       ENC SIPAC_RHBD:1 X < 0.44 ABUT<90\n               ']
+
+['R18.19a', '@ Rule 18.19a : P+ ACTIVE extention on SIPROT in case of abutting NWELL2 strap >= 0.48.\n            X = PPLUS COINCIDENT OUTSIDE EDGE NSTRTP_5V\n            ENC SIPAC X < 0.48 ABUT<90\n    ']
+
+['R18.20', '@ Rule 18.20 : POLY extension on SIPROT >= 0.32.\n           ENC SIPROT POLY < 0.32 ABUT<90 SINGULAR\n       ']
+
+['R18.20.special_app', '@ Rule 18.20 (special application): POLY extension on SIPROT >= 0.28.\n                       ENC SIPROT_RHBD:1 POLY < 0.28 ABUT<90 SINGULAR\n                   ']
+
+['R18.21', '@ Rule 18.21 : SIPROT intersection of POLY for unsalicided POLY >= 0.24.\n           INT SIPROT POLY < 0.24 ABUT<90 SINGULAR MEASURE COINCIDENT\n       ']
+
+['R18.21.special_app', '@ Rule 18.21 (special application): SIPROT intersection of POLY for unsalicided POLY >= 0.22.\n                       INT SIPROT_RHBD:1 POLY < 0.22 ABUT<90 SINGULAR MEASURE COINCIDENT\n               ']
+
+['R18.22', '@ Rule 18.22 : nplus enclosure of unsalicided POLY >= 0.3.\n           X = SIPO COINCIDENT INSIDE EDGE POLY\n           ENC X NPLUS < 0.3 ABUT<90\n       ']
+
+['R18.22.special_app', '@ Rule 18.22 (special application): nplus enclosure of unsalicided POLY >= 0.26.\n          X = SIPO_RHBD:1 COINCIDENT INSIDE EDGE POLY\n          ENC X NPLUS < 0.26 ABUT<90\n        ']
+
+['R18.23', '@ Rule 18.23 : pplus enclosure of unsalicided POLY >= 0.3.\n           X = SIPO COINCIDENT INSIDE EDGE POLY\n           ENC X PPLUS < 0.3 ABUT<90\n       ']
+
+['R18.23.special_app', '@ Rule 18.23 (special application): pplus enclosure of unsalicided POLY >= 0.26.\n                       X = SIPO_RHBD:1 COINCIDENT INSIDE EDGE POLY\n                       ENC X PPLUS < 0.26 ABUT<90\n                   ']
+
+['R18.imp1', '@ Rule 18.imp1 : SIPROT over marker mres is required.\n             MRESDEV NOT SIPROT\n         ']
+
+['R18.24', '@ Rule 18.24 : Unsalicided POLY distance to unsalicided ACTIVE >= 0.52.\n           X = POLY AND SIPROT\n       Y = ACTIVE AND SIPROT\n       EXT X Y < 0.52 ABUT<90 SINGULAR\n       ']
+
+['R18.24.special_app', '@ Rule 18.24 (special application): Unsalicided POLY distance to unsalicided ACTIVE >= 0.46.\n                       X = POLY AND SIPROT_RHBD:1\n                   Y = ACTIVE AND SIPROT_RHBD:1\n                   EXT X Y < 0.46 ABUT<90 SINGULAR\n               ']
+
+['R19.1', '@ Rule 19.1 : CONTACT width 0.24 X 0.24.\n          NOT RECTANGLE CONTACT == 0.24 BY == 0.24\n      ']
+
+['R19.2', '@ Rule 19.2 : CONTACT space >= 0.32.\n          EXT CONTACT < 0.32 ABUT>0<90 SINGULAR\n      ']
+
+['R19.3', '@ Rule 19.3 : CONTACT enclosure by POLY >= 0.02.\n          X = CTP:3 NOT LILEXT:1\n          ENC X POLY < 0.02 ABUT<90 SINGULAR OUTSIDE ALSO\n      ']
+
+['R19.4', '@ Rule 19.4 : CONTACT enclosure by ACTIVE  >= 0.02.\n          X = CTA:4 NOT LILEXT:1\n          ENC X ACTIVE < 0.02 ABUT<90 SINGULAR OUTSIDE ALSO\n      ']
+
+['R19.5', '@ Rule 19.5 : CONTACT on POLY distance to unrelated ACTIVE >= 0.14.\n          EXT CTP:3 ACTIVE < 0.14 ABUT<90 SINGULAR\n      ']
+
+['R19.6', '@ Rule 19.6 : CONTACT on ACTIVE distance to unrelated POLY >= 0.14.\n          X_0 = CTA:4 NOT CONTACT_30\n          X_30 = CTA:4 AND CONTACT_30\n          EXT X_0 LPOLY_0 < 0.14 ABUT<90 SINGULAR INSIDE ALSO\n          EXT X_0 POLY_30 < 0.14 ABUT<90 SINGULAR INSIDE ALSO\n          EXT X_30 LPOLY_0 < 0.14 ABUT<90 SINGULAR INSIDE ALSO\n      ']
+
+['R19.8', '@ Rule 19.8 : CONTACT to POLY over ACTIVE is forbidden.\n          CTP:3 AND ACTIVE\n      ']
+
+['R19.9', '@ Rule 19.9 : CONTACT inside silicide protection is not allowed.\n          CONTACT AND SIPROT\n      ']
+
+['R19Ximp1', "@ Rule 19.imp1 : CONTACT without ACTIVE nor POLY nor LIL.\n             R1 = COPY BADCT:2\n             M = FDRC INSIDE CELL '*FR_19Ximp1_*'\n             R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n         "]
+
+['//R19.imp2', '@ Rule 19.imp2 : CONTACT is not covered by ME1.\n//         CONTACT NOT ME1\n//    ']
+
+['R23.1', '@ Rule 23.1 : ME1 minimum width >= 0.32.\n          INT ME1 < 0.32 ABUT>0<90 SINGULAR\n      ']
+
+['R23X2', "@ Rule 23.2 : ME1 minimum space >= 0.32.\n          R1 = EXT ME1 < 0.32 ABUT>0<90 SINGULAR REGION\n          M = FDRC INSIDE CELL '*FR_23X2_*'\n          R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n      "]
+
+['R23X3_R19Ximp2', "@ Rule 23.3 : ME1 enclosure of CONTACT >= 0.04.\n                 @ Rule 19.imp2 : CONTACT is not covered by ME1.\n                   R1 = ENC CONTACT ME1 < 0.04 ABUT<90 SINGULAR OUTSIDE ALSO REGION\n                   M = FDRC INSIDE CELL '*FR_23X3_R19Ximp2_*'\n                   R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n               "]
+
+['R23X5', "@ Rule 23.5 : ME1 minimum area 0.2 (except dummy datatype 4).\n          R1 = NOT AREA ME1 >= 0.2\n          M = FDRC INSIDE CELL '*FR_23X5_*'\n          R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n      "]
+
+['R25.1', '@ Rule 25.1 : VI1 size 0.32 X 0.32.\n          NOT RECTANGLE NBPDV1 == 0.32 BY == 0.32\n      ']
+
+['R25.2', '@ Rule 25.2 : VI1 space >= 0.32.\n          EXT NBPDV1 < 0.32 ABUT>0<90 SINGULAR\n      ']
+
+['R25.3_R25.imp1', '@ Rule 25.3 : VI1 enclosure by ME1 >= 0.0.\n                 @ Rule 25.imp1 : VI1 without ME1.\n                   NBPDV1 NOT ME1\n           ']
+
+['R27.1', '@ Rule 27.1 : ME2 width >= 0.32.\n          INT ME2 < 0.32 ABUT>0<90 SINGULAR\n      ']
+
+['R27X2', "@ Rule 27.2 : ME2 space >= 0.32.\n          R1 = EXT ME2 < 0.32 ABUT>0<90 SINGULAR REGION\n          M = FDRC INSIDE CELL '*FR_27X2_*'\n          R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n      "]
+
+['R27.3', '@ Rule 27.3 : ME2 enclosure of VI1 >= 0.00.\n          NBPDV1 NOT ME2 \n      ']
+
+['R27X5', "@ Rule 27.5 : ME2 minimum area 0.2 (except dummy datatype 4).\n          R1 = NOT AREA ME2 >= 0.2\n          M = FDRC INSIDE CELL '*FR_27X5_*'\n          R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n      "]
+
+['R32.1', '@ Rule 32.1 : VI2 size 0.32 X 0.32.\n          NOT RECTANGLE NBPDV2 == 0.32 BY == 0.32\n      ']
+
+['R32.2', '@ Rule 32.2 : VI2 space >= 0.32.\n          EXT NBPDV2 < 0.32 ABUT>0<90 SINGULAR\n      ']
+
+['R32.3_R32.imp1', '@ Rule 32.3 : VI2 enclosure by ME2 >= 0.0.\n                 @ Rule 32.imp1 : VI2 without ME2.\n                   NBPDV2 NOT ME2\n           ']
+
+['R34.1', '@ Rule 34.1 : ME3 width >= 0.32.\n          INT ME3 < 0.32 ABUT>0<90 SINGULAR\n      ']
+
+['R34.2', '@ Rule 34.2 : ME3 space >= 0.32.\n          EXT ME3 < 0.32 ABUT>0<90 SINGULAR\n      ']
+
+['R34.3', '@ Rule 34.3 : ME3 enclosure of VI2 >= 0.0.\n          NBPDV2 NOT ME3\n      ']
+
+['R34X5', "@ Rule 34.5 : ME3 minimum area 0.2 (except dummy datatype 4).\n          R1 = NOT AREA ME3 >= 0.2\n          M = FDRC INSIDE CELL '*FR_34X5_*'\n          R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n      "]
+
+['R35.1', '@ Rule 35.1 : VI3 size 0.32 X 0.32.\n          NOT RECTANGLE NBPDV3 == 0.32 BY == 0.32\n      ']
+
+['R35.2', '@ Rule 35.2 : VI3 space >= 0.32.\n          EXT NBPDV3 < 0.32 ABUT>0<90 SINGULAR\n      ']
+
+['R35.3_R35.imp1', '@ Rule 35.3 : VI3 enclosure by ME3 >= 0.0.\n                 @ Rule 35.imp1 : VI3 without ME3.\n                   NBPDV3 NOT ME3\n           ']
+
+['R36.1', '@ Rule 36.1 : ME4 width  >= 0.32.\n          INT ME4 < 0.32 ABUT>0<90 SINGULAR\n    ']
+
+['R36.2', '@ Rule 36.2 : ME4 space >= 0.32.\n          EXT ME4 < 0.32 ABUT>0<90 SINGULAR\n      ']
+
+['R36.3', '@ Rule 36.3 : ME4 enclosure of VI3 >= 0.0.\n          NBPDV3 NOT ME4\n      ']
+
+['R36.5', '@ Rule 36.5 : ME4 minimum area 0.2 (except dummy datatype 4).\n          NOT AREA ME4 >= 0.2\n      ']
+
+['R52.1', '@ Rule 52.1 : VI4 size 0.32 X 0.32.\n          NOT RECTANGLE NBPDV4 == 0.32 BY == 0.32\n      ']
+
+['R52.2', '@ Rule 52.2 : VI4 minimum space >= 0.32.\n          EXT NBPDV4 < 0.32 ABUT>0<90 SINGULAR\n      ']
+
+['R52.3_R52.imp1', '@ Rule 52.3 : VI4 enclosure by ME4 >= 0.0.\n                 @ Rule 52.imp1 : VI4 without ME4.\n                   NBPDV4 NOT ME4\n           ']
+
+['R53.1', '@ Rule 53.1 : ME5 width >= 0.64.\n          INT ME5 < 0.64 ABUT>0<90 SINGULAR\n      ']
+
+['R53.3', '@ Rule 53.3 : ME5 enclosure of VI4 >= 0.16.\n          ENC NBPDV4 ME5 < 0.16 ABUT<90 SINGULAR OUTSIDE ALSO\n      ']
+
+['R53.2', '@ Rule 53.2 : ME5 space >= 0.64.\n          EXT ME5NOMIM:1 < 0.64 ABUT>0<90 SINGULAR\n      ']
+
+['R54.1', '@ Rule 54.1 : VI5 size 0.6 X 0.6.\n          NOT RECTANGLE NBPDV5 == 0.6 BY == 0.6\n      ']
+
+['R54.2', '@ Rule 54.2 : VI5 space >= 0.36.\n          EXT NBPDV5 < 0.36 ABUT>0<90 SINGULAR\n      ']
+
+['R54.3_R54.imp1', '@ Rule 54.3 : VI5 enclosure by ME5 >= 0.02.\n                 @ Rule 54.imp1 : VI5 without ME5.\n                   ENC NBPDV5 ME5 < 0.02 ABUT<90 SINGULAR OUTSIDE ALSO\n           ']
+
+['R55.1', '@ Rule 55.1 : ME6 width >= 0.64.\n          INT ME6 < 0.64 ABUT>0<90 SINGULAR\n      ']
+
+['R55.2', '@ Rule 55.2 : ME6 space >= 0.64.\n          EXT ME6 < 0.64 ABUT>0<90 SINGULAR\n      ']
+
+['R55.3', '@ Rule 55.3 : ME6 enclosure of VI5 >= 0.02.\n          ENC NBPDV5 ME6 < 0.02 ABUT<90 SINGULAR OUTSIDE ALSO\n      ']
+
+['R64.1', '@ Rule 64.1 : VFB size 0.6 X 0.6.\n          NOT RECTANGLE NBPDVFB == 0.6 BY == 0.6\n      ']
+
+['R64.2', '@ Rule 64.2 : VFB space >= 0.36\n         EXT NBPDVFB < 0.36 ABUT>0<90 SINGULAR\n    ']
+
+['R64.3_R64.imp1', '@ Rule 64.3 : VFB enclosure by ME6 >= 0.3.\n                 @ Rule 64.imp1 : VFB without ME6.\n                   ENC NBPDVFB ME6 < 0.3 ABUT<90 SINGULAR OUTSIDE ALSO\n           ']
+
+['R66.1', '@ Rule 66.1 : PRL width >= 10.0.\n          INT PRL < 10.0 ABUT>0<90 SINGULAR\n      ']
+
+['R66.2', '@ Rule 66.2 : PRL space >= 4.0.\n          EXT PRL < 4.0 ABUT>0<90 SINGULAR\n      ']
+
+['R66.3', '@ Rule 66.3 : PRL enclosure of VFB >= 1.0.\n          ENC NBPDVFB PRL < 1.0 ABUT<90 SINGULAR OUTSIDE ALSO\n      ']
+
+['R66.4', '@ Rule 66.4 : PRL is not allowed for routing.\n          PRL NOT INTERACT PAD_FC\n      ']
+
+['R39X1', "@ Rule 39.1 : LIL width = 0.24.\n          R1 = INT LILEXT:1 < 0.24 ABUT>0<90 SINGULAR REGION\n          M = FDRC INSIDE CELL '*FR_39X1_*'\n          R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n      "]
+
+['R39X1X', "@ Rule 39.1.a : LIL maximum width = 0.24.\n           LILS:1 = SIZE LILEXT:1  BY -0.12\n           LILS:2 = SIZE LILS:1 BY 0.12\n           R1 = LILEXT:1 AND LILS:2\n           M = FDRC INSIDE CELL '*FR_39X1X_*'\n           R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n       "]
+
+['R39X2', "@ Rule 39.2 : LIL minimum space >= 0.32.\n          R1 = EXT LILEXT:1 < 0.32 ABUT>0<90  SINGULAR REGION\n          M = FDRC INSIDE CELL '*FR_39X2_*'\n          R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n      "]
+
+['R39X3', "@ Rule 39.3 : LIL minimum intersection with POLY >= 0.24.\n          POLIBAD = INT LILPOL < 0.24 ABUT<90 OPPOSITE REGION\n          POLILOK = AREA (LILPOL NOT POLIBAD) >= 0.0576 \n          POLIBUT = POLIBAD TOUCH POLILOK\n          R1 = ((LILPOL NOT POLILOK) NOT POLIBUT ) AND POLIBAD\n          M = FDRC INSIDE CELL '*FR_39X3_*'\n          R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n      "]
+
+['R39X4', "@ Rule 39.4 : LIL minimum intersection with ACTIVE >= 0.24.\n          ACLIBAD = INT LILACT < 0.24 ABUT<90 OPPOSITE REGION\n          ACLILOK = AREA (LILACT NOT ACLIBAD) >= 0.0576\n          ACLIBUT = ACLIBAD TOUCH ACLILOK\n          R1 = ((LILACT NOT ACLILOK) NOT ACLIBUT ) AND ACLIBAD\n          M = FDRC INSIDE CELL '*FR_39X4_*'\n          R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n      "]
+
+['R39X5', "@ Rule 39.5 : LIL distance to unrelated ACTIVE >= 0.14.\n          R1 = EXT LILINT SALI < 0.14 NOT CONNECTED ABUT<90 SINGULAR REGION\n          M = FDRC INSIDE CELL '*FR_39X5_*'\n          R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n      "]
+
+['R39.5', '@ Rule 39.5 : LIL distance to unrelated ACTIVE >= 0.14.\n      LILSZ = LIL SIZE BY -0.02\n      ACTLIL = ACTIVE OR LILSZ \n      EXT ACTLIL < 0.04 SPACE ABUT<90 SINGULAR\n      ']
+
+['R39X5X', "@ Rule 39.5 : LIL distance to unrelated ACTIVE >= 0.14.\n           R1 = EXT LILINT LDDSALI < 0.14 NOT CONNECTED ABUT<90 SINGULAR REGION\n           M = FDRC INSIDE CELL '*FR_39X5X_*'\n           R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n       "]
+
+['R39.6', '@ Rule 39.6 : LIL distance to unrelated POLY >= 0.14.\n          EXT POLCONN:3 LILINT  < 0.14  NOT CONNECTED REGION\n          EXT LILINT POLCONN:3 < 0.1  SINGULAR CORNER NOT CONNECTED\n          Y = TOUCH POLCONN:3 LILINT\n      X = COINCIDENT OUTSIDE EDGE Y LILINT\n      COPY X\n      ']
+
+['R39X7', "@ Rule 39.7 LIL distance to CONTACT >= 0.32.\n      TMPLIL = EXT LILINT CONTACT < 0.32 SINGULAR ABUT>=0<90 REGION\n          R1 = TMPLIL OUTSIDE LILINT\n          M = FDRC INSIDE CELL '*FR_39X7_*'\n          R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n      "]
+
+['R39.7', '@ Rule 39.7 LIL distance to CONTACT >= 0.32.\n      X = COINCIDENT OUTSIDE EDGE LIL CONTACT\n      LENGTH X < 0.24\n      ']
+
+['R39.8', '@ Rule 39.8 : LIL contact to POLY over ACTIVE not allowed.\n          LILEXT:1 AND ACTPOL:1 \n      ']
+
+['R39X9', "@ Rule 39.9 : LIL enclosure by POLY >= 0.02.\n          R1 = ENC LILENCPO4 POLY < 0.02 ABUT>45<90  REGION\n          R2 = ENC LILENCPO4 POLY < 0.02 ABUT<45 REGION\n          R3 = R1 OR R2\n          R4 = EXPAND EDGE (LILEXT:1 COINCIDENT INSIDE EDGE POLY) OUTSIDE BY 0.02\n          R5 = R3 OR R4\n          M = FDRC INSIDE CELL '*FR_39X9_*'\n          R5 INTERACT (SIZE (R5 XOR M) BY -0.001)\n      "]
+
+['R39X10Xa', "@ Rule 39.10a : LIL enclosure by ACTIVE if length of intersection with ACTIVE is < 0.48 >= 0.02.\n         LILMIS  =  AREA LILIN1 < 0.1152\n         LILCONF:0 =  (LILMIS AND ACTIVE ) NOT SIPROT \n         LILINACT = LILCONF:0 INSIDE EDGE ACTIVE\n         LILINACT2 = INT LILINACT == 0.24 OPPOSITE REGION\n         LILINACT3 = AREA LILINACT2 >= 0.0576\n         LILCONF:1 = LILCONF:0 OUTSIDE LILINACT3    \n         LILENC1 = COINCIDENT OUTSIDE EDGE LILCONF:1 LILNOIN1\n         LILENC2 = LILCONF:1 INSIDE EDGE BULK\n         LILENC30 =  LILENC2 NOT COINCIDENT EDGE LILENC1\n         LILENC3 = LENGTH LILENC30 != 0.24\n             R1 = ENC LILENC3 ACTIVE < 0.02 ABUT<90  OPPOSITE REGION\n             M = FDRC INSIDE CELL '*FR_39X10Xa_*'\n             R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n         "]
+
+['R39.10a', '@ Rule 39.10a : LIL enclosure by ACTIVE if length of intersection with ACTIVE is < 0.48 >= 0.02.\n        LILSQ = AREA LILIN1 == 0.0576\n        LIL24ENC1 = COINCIDENT OUTSIDE EDGE LILSQ LILNOIN1\n        LIL24ENC2 = LILSQ INSIDE EDGE BULK\n            LIL24ENC3 =  LIL24ENC2 NOT COINCIDENT EDGE LIL24ENC1\n        LILCOINACT = LILEXT:1 INSIDE ACTIVE \n        LIL24BIS = AREA LILCOINACT == 0.0576\n        LIL24ENC1BIS = COINCIDENT EDGE LIL24BIS ACTIVE\n        LIL24ENC1BISEXP = EXPAND EDGE  LIL24ENC1BIS INSIDE BY 0.02\n        LIL24ENC1BISSZ = EXPAND EDGE  LIL24ENC1BIS OUTSIDE BY 0.02\n        LIL24COIN = LIL24ENC1BISSZ TOUCH  LIL24ENC1BISEXP >= 2\n        ENC LIL24ENC3 ACTIVE < 0.02 ABUT<90 OPPOSITE\n        ENC LIL24COIN ACTIVE < 0.02 ABUT<90 OPPOSITE\n        ']
+
+['R39X11', "@ Rule 39.11 : LIL end of line with inward corner < 0.4 away, distance to POLY >= 0.24.\n           LILINCOR:1 = EXT LILINT < 0.020 ABUT == 90 INTERSECTING ONLY REGION\n       LILINCOR = LILINT COINCIDENT OUTSIDE EDGE LILINCOR:1\n        LILINCORBAD = NOT LENGTH ( TOUCH EDGE LILINT LILINCOR ) >= 0.4\n           X = EXPAND EDGE LILINCORBAD INSIDE BY 0.020\n       LILENDINCORBAD:0 = NOT LENGTH ( TOUCH EDGE LILINT X ) >= 0.26\n       LILENDINCORBAD = LILENDINCORBAD:0 NOT TOUCH EDGE  LILINCOR:1\n           R1 = EXT POLY LILENDINCORBAD < 0.24  REGION\n           M = FDRC INSIDE CELL '*FR_39X11_*'\n           R1 INTERACT (SIZE (R1 XOR M) BY -0.001)\n       "]
+
+['R39.12', '@ Rule 39.12 : LIL with SIPROT is not allowed.\n           LIL AND SIPROT\n       ']
+
+['R39.13', '@ Rule 39.13 : LIL 45 degre angles are forbidden.\n           ANGLE LIL == 45\n       ']
+
+['R39.14', '@ Rule 39.14 : min LIL enclosed area.\n             HOLES LIL < 0.36\n    ']
+
+['RD19.2', '@ Rule D19.2 : Contact_c2 minimum space >= 0.32.\n           EXT CTELEC2 < 0.32 ABUT>0<90 SINGULAR\n       ']
+
+['RD19.1', '@ Rule D19.1 : Contact_c2 width = 0.24 X 0.24.\n           NOT RECTANGLE CTELEC2 == 0.24 BY == 0.24\n       ']
+
+['RD51.1', '@ Rule D51.1 CELLVT width >= 0.48.\n           INT CELLVT < 0.48 ABUT>0<90 SINGULAR\n       ']
+
+['RD51.2', '@ Rule D51.2 CELLVT space >= 0.48.\n           EXT CELLVT < 0.48 ABUT>0<90 SINGULAR\n       ']
+
+['RD51.3', '@ Rule D51.3 CELLVT enclosure of Active >= 0.26.\n           ENC ACTIVE CELLVT < 0.26 ABUT<90 SINGULAR\n       ']
+
+['RD51.4', '@ Rule D51.4 CELLVT distance to Active >= 0.26.\n           EXT CELLVT ACTIVE < 0.26 ABUT<90 SINGULAR \n       ']
+
+['RD43.1', '@ Rule D43.1 CELLIMP width >= 0.48.\n       INT CELLIMP < 0.48 ABUT>0<90 SINGULAR\n       ']
+
+['RD43.2', '@ Rule D43.2 CELLIMP space >= 0.48.\n       EXT CELLIMP < 0.48 ABUT>0<90 SINGULAR\n       ']
+
+['RD43.3', '@ Rule D43.3 CELLIMP enclosure of ACTIVE >= 0.26.\n       ENC ACTIVE CELLIMP < 0.26 ABUT<90 SINGULAR\n       ']
+
+['RD43.4', '@ Rule D43.4 CELLIMP distance to ACTIVE >= 0.26.\n       EXT CELLIMP ACTIVE < 0.26 ABUT<90 SINGULAR \n       ']
+
+['R65.1', '@ Rule 65.1 : EPI width >= 1.\n          INT NEPI < 1 ABUT>0<90 SINGULAR\n      ']
+
+['R65.2', '@ Rule 65.2 : EPI space >= 1.\n          EXT NEPI < 1 ABUT>0<90 SINGULAR\n      ']
+
+['R65.3', '@ Rule 65.3 : EPI with ACTIVE is forbidden, NEPI must be used as isolation wall.\n          NEPI AND ACTIVE\n      ']
+
+['R65.4', '@ Rule 65.4 : EPI distance to ACTIVE >= 1.\n          EXT NEPI ACTIVE < 1 ABUT<90 SINGULAR INSIDE ALSO \n      ']
+
+['R65.5', '@ Rule 65.5 : EPI distance to NWELL >= 1.\n          EXT NEPI NWELL < 1 ABUT<90 SINGULAR INSIDE ALSO \n      ']
+
+['R65.6', '@ Rule 65.6 : EPI distance to RNWELL >= 1.\n          EXT NEPI RNWELL < 1 ABUT<90 SINGULAR INSIDE ALSO\n      ']
+
+['R65.7_R65.8', '@ Rule 65.7 : EPI distance to NISO >= 1.\n              @ Rule 65.8 : EPI abutting to Niso allowed\n                EXT NEPI NISO < 1 ABUT>0<90 SINGULAR INSIDE ALSO \n            ']
+
+['RMT80.1', '@ Rule MT80.1 : MIM5 width >= 3.5.\n            INT MIM5 < 3.5 ABUT>0<90 SINGULAR\n        ']
+
+['RMT80.2', '@ Rule MT80.2 : MIM5 space >= 3.5.\n            EXT MIM5 < 3.5 ABUT>0<90 SINGULAR\n        ']
+
+['RMT80.3', '@ Rule MT80.3 : MIM5 maximum area = 20000.\n            AREA MIM5 > 20000\n        ']
+
+['RMT80.5', '@ Rule MT80.5 : ME5 is required under MIM5\n          @ or MIM5 enclosure by ME5 >= 1.2.\n            ENC MIM5 ME5 < 1.2 ABUT<90 SINGULAR OUTSIDE ALSO\n        ']
+
+['RMT80.6', '@ Rule MT80.6 : MIM5 enclosure of VI5 >= 0.5.\n            ENC VIMIM5C MIM5 < 0.5 ABUT<90 SINGULAR\n        ']
+
+['RMT80.7', '@ Rule MT80.7 : MIM5 distance to unrelated VI5 >= 0.5.\n            EXT MIM5 VI5 < 0.5 ABUT<90 SINGULAR\n        ']
+
+['RMT_53.1', '@ Rule MT_53.1 : Width of a ME5 capacitor plate >= 5.9.\n             INT MIM5BASE < 5.9 ABUT>0<90 SINGULAR\n         ']
+
+['RMT_53.2', '@ Rule MT_53.2 : Space of a ME5 capacitor plate >= 1.1.\n             X = EXT MIM5PLATE < 1.1 ABUT>0<90 SINGULAR REGION\n         X OUTSIDE ME5\n         EXT MIM5PLATE ME5NOMIM:1 < 1.1 ABUT>0<90 SINGULAR\n         ']
+
+['RMT_53.3', '@ Rule MT_53.3 : Enclosure of VI4 by ME5 capacitor plate >= 0.3.\n             EXT VI4INSIDEMIM5P TMP3MIM5 < 0.3 ABUT>0<90 SINGULAR\n             EXT VI4CUTMIM5P TMP4MIM5 < 0.3 ABUT>0<90 SINGULAR\n     ']
+
+['RMT_53.4', '@ Rule MT_53.4 : Enclosure of VI5 by ME5 capacitor plate >= 0.3.\n             EXT VI5INSIDEMIM5P TMP1MIM5 < 0.3 ABUT>0<90 SINGULAR\n             EXT VI5CUTMIM5P TMP2MIM5    < 0.3 ABUT>0<90 SINGULAR\n         ']
+
+['RMT_55.1_MT_55.2', '@ Rule MT_55.1 : M6 not allowed over MIM5 if at different potential\n                          @ Rule MT_55.2 : M6 dist to MIM5 if at different potential >=0.64\n          EXT MIM5C M6C:2 < 0.64 OVERLAP NOT CONNECTED\n        ']
+
+['RMT_53.1a', '@ Rule MT_53.1 : Width of a ME5 capacitor plate >= 5.9.\n              INT HKMIM5BASE < 5.9 ABUT>0<90 SINGULAR\n          ']
+
+['RMT_53.2a', '@ Rule MT_53.2 : Space of a Metal5 capacitor plate >= 1.1.\n              X = EXT HKMIM5PLATE < 1.1 ABUT>0<90 SINGULAR REGION\n          X OUTSIDE ME5\n          EXT HKMIM5PLATE ME5NOMIM:1 < 1.1 ABUT>0<90 SINGULAR\n          ']
+
+['RMT_53.3a', '@ Rule MT_53.3 : Enclosure of VI4 by ME5 capacitor plate >= 0.3.\n              EXT VI4INSIDEHKMIM5P TMP3HKMIM5 < 0.3 ABUT>0<90 SINGULAR\n              EXT VI4CUTHKMIM5P TMP4HKMIM5  < 0.3 ABUT>0<90 SINGULAR\n      ']
+
+['RMT_53.4a', '@ Rule MT_53.4 : Enclosure of VI5 by ME5 capacitor plate >= 0.3.\n              EXT VI5INSIDEHKMIM5P TMP1HKMIM5 < 0.3 ABUT>0<90 SINGULAR\n              EXT VI5CUTHKMIM5P TMP2HKMIM5 < 0.3 ABUT>0<90 SINGULAR\n          ']
+
+['RM92.1', '@ Rule M92.1 : HKMIM5 width >= 3.5.\n           INT HKMIM5 < 3.5 ABUT>0<90 SINGULAR\n       ']
+
+['RM92.2', '@ Rule M92.2 : HKMIM5 space >= 3.5.\n           EXT HKMIM5 < 3.5 ABUT>0<90 SINGULAR\n       ']
+
+['RM92.3', '@ Rule M92.3 : HKMIM5 maximum area = 20000.\n           AREA HKMIM5 > 20000\n       ']
+
+['RM92.5', '@ Rule M92.5 : ME5 is required under HKMIM5\n         @ or HKMIM5 enclosure by ME5 >= 1.2.\n           ENC HKMIM5 ME5 < 1.2 ABUT<90 SINGULAR OUTSIDE ALSO\n       ']
+
+['RM92.6', '@ Rule M92.6 : HKMIM5 enclosure of VI5 >= 0.5.\n           ENC VIHKMIM5C HKMIM5 < 0.5 ABUT<90 SINGULAR\n       ']
+
+['RM92.7', '@ Rule M92.7 : HKMIM5 distance to unrelated VI5 >= 0.5.\n           EXT HKMIM5 VI5 < 0.5 ABUT<90 SINGULAR\n       ']
+
+['RM92.imp1', '@ Rule M92.imp1 : MIM5 capacitors can not be used with HKMIM5 capacitors.\n          ((BULK INTERACT HKMIM5) AND (BULK INTERACT MIM5)) AND (MIM5 OR HKMIM5)\n          ']
+
+['RF2.1', '@ Rule F2.1 : hipo resistor is not allowed on ACTIVE.\n          PRESIST AND ACTIVE\n      ']
+
+['RF13.1_RF13.2', '@ Rule F13.1 : hipo resistor POLY must be placed on NWELL.\n                @ Rule F13.2 : hipo resistor POLY enclosure by NWELL >= 1.5.\n                  ENC RHPOLY NWELL < 1.5 ABUT<90 SINGULAR OUTSIDE ALSO\n          ']
+
+['RF13.3', '@ Rule F13.3 : hipo resistor width >= 0.8.\n           INT (RHBODY NOT INTERACT NORULECHECK_RPOLY_Rw:0) < 0.8 ABUT>0<90 SINGULAR\n       ']
+
+['RF13.4', '@ Rule F13.4 : hipo resistor space >= 0.54.\n           EXT RHBODY < 0.54 SPACE ABUT>0<90\n       ']
+
+['RF26.1', '@ Rule F26.1 : PRESIST width >= 0.64.\n           INT PRESIST < 0.64 ABUT>0<90 SINGULAR\n       ']
+
+['RF26.2', '@ Rule F26.2 : PRESIST space >= 0.64.\n           EXT PRESIST < 0.64 ABUT>0<90 SINGULAR\n       ']
+
+['RF26.3', '@ Rule F26.3 : PRESIST distance to ACTIVE >= 0.34.\n           EXT PRESIST ACTIVE < 0.34 ABUT<90 SINGULAR INSIDE ALSO\n       ']
+
+['RF26.4', '@ Rule F26.4 : PRESIST distance to POLY >= 0.7.\n           EXT PRESIST POLY < 0.7 ABUT<90 SINGULAR\n           PRESIST AND (POLY NOT RHPOLY)\n       ']
+
+['RF26.5', '@ Rule F26.5 : PRESIST distance to pplus >= 0.54.\n           EXT PRESIST PPLUS < 0.54 ABUT<90 SINGULAR\n       PRESIST AND (PPLUS OUTSIDE RHHEAD)\n       ']
+
+['RF26.9_RF26.10', '@ Rule F26.9 : POLY of hipo resistor crossing PRESIST boundary is forbidden.\n                 @ Rule F26.10 : presist enclosure of poly of hipo resistor >=1.1\n               ENC RHPOLY PRESIST < 1.1 ABUT<90 SINGULAR OUTSIDE ALSO\n           ']
+
+['RF17.1', '@ Rule F17.1 : pplus must be placed on heads of hipo resistor.\n       RHTERM NOT PPLUS\n       ']
+
+['RF17.2', '@ Rule F17.2 : pplus intersection with POLY of hipo resistor >= 1.14.\n       INT PPHEAD RHPOLY < 1.14 ABUT<90 MEASURE COINCIDENT\n       ']
+
+['RF17.3', '@ Rule F17.3 : pplus extension on POLY of hipo resistor >= 0.34.\n           ENC RHPOLY PPLUS < 0.34 ABUT<90 SINGULAR\n       ']
+
+['RF17.4', '@ Rule F17.4 : hipo resistor length >= 3.5.\n           X = RHBODY COINCIDENT INSIDE EDGE POLY\n           PATH LENGTH X < 3.5\n       ']
+
+['RF18.1', '@ Rule F18.1 : SIPROT intersection with pplus on heads of hipo resistor >= 0.34.\n       INT PPHEAD SIPROT < 0.34 ABUT<90 MEASURE COINCIDENT\n       ']
+
+['RF19.1', '@ Rule F19.1 : HIPO resistor CONTACT distance to SIPROT = 0.28 (min=max).\n       CTRH = CONTACT INTERACT RHHEAD\n       SIPROTRH = SIPROT INTERACT RHBODY\n       X = SIZE (SIPROTRH OR CTRH) BY 0.14\n       SIPROTRH INTERACT (RHPOLY INTERACT X > 1)\n       EXT SIPROTRH CTRH < 0.28\n']
+
+['R24.1', '@ Rule 24.1 : NISO width > 2.0.\n          INT NISO < 2.0 ABUT>0<90 SINGULAR\n      ']
+
+['R24.2', '@ Rule 24.2 : NISO space > 2.0.\n          EXT NISO < 2.0 ABUT>0<90 SINGULAR\n      ']
+
+['R24.4', '@ Rule 24.4 : NISO intersection with NWELL guard-ring >= 0.4.\n          INT NISO NWELL < 0.4 ABUT<90 SINGULAR MEASURE COINCIDENT\n      ']
+
+['R24.11', '@ Rule 24.11 : NISO crossing NWELL hole boundary is not allowed.\n           NWHNISO NOT NISO\n       ']
+
+['R24.4a', '@ Rule 24.4a : NISO intersection with NWELL2 guard-ring >= 0.5.\n          INT NISO NWELL2 < 0.5 ABUT<90 SINGULAR MEASURE COINCIDENT \n       ']
+
+['R24.11a', '@ Rule 24.11a : NISO crossing NWELL2 hole boundary is not allowed.\n            NWH2NISO NOT NISO\n        ']
+
+['R24.3', '@ Rule 24.3 : NISO enclosure by NWELL >= 1.6.\n          ENC NISO NWELL < 1.6 ABUT<90 SINGULAR\n      ']
+
+['R24.3a', '@ Rule 24.3a : NISO enclosure by NWELL2 >= 1.6.\n          ENC NISO NWELL2 < 1.6 ABUT<90 SINGULAR\n       ']
+
+['R24.7', '@ Rule 24.7 : NWELLS (nwell and nwell2) layers overlapping NISO must be at the same potential.\n          NWELL_ALL2 INTERACT (NISO NOT NISOC_ALL) \n          ']
+
+['RB24.imp1', '@ Rule B24.imp1 : NWELL/NWELL2 guard-ring is required.\n        NISO OUTSIDE ( NWHOLE OR NW2HOLE )\n        ((NISO INTERACT ( NWHOLE OR NW2HOLE ) ) NOT NWELL) NOT ( NWHOLE OR NW2HOLE )\n      ']
+
+['RB24.10', '@ Rule B24.10 : We recommend isolating the side walls of PWELL/PWELL2 with NWELL \n              NISO OUTSIDE NWHOLE\n              ((NISO INTERACT NWHOLE) NOT NWELL) NOT NWHOLE\n      ']
+
+['R24.5b', '@ Rule 24.5b : NISO enclosure of NWELL strap >= 0.58.\n        ENC NSTRAP:2 NISO < 0.58 ABUT<90 SINGULAR\n       ']
+
+['R24.5a', '@ Rule 24.5a : NISO enclosure of PWELL strap >= 0.58.\n        ENC PSTRAP NISO < 0.58 ABUT<90 SINGULAR\n       ']
+
+['R24.5d', '@ Rule 24.5d : NISO enclosure of PWELL2 strap >= 0.6.\n        ENC PSTRAP_5V NISO < 0.6 ABUT<90 SINGULAR\n       ']
+
+['R24.5e', '@ Rule 24.5e : NISO enclosure of NWELL2 strap >= 0.6.\n        ENC NSTRAP:1_5V NISO < 0.6 ABUT<90 SINGULAR\n       ']
+
+['R24.6.b', '@ Rule 24.6.b : NISO enclosure of p+ active in NWELL  >=0.8                                  \n         ENC PINNW NISO < 0.8 ABUT<90 SINGULAR\n    ']
+
+['R24.6a', '@ Rule 24.6a : NISO enclosure of n+ active in PWELL >= 0.8.\n        ENC NINPW NISO < 0.8 ABUT<90 SINGULAR\n       ']
+
+['R24.6c', '@ Rule 24.6c : NISO enclosure of n+ active in PWELL2 >= 1.\n        ENC NINPW2 NISO < 1 ABUT<90 SINGULAR\n       ']
+
+['R24.6.d', '@ Rule 24.6.d : NISO enclosure of p+ active in NWELL  >=1                                  \n         ENC PINNW2 NISO < 1 ABUT<90 SINGULAR\n        ']
+
+['R24.imp2', '@ Rule 24.imp2 : POLY/NWELL capacitor is not allowed on NOSO.\n             CP1NW AND NISO\n         ']
+
+['RNDR13.1', '@ Rule NDR13.1 : gate length on ndrift >= 1.0.\n             INT NDGATESYM < 1.0 ABUT>0<90 SINGULAR\n     ']
+
+['RNDR13.2', '@ Rule NDR13.2 : POLY overlap NWELL ACTIVE on ndrift >= 1.5.\n         INT ACTPOL:1 NDRNW < 1.5 ABUT>0<90 OPPOSITE PARALLEL SINGULAR\n     ']
+
+['RNDR2.1', '@ Rule NDR2.1 : source drain space on ndrift >= 1.5\n            EXT NDRACTD NDRACTS < 1.5 ABUT<90 OPPOSITE PARALLEL SINGULAR\n        ']
+
+['RPDR13.1', '@ Rule PDR13.1 : gate length on pdrift >= 0.8.\n             INT PDGATESYM < 0.8 ABUT>0<90 SINGULAR\n     ']
+
+['RPDR13.2', '@ Rule PDR13.2 : POLY overlap PWELL ACTIVE on pdrift >= 1.0.\n         INT ACTPOL:1 PDRPWNISO < 1.0 ABUT>0<90 OPPOSITE PARALLEL SINGULAR\n     ']
+
+['RPDR2.1', '@ Rule PDR2.1 : source drain space on pdrift >= 0.7.\n            EXT PDRACTD PDRACTS < 0.7 ABUT<90 OPPOSITE PARALLEL SINGULAR\n        ']
+
+['R6.1', '@ Rule 6.1 GO2 width > 0.48.\n          INT GO2 < 0.48 ABUT>0<90 SINGULAR     \n      ']
+
+['R6.2', '@ Rule 6.2 GO2 space > 0.48.\n     EXT GO2 < 0.48 ABUT>0<90 SINGULAR\n     ']
+
+['R6.4', '@ Rule 6.4 : GO2 enclosure of active >= 0.5.\n         ENC ACTNOSTRAPBUTCPO1NW:2 GO2 < 0.5 ABUT<90 SINGULAR\n    ']
+
+['R6.5', '@ Rule 6.5 : GO2 distance to source/drain active >= 0.5.\n         EXT GO2 ACTNOSTRAP < 0.5 ABUT>=0<90 SINGULAR\n     ']
+
+['R6.imp2', '@ Rule 6.imp2 : Mos P double oxide without PEXT or with PLDD is not allowed.\n            COPY BADPGO2\n    ']
+
+['R6.imp1', '@ Rule 6.imp1 : Mos N double oxide without NEXT or with NLDD is not allowed.\n      COPY BADNGO2:3\n    ']
+
+['R6.6', '@ Rule 6.6 : GO2 accross mos diffusion is not allowed.\n     GO2 INSIDE EDGE ACTNOSTRAP\n     ']
+
+['R7.1', '@ Rule 7.1 : GO2_5V width > 0.84.\n         INT GO2_5V < 0.84 ABUT>0<90 SINGULAR REGION\n     ']
+
+['R7.2', '@ Rule 7.2 : GO2_5V space > 0.84.\n         EXT GO2_5V < 0.84 ABUT>0<90 SINGULAR REGION\n     ']
+
+['R7.4', '@ Rule 7.4 : GO2_5V enclosure of source/drain active > 0.50.\n         ENC ACTCUTPOL GO2_5V < 0.50 ABUT>=0<90 SINGULAR REGION\n     ']
+
+['R7.5', '@ Rule 7.5 : GO2_5V distance to source/drain active > 0.50.\n         EXT ACTCUTPOL GO2_5V < 0.50 ABUT>=0<90 SINGULAR REGION\n     ']
+
+['R7.6', '@ Rule 7.6 : GO2_5V across source/drain active is not allowed, except OTP cell.\n         GO2_5V INSIDE EDGE ACTCUTPOL_OTP\n     ']
+
+['R91.1', '@ Rule 91.1 : OTP width >= 0.48.\n         INT OTP < 0.48 ABUT>0<90 SINGULAR REGION\n      ']
+
+['R91.2', '@ Rule 91.2 : OTP space >= 0.48.\n         EXT OTP < 0.48 ABUT>0<90 SINGULAR REGION\n      ']
+
+['R91.3', '@ Rule R91.3 : OTP area >= 0.36.\n          NOT AREA OTP >= 0.36\n      ']
+
+['R91.4', '@ Rule 91.4 : OTP enclosure of ACTIVE >= 0.26.\n          ENC ACTIVE OTP < 0.26 ABUT>=0<90 SINGULAR REGION\n      ']
+
+['R76.1', '@ Rule 76.1 : NEXT width >= 0.48.\n          INT NEXT < 0.48 ABUT>0<90 SINGULAR\n      ']
+
+['R76.2', '@ Rule 76.2 : NEXT space >= 0.48.\n          EXT NEXT < 0.48 ABUT>0<90 SINGULAR\n      ']
+
+['R76.3', '@ Rule 76.3 : NEXT enclosure of ACTIVE >= 0.26.\n          ENC ACTIVE NEXT < 0.26 ABUT<90 SINGULAR\n      NEXT INSIDE EDGE (ACTIVE NOT ACTH_5V)\n      ']
+
+['R76.4', '@ Rule 76.4 : NEXT distance to active resistors >= 0.26.\n      EXT ACTIVERES NEXT < 0.26 ABUT<90\n      NEXT INSIDE EDGE ACTIVERES\n      ']
+
+['R76.5', '@ Rule 76.5 : NEXT distance to poly resistors >= 0.26.\n      EXT RPOLY NEXT < 0.26 ABUT<90\n      NEXT INSIDE EDGE RPOLY\n      ']
+
+['R76.6', '@ Rule 76.6 : NEXT distance to active covered with NLDD or PLDD >= 0.26.\n      EXT ACTIVLDD NEXT < 0.26 SINGULAR ABUT<90\n      NEXT INSIDE EDGE ACTIVLDD\n      ']
+
+['R76.8', '@ Rule 76.8 : NEXT distance to  P active other than Pwell strap >= 0.26.\n      EXT PACTNOSTRP NEXT < 0.26 SINGULAR ABUT<90\n      NEXT INSIDE EDGE PACTNOSTRP\n      ']
+
+['R76.9', '@ Rule 76.9 : ACTIVE must not be crossed by NEXT boundary.\n      (ACTIVE NOT ACTH_5V) CUT NEXT\n      ']
+
+['R76.imp', '@ Rule R76.imp NEXT AND NLDD are alternative layers.\n            NEXT AND NLDD\n        ']
+
+['R78.1', '@ Rule 78.1 : NEXT_5V width >= 0.48.\n          INT NEXT_5V < 0.48 ABUT>0<90 SINGULAR REGION\n      ']
+
+['R78.2', '@ Rule 78.2 : NEXT_5V space >= 0.48.\n          EXT NEXT_5V < 0.48 ABUT>0<90 SINGULAR REGION\n      ']
+
+['R78.3', '@ Rule 78.3 : NEXT_5V enclosure of ACTIVE >= 0.26.\n          ENC ACTIVE NEXT_5V < 0.26 ABUT<90 SINGULAR REGION\n      NEXT_5V INSIDE EDGE (ACTIVE NOT ACTH_5V)\n      ']
+
+['R78.4', '@ Rule 78.4 : NEXT_5V distance to active resistors >= 0.26.\n      EXT ACTIVERES NEXT_5V < 0.26 ABUT<90 REGION\n      NEXT_5V INSIDE EDGE ACTIVERES\n      ']
+
+['R78.5', '@ Rule 78.5 : NEXT_5V distance to poly resistors >= 0.26.\n      EXT RPOLY NEXT_5V < 0.26 ABUT<90 REGION\n      NEXT_5V INSIDE EDGE RPOLY\n      ']
+
+['R78.6', '@ Rule 78.6 : NEXT_5V without PWELL2 or NWELL2 is not allowed.\n          (NEXT_5V NOT PWELL2) NOT NWELL2\n      ']
+
+['R78.7', '@ Rule 78.7 : NEXT_5V distance to P active other than PWELL2 straps >= 0.26.\n      EXT PACTNOSTRP_5V NEXT_5V < 0.26 ABUT<90 SINGULAR REGION\n      NEXT_5V INSIDE EDGE PACTNOSTRP_5V\n      ']
+
+['R78.8', '@ Rule 78.8 : ACTIVE must not be crossed by NEXT_5V boundary.\n      (ACTIVE NOT ACTH_5V) CUT NEXT_5V\n      ']
+
+['R78.imp', '@ Rule R78.imp : NEXT_5V AND NEXT are alternative layers,\n          @                NEXT_5V AND NLDD are alternative layers.\n            NEXT_5V AND NEXT\n        NEXT_5V AND NLDD\n        ']
+
+['R77.1', '@ Rule 77.1 : PEXT width >= 0.48.\n          INT PEXT < 0.48 ABUT>0<90 SINGULAR\n      ']
+
+['R77.2', '@ Rule 77.2 : PEXT space >= 0.48.\n          EXT PEXT < 0.48 ABUT>0<90 SINGULAR\n      ']
+
+['R77.3', '@ Rule 77.3 : PEXT enclosure of ACTIVE >= 0.26.\n          ENC ACTIVE PEXT < 0.26 ABUT<90 SINGULAR\n      PEXT INSIDE EDGE (ACTIVE NOT ACTH_5V)\n      ']
+
+['R77.4', '@ Rule 77.4 : PEXT distance to active resistors >= 0.26.\n      EXT ACTIVERES PEXT < 0.26 ABUT<90\n      PEXT  INSIDE EDGE ACTIVERES\n      ']
+
+['R77.5', '@ Rule 77.5 : PEXT distance to poly resistors >= 0.26.\n      EXT RPOLY PEXT < 0.26 ABUT<90\n      PEXT  INSIDE EDGE RPOLY\n      ']
+
+['R77.6', '@ Rule 77.6 : PEXT distance to ACTIVE covered with NLDD or PLDD >= 0.26.\n      EXT ACTIVLDD PEXT < 0.26 SINGULAR ABUT<90\n      PEXT  INSIDE EDGE ACTIVLDD\n      ']
+
+['R77.8', '@ Rule 77.8 : PEXT distance to N active other than NWELL strap >= 0.26.\n      EXT NACTNOSTRN PEXT < 0.26 SINGULAR ABUT<90\n      PEXT INSIDE EDGE NACTNOSTRN\n      ']
+
+['R77.9', '@ Rule 77.9 : Active must not be crossed by PEXT boundary.\n      (ACTIVE NOT ACTH_5V) CUT PEXT\n      ']
+
+['R77.imp', '@ Rule R77.imp PEXT AND PLDD are alternative layers.\n            PEXT AND PLDD\n        ']
+
+['R79.1', '@ Rule 79.1 PEXT_5V width >= 0.48.\n          INT PEXT_5V < 0.48 ABUT>0<90 SINGULAR REGION\n      ']
+
+['R79.2', '@ Rule 79.2 PEXT_5V space >= 0.48.\n          EXT PEXT_5V < 0.48 ABUT>0<90 SINGULAR REGION\n      ']
+
+['R79.3', '@ Rule 79.3 : PEXT_5V enclosure of ACTIVE >= 0.26.\n          ENC ACTIVE PEXT_5V < 0.26 ABUT<90 SINGULAR REGION\n      PEXT_5V INSIDE EDGE (ACTIVE NOT ACTH_5V)\n      ']
+
+['R79.4', '@ Rule 79.4 : PEXT_5V distance to active resistors >= 0.26.\n      EXT ACTIVERES PEXT_5V < 0.26 ABUT<90 REGION\n      PEXT_5V INSIDE EDGE ACTIVERES\n      ']
+
+['R79.5', '@ Rule 79.5 : PEXT_5V distance to poly resistors >= 0.26.\n      EXT RPOLY PEXT_5V < 0.26 ABUT<90 REGION\n      PEXT_5V INSIDE EDGE RPOLY\n      ']
+
+['R79.6', '@ Rule 79.6 : PEXT_5V without NWELL2 or PWELL2 is not allowed.\n          (PEXT_5V NOT PWELL2) NOT NWELL2\n      ']
+
+['R79.7', '@ Rule 79.7 : PEXT_5V distance to N active other than NWELL2 strap >= 0.26.\n      EXT NACTNOSTRN_5V PEXT_5V < 0.26 ABUT<90 SINGULAR REGION\n      PEXT_5V INSIDE EDGE NACTNOSTRN_5V\n      ']
+
+['R79.8', '@ Rule 79.8 : ACTIVE must not be crossed by PEXT_5V boundary.\n      (ACTIVE NOT ACTH_5V) CUT PEXT_5V\n      ']
+
+['R79.imp', '@ Rule R79.imp : PEXT_5V AND PEXT are alternative layers,\n          @                PEXT_5V AND PLDD are alternative layers.\n            PEXT_5V AND PEXT\n        PEXT_5V AND PLDD\n        ']
+
+['R5_3.imp', '@ Rule 5_3.imp : 5V layers are not compatible with 3V layers.\n             ((BULK INTERACT LAYERS_5V) AND (BULK INTERACT LAYERS_3V)) AND (LAYERS_5V OR LAYERS_3V)\n         ']
+
+['RALLHD', "@ Rule ALLHD : high density purpose present outside high density memories.\n           R = OR HD\n           M = FDRC INSIDE CELL 'FR_ALLHD_*'\n           R INTERACT (SIZE (R XOR M) BY -0.001)\n    "]
+
+['R31.1', '@ Rule 31.1 : ME6 enclosure of pad opening >= 3.0.\n          ENC PAD BPDMT6 < 3.0 ABUT<90 SINGULAR\n      ']
+
+['R31.2', '@ Rule 31.2 : NWELL enclosure of pad opening >= 3.0.\n          ENC PAD BPDNWL < 3.0 ABUT<90 SINGULAR\n      ']
+
+['R31.2a', '@ Rule 31.2 : RNWELL enclosure of pad opening >= 3.0.\n           ENC PAD BPDRNWL < 3.0 ABUT<90 SINGULAR\n       ']
+
+['R31.3', '@ Rule 31.3 : ME1 enclosure of VI1 >= 0.34.\n          ENC BPDVI1 BPDMT1 < 0.34 ABUT<90 SINGULAR\n      ']
+
+['R31.4', '@ Rule 31.4 : ME2 enclosure of VI2 >= 0.34.\n          ENC BPDVI2 BPDMT2 < 0.34 ABUT<90 SINGULAR\n      ']
+
+['R31.5', '@ Rule 31.5 : ME3 enclosure of VI3 >= 0.34.\n          ENC BPDVI3 BPDMT3 < 0.34 ABUT<90 SINGULAR\n      ']
+
+['R31.6', '@ Rule 31.6 : ME4 enclosure of VI4 >= 0.34.\n          ENC BPDVI4 BPDMT4 < 0.34 ABUT<90 SINGULAR\n      ']
+
+['R31.7', '@ Rule 31.7 : ME5 enclosure of VI5 >= 0.2.\n          ENC BPDVI5 BPDMT5 < 0.2 ABUT<90 SINGULAR\n      ']
+
+['R31.8', '@ Rule 31.8 : VI1 size in the pad = 0.32.\n          INT BPDVI1 < 0.32 ABUT>0<90 SINGULAR\n          NOT RECTANGLE BPDVI1 == 0.32 BY == 0.32\n      ']
+
+['R31.9', '@ Rule 31.9 : VI1 space in the pad = 1.68.\n          EXT BPDVI1 < 1.68 ABUT>0<90 SINGULAR\n          BPV1SZ_1 = SIZE BPDVI1 BY 0.84\n          BPV1SZ = SIZE BPV1SZ_1 BY -0.84\n          BPV1BS:1 = EXT BPV1SZ < 150 SPACE OPPOSITE REGION ABUT>0<90\n          BPV1BS:2 = BPV1BS:1 INSIDE PAD\n          BPV1BS:3 = EXT BPV1SZ < 150 NOTCH OPPOSITE REGION ABUT>0<90\n          BPV1BS:4 = BPV1BS:3 INSIDE PAD\n          BPV1BS:2 OR BPV1BS:4\n      ']
+
+['R31.10', '@ Rule 31.10 : VI2 size in the pad = 0.32.\n           INT BPDVI2 < 0.32 ABUT>0<90 SINGULAR\n           NOT RECTANGLE BPDVI2 == 0.32 BY == 0.32\n       ']
+
+['R31.11', '@ Rule 31.11 : VI2 space in the pad = 1.68.\n           EXT BPDVI2 < 1.68 ABUT>0<90 SINGULAR\n           BPV2SZ_1 = SIZE BPDVI2 BY 0.84\n           BPV2SZ = SIZE BPV2SZ_1 BY -0.84\n           BPV2BS:1 = EXT BPV2SZ < 150 SPACE OPPOSITE REGION ABUT>0<90\n           BPV2BS:2 = BPV2BS:1 INSIDE PAD\n           BPV2BS:3 = EXT BPV2SZ < 150 NOTCH OPPOSITE REGION ABUT>0<90\n           BPV2BS:4 = BPV2BS:3 INSIDE PAD\n           BPV2BS:2 OR BPV2BS:4\n       ']
+
+['R31.12', '@ Rule 31.12 : VI3 size in the pad = 0.32.\n           INT BPDVI3 < 0.32 ABUT>0<90 SINGULAR\n           NOT RECTANGLE BPDVI3 == 0.32 BY == 0.32\n       ']
+
+['R31.13', '@ Rule 31.13 : VI3 space in the pad = 1.68.\n           EXT BPDVI3 < 1.68 ABUT>0<90 SINGULAR\n           BPV3SZ_1 = SIZE BPDVI3 BY 0.84\n           BPV3SZ = SIZE BPV3SZ_1 BY -0.84\n           BPV3BS:1 = EXT BPV3SZ < 150 SPACE OPPOSITE REGION ABUT>0<90\n           BPV3BS:2 = BPV3BS:1 INSIDE PAD\n           BPV3BS:3 = EXT BPV3SZ < 150 NOTCH OPPOSITE REGION ABUT>0<90\n           BPV3BS:4 = BPV3BS:3 INSIDE PAD\n           BPV3BS:2 OR BPV3BS:4\n       ']
+
+['R31.14', '@ Rule 31.14 : VI4 size in the pad = 0.32.\n           INT BPDVI4 < 0.32 ABUT>0<90 SINGULAR\n           NOT RECTANGLE BPDVI4 == 0.32 BY == 0.32\n       ']
+
+['R31.15', '@ Rule 31.15 : VI4 space in the pad = 1.68.\n           EXT BPDVI4 < 1.68 ABUT>0<90 SINGULAR\n           BPV4SZ_1 = SIZE BPDVI4 BY 0.84\n           BPV4SZ = SIZE BPV4SZ_1 BY -0.84\n           BPV4BS:1 = EXT BPV4SZ < 150 SPACE OPPOSITE REGION ABUT>0<90\n           BPV4BS:2 = BPV4BS:1 INSIDE PAD\n           BPV4BS:3 = EXT BPV4SZ < 150 NOTCH OPPOSITE REGION ABUT>0<90\n           BPV4BS:4 = BPV4BS:3 INSIDE PAD\n           BPV4BS:2 OR BPV4BS:4\n       ']
+
+['R31.16', '@ Rule 31.16 : VI5 size in the pad = 0.6.\n           INT BPDVI5 < 0.6 ABUT>0<90 SINGULAR\n           NOT RECTANGLE BPDVI5 == 0.6 BY == 0.6\n       ']
+
+['R31.17', '@ Rule 31.17 : VI5 space in the pad = 1.4.\n           EXT BPDVI5 < 1.4 ABUT>0<90 SINGULAR\n           BPV5SZ_1 = SIZE BPDVI5 BY 0.7\n           BPV5SZ = SIZE BPV5SZ_1 BY -0.7\n           BPV5BS:1 = EXT BPV5SZ < 150 SPACE OPPOSITE REGION ABUT>0<90\n           BPV5BS:2 = BPV5BS:1 INSIDE PAD\n           BPV5BS:3 = EXT BPV5SZ < 150 NOTCH OPPOSITE REGION ABUT>0<90\n           BPV5BS:4 = BPV5BS:3 INSIDE PAD\n           BPV5BS:2 OR BPV5BS:4\n       ']
+
+['R31.18', '@ Rule 31.18 : ME1 width in the matrix = 1.0.\n           INT BPDMT1 < 1.0 ABUT>0<90 SINGULAR\n           BPDMT1W =  SIZE BPDMT1 BY -0.5 \n       BPDMT1W:1 = SIZE BPDMT1W BY 0.5\n       COPY BPDMT1W:1\n       ']
+
+['R31.19', '@ Rule 31.19 : ME1 space in the matrix = 1.0.\n           EXT BPDMT1 < 1.0 ABUT>0<90 SINGULAR\n           BPMT1SZ_1 = SIZE BPDMT1 BY 0.5\n           BPMT1SZ = SIZE BPMT1SZ_1 BY -0.5\n           BPMT1SZ:1 = EXT BPMT1SZ < 150 SPACE OPPOSITE REGION ABUT>0<90\n           BPMT1BS:2 = BPMT1SZ:1 INSIDE PAD\n           BPMT1BS:3 = EXT BPMT1SZ < 150 NOTCH OPPOSITE REGION ABUT>0<90\n           BPMT1BS:4 = BPMT1BS:3 INSIDE PAD\n           BPMT1BS:2 OR BPMT1BS:4\n       ']
+
+['R31.20', '@ Rule 31.20 : ME2 width in the matrix = 1.0.\n           INT BPDMT2 < 1.0 ABUT>0<90 SINGULAR\n           BPDMT2W =  SIZE BPDMT2 BY -0.5 \n       BPDMT2W:1 = SIZE BPDMT2W BY 0.5\n       COPY BPDMT2W:1\n       ']
+
+['R31.21', '@ Rule 31.21 : ME2 space in the matrix = 1.0.\n           EXT BPDMT2 < 1.0 ABUT>0<90 SINGULAR\n           BPMT2SZ_1 = SIZE BPDMT2 BY 0.5\n           BPMT2SZ = SIZE BPMT2SZ_1 BY -0.5\n           BPMT2SZ:1 = EXT BPMT2SZ < 150 SPACE OPPOSITE REGION ABUT>0<90\n           BPMT2BS:2 = BPMT2SZ:1 INSIDE PAD\n           BPMT2BS:3 = EXT BPMT2SZ < 150 NOTCH OPPOSITE REGION ABUT>0<90\n           BPMT2BS:4 = BPMT2BS:3 INSIDE PAD\n           BPMT2BS:2 OR BPMT2BS:4\n       ']
+
+['R31.22', '@ Rule 31.22 :  ME3 width in the matrix = 1.0.\n           INT BPDMT3 < 1.0 ABUT>0<90 SINGULAR\n           BPDMT3W =  SIZE BPDMT3 BY -0.5 \n       BPDMT3W:1 = SIZE BPDMT3W BY 0.5\n       COPY BPDMT3W:1\n       ']
+
+['R31.23', '@ Rule 31.23 : ME3 space in the matrix = 1.0.\n           EXT BPDMT3 < 1.0 ABUT>0<90 SINGULAR\n           BPMT3SZ_1 = SIZE BPDMT3 BY 0.5\n           BPMT3SZ = SIZE BPMT3SZ_1 BY -0.5\n           BPMT3SZ:1 = EXT BPMT3SZ < 150 SPACE OPPOSITE REGION ABUT>0<90\n           BPMT3BS:2 = BPMT3SZ:1 INSIDE PAD\n           BPMT3BS:3 = EXT BPMT3SZ < 150 NOTCH OPPOSITE REGION ABUT>0<90\n           BPMT3BS:4 = BPMT3BS:3 INSIDE PAD\n           BPMT3BS:2 OR BPMT3BS:4\n       ']
+
+['R31.24', '@ Rule 31.24 : ME4 width in the matrix = 1.0.\n           INT BPDMT4 < 1.0 ABUT>0<90 SINGULAR\n           BPDMT4W =  SIZE BPDMT4 BY -0.5 \n       BPDMT4W:1 = SIZE BPDMT4W BY 0.5\n       COPY BPDMT4W:1\n       ']
+
+['R31.25', '@ Rule 31.25 : ME4 space in the matrix = 1.0.\n           EXT BPDMT4 < 1.0 ABUT>0<90 SINGULAR\n           BPMT4SZ_1 = SIZE BPDMT4 BY 0.5\n           BPMT4SZ = SIZE BPMT4SZ_1 BY -0.5\n           BPMT4SZ:1 = EXT BPMT4SZ < 150 SPACE OPPOSITE REGION ABUT>0<90\n           BPMT4BS:2 = BPMT4SZ:1 INSIDE PAD\n           BPMT4BS:3 = EXT BPMT4SZ < 150 NOTCH OPPOSITE REGION ABUT>0<90\n           BPMT4BS:4 = BPMT4BS:3 INSIDE PAD\n           BPMT4BS:2 OR BPMT4BS:4\n       ']
+
+['R31.26', '@ Rule 31.26 :  ME5 width in the matrix = 1.0.\n           INT BPDMT5 < 1.0 ABUT>0<90 SINGULAR\n           BPDMT5W =  SIZE BPDMT5 BY -0.5 \n       BPDMT5W:1 = SIZE BPDMT5W BY 0.5\n       COPY BPDMT5W:1\n       ']
+
+['R31.27', '@ Rule 31.27 : ME5 space in the matrix = 1.0.\n           EXT BPDMT5 < 1.0 ABUT>0<90 SINGULAR\n           BPMT5SZ_1 = SIZE BPDMT5 BY 0.5\n           BPMT5SZ = SIZE BPMT5SZ_1 BY -0.5\n           BPMT5SZ:1 = EXT BPMT5SZ < 150 SPACE OPPOSITE REGION ABUT>0<90\n           BPMT5BS:2 = BPMT5SZ:1 INSIDE PAD\n           BPMT5BS:3 = EXT BPMT5SZ < 150 NOTCH OPPOSITE REGION ABUT>0<90\n           BPMT5BS:4 = BPMT5BS:3 INSIDE PAD\n           BPMT5BS:2 OR BPMT5BS:4\n       ']
+
+['R31.28', '@ Rule 31.28 : ACTIVE is not allowed under pad.\n           PAD AND ACT_WO_ACTMFG\n       ']
+
+['R31.29', '@ Rule 31.29 : POLY is not allowed under pad\n           PAD AND POLY\n       ']
+
+['R31.imp1', '@ Rule 31.imp1 : ME1 max area on PAD =< 137.\n             BPMT1 = ME1 AND STDPAD:3\n         AREA BPMT1 > 137\n     ']
+
+['R31.imp2', '@ Rule 31.imp2 : ME2 max area on PAD =< 137.\n             BPMT2 = ME2 AND PAD\n         AREA BPMT2 > 137\n     ']
+
+['R31.imp3', '@ Rule 31.imp3 : ME3 max area on PAD =< 137.\n             BPMT3 = ME3 AND PAD\n         AREA BPMT3 > 137\n     ']
+
+['R31.imp4', '@ Rule 31.imp4 : ME4 max area on PAD =< 137.\n             BPMT4 = ME4 AND PAD\n         AREA BPMT4 > 137\n     ']
+
+['R31.imp5', '@ Rule 31.imp5 : ME5 max area on PAD =< 137.\n             BPMT5 = ME5 AND PAD\n         AREA BPMT5 > 137\n     ']
+
+['R31.imp6', '@ Rule 31.imp6 : ME1 is required under standard pad.\n             STDPAD:3 OUTSIDE ME1\n     ']
+
+['R31.imp7', '@ Rule 31.imp7 : VI1 is required under standard pad.\n             STDPAD:3 OUTSIDE VI1\n     ']
+
+['R31.imp8', '@ Rule 31.imp8 : ME2 is required under standard pad.\n             STDPAD:3 OUTSIDE ME2\n     ']
+
+['R31.imp9', '@ Rule 31.imp9 : VI2 is required under standard pad.\n             STDPAD:3 OUTSIDE VI2\n     ']
+
+['R31.imp10', '@ Rule 31.imp10 : ME3 is required under standard pad.\n              STDPAD:3 OUTSIDE ME3\n      ']
+
+['R31.imp11', '@ Rule 31.imp11 : VI3 is required under standard pad.\n              STDPAD:3 OUTSIDE VI3\n      ']
+
+['R31.imp12', '@ Rule 31.imp12 : ME4 is required under standard pad.\n              STDPAD:3 OUTSIDE ME4\n      ']
+
+['R31.imp13', '@ Rule 31.imp13 : VI4 is required under standard pad.\n              STDPAD:3 OUTSIDE VI4\n      ']
+
+['R31.imp14', '@ Rule 31.imp14 : ME5 is required under pad.\n              PAD OUTSIDE ME5\n      ']
+
+['R31.imp15', '@ Rule 31.imp15 : VI5 is required under pad.\n              PAD OUTSIDE VI5\n      ']
+
+['R31.imp16', '@ Rule 31.imp16 : ME6 is required under pad.\n              PAD NOT ME6\n      ']
+
+['RB31.1', '@ Rule B31.1 : NITRIDE drawing not allowed with PRL.\n           NITRIDE AND PRL\n       ']
+
+['RB31.2', '@ Rule B31.2 : PRL is mandatory under NITRIDE bumping.\n           PAD_FC NOT PRL\n       ']
+
+['RBU.1', '@ Rule BU.1 : ME6 enclosure of NITRIDE >= 5.0.\n          ENC PAD_FC UPMETALPAD_FC < 5.0 ABUT<90 SINGULAR\n      ']
+
+['RBP1_FlipChip', '@ Rule BP1 (Device Class FlipChip) : Minimum width of upper metal enclose nitride opening windows of pad flip_chip must be >= 115um\n                @ and nitride bumping must be centered inside the upper metal pad.\n              MIN_WIDTH_OF_UPMETAL = ( SIZE PAD_FC BY 17.5 ) AND UPMETALPAD_FC \n              INT MIN_WIDTH_OF_UPMETAL < 115 OPPOSITE PARALLEL \n              ']
+
+['RBP3_FlipChip', '@ Rule BP3 (Device Class FlipChip) : Upper metal enclosure of NITRIDE bumping must be >= 17um.\n                  ENC PAD_FC UPMETALPAD_FC < 17\n              ']
+
+['RBP.imp1_FlipChip', '@ Rule BP.imp1 (Device Class FlipChip) : pad opening window must be octagonal.\n                      PAD_FC VERTEX >= 3 <=7\n              ']
+
+['RBP2_FlipChip', '@ Rule BP2 (Device Class FlipChip) : pad opening window min=max == 80 um x 80 um.\n                  PAD_FC INTERACT (PAD_FC NOT PADBUMP_OPEN_WINDOW)\n                  INT PAD_FC < 80 ABUT>0<90 SINGULAR OPPOSITE PARALLEL\n          ']
+
+['RBP4_FlipChip', '@ Rule BP4 (Device Class FlipChip) : minimum pad pitch >= 250um.\n                  EXT PAD_FC  < 170\n          ']
+
+['RBP5_FlipChip', '@ Rule BP5 (Device Class FlipChip) : Minimum distance from pad center to scribe line >= 92 um.\n              NITRIDE_bumpingSZ = SIZE NITRIDE_bumping BY 39\n              SEALRING_BUMP INSIDE EDGE NITRIDE_bumpingSZ\n          ']
+
+['RCAP01.1', '@ Rule CAP01.1 : NWELL enclosure of ACTIVE of capacitor POLY/NWELL >= 0.3.\n         ENC CP1NWAC:2 NWELL < 0.3 ABUT<90\n    ']
+
+['RCAP19.1', '@ Rule CAP19.1 : maximum number of CONTACT on POLY = 4.\n             X = PO1CAPNW ENCLOSE PO1CTCAPNW > 4\n             Y = PO1CAPNWNOTGO2 ENCLOSE PO1CTCAPNWNOTGO2 > 4\n             PO1CTCAPNW INTERACT X\n             PO1CTCAPNWNOTGO2 INTERACT Y\n         ']
+
+['RCAP13.2', '@ Rule CAP13.2 : maximum POLY top plate area of POLY/NWELL double oxide capacitor = 1000 um2.\n             AREA CP1NWA > 1000 \n         ']
+
+['RCAP13.3', '@ Rule CAP13.3 : maximum POLY top plate area of POLY/NWELL simple oxide capacitor = 100 um2.\n             AREA CP1NWANOTGO2 > 100 \n         ']
+
+['RCAP13.4a', '@ Rule CAP13.4a : maximum cumulated capacitor area (without GO2) if circuit >= 1mm2 <= 0.01.\n          Y = C AND CP1NWNOTGO2\n          DENSITY Y > 0.01\n      ']
+
+['RCAP13.4b', '@ Rule CAP13.4b : maximum POLY area par capacitor (without GO2) if circuit < 1mm2 <= 10000\n          X = B AND CP1NWNOTGO2\n          AREA X > 10000\n      ']
+
+['RHTT.1', '@ Rule RHTT.1 : Chanel width for H-type 5V transistors >= 0.52.\n           INT GATEH_5V_L < 0.52 ABUT>0<90 OPPOSITE\n       ']
+
+['RHTT.2', '@ Rule RHTT.2 : Chanel length for H-type 5V transistors >= 0.50.\n           INT GATEH_5V_W < 0.50 ABUT>0<90 OPPOSITE\n       ']
+
+['RHTT.3', '@ Rule RHTT.3 : Fixed width of gate finger of transistor, except for OTP cell == 0.24.\n           INT GATEH_5V_BEAM_WO_OTP < 0.24 ABUT>0<90 OPPOSITE\n       SIZE GATEH_5V_BEAM_WO_OTP BY 0.12 UNDEROVER\n       ']
+
+['RHTT.4', '@ Rule RHTT.4 : Width of ACTIVE for well contact in H-type transistor, except for OTP cell >= 0.40.\n           INT WC_H_5V_WO_OTP < 0.40 ABUT>0<90 OPPOSITE\n       ']
+
+['RHTT.5', '@ Rule RHTT.5 : Drawing of N+/NEXT_5V and P+/PEXT_5V in S/D is the same.\n           (SD_NEXT_5 XOR SD_NPLUS) AND ACTIVE  //ticket added active for sd only \n           (SD_PEXT_5 XOR SD_PPLUS) AND ACTIVE\n           ACT_H5_WCP AND PEXT_5V\n           ACT_H5_WCN AND NEXT_5V\n       ']
+
+['RHTT.6', '@ Rule RHTT.6 : Fixed POLY intersection with Well contact implantation in H-type transistor == 0.12.\n           INT POLYWC_H_5V_WO_OTP < 0.12 ABUT>0<90 OPPOSITE\n       SIZE POLYWC_H_5V_WO_OTP BY 0.06 UNDEROVER\n       ']
+
+['RHTT.7', '@ Rule RHTT.7 : Well contact distance to Poly in H-type transistor >= 0.14.\n           EXT CONTACT GATEH_5V < 0.14 ABUT<90 REGION\n       ']
+
+['RHTT.8', '@ Rule RHTT.8 : Well contact areas of H-type transistors must be shorted in metall.\n           X1 = GATEH_5V TOUCH WC_H_5V > 1 BY NET\n       WC_H_5V TOUCH X1\n       ']
+
+['RHTT.9', '@ Rule RHTT.9 : NPLUS is abutting to PPLUS over POLY.\n           (GATEH_5V NOT NPLUS) NOT PPLUS\n       (GATEH_5V AND NPLUS) AND PPLUS\n       ']
+
+['RNW2.1', '@ Rule RNW2.1 : Width of NWELL2 resistors >= 1.0.\n           INT RNWELL2_W < 1.0 ABUT>0<90\n       ']
+
+['RNW2.3', '@ Rule RNW2.3 : Length of NWELL2 resistors >= 1.0.\n           EXT NACTRNW2 < 1.0 ABUT>0<90\n       ']
+
+['RNW2.2', '@ Rule RNW2.2 : Recommended width of NWELL2 resistors for analog use >= 3.2.\n           INT RNWELL2_W < 3.2 ABUT>0<90\n       ']
+
+['RNW2.4', '@ Rule RNW2.4 : Recommended length of NWELL2 resistors for analog use >= 1.4.\n           EXT NACTRNW2 < 1.4 ABUT>0<90\n       ']
+
+['RNW2.5', '@ Rule RNW2.5 : N+ active contact head enclosure by NWELL2 >= 0.3.\n           ENC NACTRNW2 NWELL2 < 0.3 ABUT>=0<90 SINGULAR REGION\n       ']
+
+['RNW2.6', "@ Rule RNW2.6 : Distance from resistor's area to NWELL or NWELL2\n         @ if NWELL and NWELL2 are at ground >= 2.0.\n           EXT RNW2_REG NWELLC_GND < 2.0 ABUT>0<90 SINGULAR REGION\n       EXT RNW2_REG NWELL2C_GND < 2.0 ABUT>0<90 SINGULAR REGION\n       "]
+
+['RNW2.7', "@ Rule RNW2.7 : Distance from resistor's area to N+ active > 0.84.\n           EXT RNW2_REG NACTIVE < 0.84 ABUT<90 SINGULAR REGION\n       "]
+
+['RNW2.8', "@ Rule RNW2.8 : Distance from resistor's area to P+ active > 0.6.\n           EXT RNW2_REG PACTIVE < 0.6 ABUT<90 SINGULAR REGION\n       "]
+
+['RNW2.9', '@ Rule RNW2.9 : Poly on NWELL2 resistor is not allowed.\n            RNWELL2 AND POLY\n        ']
+
+['RNW2.10', '@ Rule RNW2.10 : DAA in NWELL2 resistor is not allowed.\n            RNWELL2 AND ACTIVE_4\n        ']
+
+['RNW2.11', '@ Rule RNW2.11 : P+ active on NWELL2 resistor is not allowed.\n            RNWELL2 AND PACTIVE\n        ']
+
+['RCAPNNW2.1', '@ Rule RCAPNNW2.1 : MAX POLY area per capacitor with GO2_5V == 1000 um2.\n               AREA CP1NWA_5 > 1000 \n           ']
+
+['RCAPNNW2.2', '@ Rule RCAPNNW2.2 : Maximum number of CONTACT on N+POLY == 4.\n             X = PO1CAPNW_5 ENCLOSE PO1CTCAPNW_5 > 4\n             PO1CTCAPNW_5 INTERACT X\n           ']
+
+['R2.1.d', '@ Rule R2.1.d : Chanel width for OTP cell transistor >= 1.0.\n           INT GATEH_5V_L_OTP < 1.0 ABUT>0<90 OPPOSITE\n       ']
+
+['R13.1.e', '@ Rule R13.1.e : Chanel length for OTP cell transistor >= 0.80.\n            INT GATEH_5V_W_OTP < 0.80 ABUT>0<90 OPPOSITE\n        ']
+
+['R91.6', '@ Rule R91.6 : OTP enclosure of POLY >= 0.24.\n          ENC POLY OTP < 0.24 ABUT<90 SINGULAR\n      ']
+
+['R7.9', '@ Rule R7.9 : GO2_5V enclosure of gate of cell transistor >= 0.26.\n          ENC GATEH_5V_OTP GO2_5V < 0.26 ABUT<90 SINGULAR\n     ']
+
+['R7.10', '@ Rule R7.10 : GO2_5V distance to top plate of OTP capacitor >= 0.26.\n          EXT POLY_PLATE_OTP GO2_5V < 0.26 ABUT<90 SINGULAR REGION\n      ']
+
+['R16.13', '@ Rule R16.13 : Intersection of sidewall of gate and N+ area >= 0.26.\n           INT GATEH_5V_BEAM_OTP_N < 0.26 ABUT>0<90 REGION\n       ']
+
+['R17.13', '@ Rule R17.13 : Intersection of sidewall of gate and N+ area >= 0.26.\n           INT GATEH_5V_BEAM_OTP_P < 0.26 ABUT>0<90 REGION\n       ']
+
+['R78.9', '@ Rule R78.9 : Layer NEXT_5V coincides with layer NPLUS in memory cell.\n          NEXT_5V_OTP XOR NPLUS_OTP\n       ']
+
+['R79.9', '@ Rule R79.9 : Layer PEXT_5V coincides with layer PPLUS in memory cell.\n          PEXT_5V_OTP XOR PPLUS_OTP\n       ']
+
+['POLY_ANT', '@ Rule POLY_ANT: Gates exceeding antenna ratio of 60 at the POLY stage.\n             NET AREA RATIO POL_P GAT_P >= 60 ACCUMULATE\n             NET AREA RATIO PRINT BAD_GAT0P "./gate.atPoly"\n         ']
+
+['POLY_XPO', '@ Rule POLY_XPO : POLY parts causing ratio violation at the POLY stage.\n             NET AREA RATIO POL_P BAD_GATEP > 0\n         ']
+
+['LIL_ANT', '@ Rule LIL : Gates exceeding antenna ratio of 60 at the LIL stage.\n            NET AREA RATIO LIL_CK_L GAT_L >= 60 ACCUMULATE POL_ACC\n            NET AREA RATIO PRINT BAD_GAT0L "./gate.atLil"\n        ']
+
+['LIL_XPOL', '@ Rule LIL_XPOL : Poly parts involved in ratio violation at the LIL stage.\n             NET AREA RATIO POL_L BAD_GATEL > 0\n         ']
+
+['LIL_XLIL', '@ Rule LIL_XLIL : Lil parts involved in ratio violation at the LIL stage.\n             NET AREA RATIO LIL_CK_L BAD_GATEL > 0\n         ']
+
+['M1_XANT', '@ Rule M1_XANT : Gates exceeding antenna ratio of 60 at the ME1 stage.\n            NET AREA RATIO  M1_CK_A GAT_A  >= 60 ACCUMULATE LIL_ACC\n            NET AREA RATIO PRINT BAD_GATE01 "./gate.atM1"\n        ']
+
+['M1_XPOL', '@ Rule M1_XPOL : POLY parts involved in ratio violation at ME1 stage.\n            NET AREA RATIO POL_A BAD_GATE1 > 0\n        ']
+
+['M1_XLIL', '@ Rule M1_XLIL : Lil parts involved in ratio violation at metal1 stage.\n            NET AREA RATIO LIL_CK_A BAD_GATE1 > 0\n        ']
+
+['M1_XME1', '@ Rule M1_XME1 : Metal1 parts involved in ratio violation at metal1 stage.\n            NET AREA RATIO M1_CK_A BAD_GATE1 > 0\n        ']
+
+['M2_XANT', '@ Rule M2_ANT: Gates exceeding antenna ratio of 60 at the ME2 stage.\n            NET AREA RATIO  M2_CK_B GAT_B >= 60 ACCUMULATE M1_ACC\n            NET AREA RATIO PRINT BAD_GATE02 "./gate.atM2"\n        ']
+
+['M2_XPOL', '@ Rule M2_XPOL : Poly parts involved in ratio violation at ME2 stage.\n            NET AREA RATIO POL_B BAD_GATE2 > 0\n        ']
+
+['M2_XLIL', '@ Rule M2_XLIL : LIL parts involved in ratio violation at ME2 stage.\n            NET AREA RATIO LIL_CK_B BAD_GATE2 > 0\n        ']
+
+['M2_XME1', '@ Rule M2_XME1 : ME1 parts involved in ratio violation at ME2 stage.\n            NET AREA RATIO M1_CK_B BAD_GATE2 > 0\n        ']
+
+['M2_XME2', '@ Rule M2_XME2 : ME2 parts involved in ratio violation at ME2 stage.\n            NET AREA RATIO M2_CK_B BAD_GATE2 >0\n        ']
+
+['M3_XANT', '@ Rule M3_XANT : Gates exceeding antenna ratio of 60 at the ME3 stage.\n            NET AREA RATIO M3_CK_C GAT_C >= 60 ACCUMULATE M2_ACC\n            NET AREA RATIO PRINT BAD_GATE03 "./gate.atM3"\n        ']
+
+['M3_XPOL', '@ Rule M3_XPOL : POLY parts involved in ratio violation at ME3 stage.\n            NET AREA RATIO POL_C BAD_GATE3 > 0\n        ']
+
+['M3_XLIL', '@Rule M3_XLIL : LIL parts involved in ratio violation at ME3 stage.\n            NET AREA RATIO LIL_CK_C BAD_GATE3 > 0\n          ']
+
+['M3_XME1', '@ Rule M3_XME1 : ME1 parts involved in ratio violation at ME3 stage.\n            NET AREA RATIO M1_CK_C BAD_GATE3 > 0\n        ']
+
+['M3_XME2', '@ Rule M3_XME2 : ME2 parts involved in ratio violation at ME3 stage.\n            NET AREA RATIO M2_CK_C BAD_GATE3 > 0\n        ']
+
+['M3_XME3', '@ Rule M3_XME3 : ME3 parts involved in ratio violation at ME3 stage.\n            NET AREA RATIO M3_CK_C BAD_GATE3 > 0\n        ']
+
+['M4_XANT', '@ Rule M4_XANT: Gates exceeding antenna ratio of 60 at the ME4 stage.\n            NET AREA RATIO  M4_CK_D GAT_D >= 60 ACCUMULATE M3_ACC\n            NET AREA RATIO PRINT BAD_GATE04 "./gate.atM4"\n        ']
+
+['M4_XPOL', '@ Rule M4_XPOL : POLY parts involved in ratio violation at ME4 stage.\n            NET AREA RATIO POL_D BAD_GATE4 > 0\n        ']
+
+['M4_XLIL', '@ Rule M4_XLIL : LIL parts involved in ratio violation at ME4 stage.\n            NET AREA RATIO LIL_CK_D BAD_GATE4 > 0\n        ']
+
+['M4_XME1', '@ Rule M4_XME1 : ME1 parts involved in ratio violation at ME4 stage.\n            NET AREA RATIO M1_CK_D BAD_GATE4 > 0\n        ']
+
+['M4_XME2', '@Rule M4_XME2 : ME2 parts involved in ratio violation at ME4 stage.\n             NET AREA RATIO M2_CK_D BAD_GATE4 > 0\n           ']
+
+['M4_XME3', '@Rule M4_XME3 : ME3 parts involved in ratio violation at ME4 stage.\n             NET AREA RATIO M3_CK_D BAD_GATE4 > 0\n           ']
+
+['M4_XME4', '@Rule M4_XME4 : ME4 parts involved in ratio violation at ME4 stage.\n             NET AREA RATIO M4_CK_D BAD_GATE4 > 0\n           ']
+
+['M5_XANT', '@ Rule M5_XANT: Gates exceeding antenna ratio of 60 at the ME5 stage\n            NET AREA RATIO M5_CK_E GAT_E >= 60 ACCUMULATE M4_ACC\n            NET AREA RATIO PRINT BAD_GATE05 "./gate.atM5"\n        ']
+
+['M5_XPOL', '@ Rule M5_XPOL : POLY parts involved in ratio violation at ME5 stage.\n            NET AREA RATIO POL_E BAD_GATE5 > 0\n        ']
+
+['M5_XLIL', '@ Rule M5_XLIL : LIL parts involved in ratio violation at ME5 stage.\n            NET AREA RATIO LIL_CK_E BAD_GATE5 > 0\n        ']
+
+['M5_XME1', '@Rule M5_XME1 : ME1 parts involved in ratio violation at ME5 stage.\n             NET AREA RATIO M1_CK_E BAD_GATE5 > 0\n           ']
+
+['M5_XME2', '@Rule M5_XME2 : ME2 parts involved in ratio violation at ME5 stage.\n             NET AREA RATIO M2_CK_E BAD_GATE5 > 0\n           ']
+
+['M5_XME3', '@Rule M5_XME3 : ME3 parts involved in ratio violation at ME5 stage.\n             NET AREA RATIO M3_CK_E BAD_GATE5 > 0\n           ']
+
+['M5_XME4', '@Rule M5_XME4 : ME4 parts involved in ratio violation at ME5 stage.\n             NET AREA RATIO M4_CK_E BAD_GATE5 > 0\n           ']
+
+['M5_XME5', '@Rule M5_XME5 : ME5 parts involved in ratio violation at ME5 stage.\n             NET AREA RATIO M5_CK_E BAD_GATE5 > 0\n           ']
+
+['M6_XANT', '@ Rule M6_XANT: Gates exceeding antenna ratio of 60 at the metal6 stage\n            NET AREA RATIO  M6_CK_F GAT_F >= 60 ACCUMULATE M5_ACC\n            NET AREA RATIO PRINT BAD_GATE06 "./gate.atM6"\n        ']
+
+['M6_XPOL', '@ Rule M6_XPOL : POLY parts involved in ratio violation at ME6 stage.\n            NET AREA RATIO POL_F BAD_GATE6 > 0\n        ']
+
+['M6_XLIL', '@ Rule M6_XLIL : LIL parts involved in ratio violation at ME6 stage.\n            NET AREA RATIO LIL_CK_F BAD_GATE6 > 0\n        ']
+
+['M6_XME1', '@ Rule M6_XME1 : ME1 parts involved in ratio violation at ME6 stage.\n            NET AREA RATIO M1_CK_F BAD_GATE6 > 0\n        ']
+
+['M6_XME2', '@ Rule M6_XME2 : ME2 parts involved in ratio violation at ME6 stage.\n            NET AREA RATIO M2_CK_F BAD_GATE6 > 0\n        ']
+
+['M6_XME3', '@ Rule M6_XME3 : ME3 parts involved in ratio violation at ME6 stage.\n            NET AREA RATIO M3_CK_F BAD_GATE6 > 0\n        ']
+
+['M6_XME4', '@ Rule M6_XME4 : ME4 parts involved in ratio violation at ME6 stage.\n            NET AREA RATIO M4_CK_F BAD_GATE6 > 0\n        ']
+
+['M6_XME5', '@ Rule M6_XME5 : ME5 parts involved in ratio violation at ME6 stage\n            NET AREA RATIO M5_CK_F BAD_GATE6 > 0\n        ']
+
+['M6_XME6', '@ Rule M6_XME6 : ME6 parts involved in ratio violation at ME6 stage.\n            NET AREA RATIO M6_CK_F BAD_GATE6 > 0\n        ']
+
+['RMT.ANT.1', '@ Rule MT.ANT.1: Capacitors in parallel must have separated ME5 plates.\n              ME5 INTERACT MIM5 > 1\n          ']
+
+['RMT.ANT.3', '@ Rule MT.ANT.3: If ME5 of MIM capacitor is connected through ME4,\n        @ this ME4 must be connected to other devices, ground or Vdd through\n        @ a ME6 line.\n              MIM5 NOT TMP:3\n          ']
+
+['MT.XME5', '@ Rule MT.XME5 : ME5 parts involved in rule MT.ANT.3 violation.\n            NET AREA RATIO ME5_M BAD_ME5PLATE > 0\n    ']
+
+['MT.XME4', '@ Rule MT.XME4 : ME4 parts involved in rule MT.ANT.3 violation.\n            NET AREA RATIO ME4_M BAD_ME5PLATE > 0\n    ']
+
+['MT.XME3', '@ Rule MT.XME3 : ME3 parts involved in rule MT.ANT.3 violation.\n            NET AREA RATIO ME3_M BAD_ME5PLATE > 0\n    ']
+
+['MT.XME2', '@ Rule MT.XME2 : ME2 parts involved in rule MT.ANT.3 violation.\n            NET AREA RATIO ME2_M BAD_ME5PLATE > 0\n    ']
+
+['MT.XME1', '@ Rule MT.XME1 : ME1 parts involved in rule MT.ANT.3 violation.\n            NET AREA RATIO ME1_M BAD_ME5PLATE > 0\n        ']
+
+['MT.XLIL', '@ Rule MT.XLIL : LIL parts involved in rule MT.ANT.3 violation.\n            NET AREA RATIO LIL_M BAD_ME5PLATE > 0\n    ']
+
+['RMT.ANT.4', '@ Rule MT.ANT.4 : Maximum number of VI5 over MIM5\n            @ of MIM5 capacitor plate if area < 1000 um2 = 4.\n              X = (MIM5 INTERACT MIM5AREA) ENCLOSE VI5 > 4\n              VI5 INTERACT X\n          ']
+
+['RMT.ANT.5', '@ Rule MT.ANT.5 : Maximum number of VI5 over MIM5\n            @ of MIM5 capacitor plate if area >= 1000 um2 = +2 via / 500 um2.\n              NET AREA RATIO VI5MIM5 MIM5C2 > 1.44\n          [(AREA(VI5MIM5) * 1000) / AREA(MIM5C2)]\n          ']
+
+['RMT.ANT.6', '@ Rule MT.ANT.6 : The number of VI5 connected to MIM5 plate\n            @ should be identical to the number of VI5 over ME5 plate,\n            @ including the VI5 connected through ME4.\n              NET AREA RATIO VI5ME5 VIMIM5 != 1\n              NET AREA RATIO VIMIM5 VI5ME5 != 1\n              NET AREA RATIO VIMIM5 VI5ME5 == 0\n          ']
+
+['//RMT.ANT.7', '@ Rule MT.ANT.7: The standard pad including a great number of VI5 and VI4,\n//            @ the direct connection to a ME5 capacitor plate through ME5 and ME4\n//          @ is not allowed.\n//        ']
+
+['//RMT.ANT.8', '@ Rule MT.ANT.8: If ME6 connected to the plates of the capacitor, the length\n//          @ of the two ME6 connections must be minimized if possible, identical.\n//          ']
+
+['RMT.ANT.9', '@ Rule MT.ANT.9 : Maximum length of ME6 connected to\n        @ each plate of the MIM capacitor = 1000 um.\n          X = ME6 INTERACT ((VI5 AND MIM5) OR (VI5 AND (ME5 INTERACT MIM5)))\n          PERIMETER X > 2000\n      ']
+
+['RMT.ANT.10', '@ Rule MT.ANT.10 : Maximum ME6 antenna ratio = 400.\n               NET AREA RATIO M6C:2 MIM5C > 400\n           ']
+
+['RMT.ANT.1.HK', '@ Rule MT.ANT.1.HK: Capacitors in parallel must have separated ME5 plates.\n                 ME5 INTERACT HKMIM5 > 1\n             ']
+
+['RMT.ANT.3.HK', '@ Rule MT.ANT.3.HK: If ME5 of HKMIM capacitor is connected through ME4,\n           @ this ME4 must be connected to other devices, ground or Vdd through\n           @ a ME6 line.\n                 HKMIM5 NOT TMP:3\n             ']
+
+['MT.XME5.HK', '@ Rule MT.XME5.HK : ME5 parts involved in rule MT.ANT.3.HK violation \n               NET AREA RATIO ME5_M BAD_ME5PLATE_HKMIM5 > 0\n       ']
+
+['MT.XME4.HK', '@ Rule MT.XME4.HK : ME4 parts involved in rule MT.ANT.3.HK violation \n               NET AREA RATIO ME4_M BAD_ME5PLATE_HKMIM5 > 0\n       ']
+
+['MT.XME3.HK', '@ Rule MT.XME3.HK : ME3 parts involved in rule MT.ANT.3.HK violation \n               NET AREA RATIO ME3_M BAD_ME5PLATE_HKMIM5 > 0\n       ']
+
+['MT.XME2.HK', '@ Rule MT.XME2.HK : ME2 parts involved in rule MT.ANT.3.HK violation \n               NET AREA RATIO ME2_M BAD_ME5PLATE_HKMIM5 > 0\n       ']
+
+['MT.XME1.HK', '@ Rule MT.XME1.HK : ME1 parts involved in rule MT.ANT.3.HK violation \n               NET AREA RATIO ME1_M BAD_ME5PLATE_HKMIM5 > 0\n       ']
+
+['MT.XLIL.HK', '@ Rule MT.XLIL.HK : LIL parts involved in rule MT.ANT.3.HK violation \n               NET AREA RATIO LIL_M BAD_ME5PLATE_HKMIM5 > 0\n       ']
+
+['RMT.ANT.4.HK', '@ MT.ANT.4.HK : Maximum number of VIA5 over HKMIM5 \n               @ of HKMIM5 capacitor plate if area < 1000 um2 = 4.\n                 X = (HKMIM5 INTERACT HKMIM5AREA) ENCLOSE VI5 > 4\n                 VI5 INTERACT X \n             ']
+
+['RMT.ANT.5.HK', '@ Rule MT.ANT.5.HK: Maximum number of VI5 over HKMIM5 \n               @ of HKMIM5 capacitor plate if area > 1000 um2  = +2 via / 500 um2.\n                 NET AREA RATIO VI5HKMIM5 HKMIM5C2 > 1.44\n             [(AREA(VI5HKMIM5) * 1000) / AREA(HKMIM5C2)]\n             ']
+
+['RMT.ANT.6.HK', '@ Rule MT.ANT.6.HK: The number of VI5 connected to HKMIM5 plate\n               @ should be identical to the number of VI5 connected ME5 plate,\n               @ including the VI5 connected through ME4.\n                 NET AREA RATIO VI5ME5NOHKM VIHKMIM5 != 1\n                 NET AREA RATIO VIHKMIM5 VI5ME5NOHKM != 1\n             NET AREA RATIO VIHKMIM5 VI5ME5NOHKM == 0\n             ']
+
+['//RMT.ANT.7.HK', '@ Rule MT.ANT.7.HK: The standard pad including a great number of VI5 and VI4,\n//               @ the direct connection to a ME5 capacitor plate through ME5 and ME4\n//             @ is not allowed.\n//             ']
+
+['//RMT.ANT.8.HK', '@ Rule MT.ANT.8.HK: If ME6 connected to the plates of the capacitor, the length\n//             @ of the two ME6 connections must be minimized if possible, identical.\n//             ']
+
+['RMT.ANT.9.HK', '@ Rule MT.ANT.9.HK: Maximum length of ME6 connected to\n           @ each plate of the HKMIM capacitor = 1000 um.\n             X = ME6 INTERACT ((VI5 AND HKMIM5) OR (VI5 AND (ME5 INTERACT HKMIM5)))\n             PERIMETER X > 2000\n      ']
+
+['RMT.ANT.10.HK', '@ Rule MT.ANT.10.HK: Maximum ME6 antenna ratio = 400.\n                  NET AREA RATIO M6C:2 HKMIM5C > 400\n              ']
+
+['RSL.1_M1', '@ Rule SL.1_M1 : Carving by slot is mandatory in wide ME1 lines.\n         COPY ME1WID\n         ']
+
+['RSL.1_M2', '@ Rule SL.1_M2 : Carving by slot is mandatory in wide ME2 lines.\n         COPY ME2WID\n         ']
+
+['RSL.1_M3', '@ Rule SL.1_M3 : Carving by slot is mandatory in wide ME3 lines.\n         COPY ME3WID\n         ']
+
+['RSL.1_M4', '@ Rule SL.1_M4 : Carving by slot is mandatory in wide ME4 lines.\n         COPY ME4WID\n         ']
+
+['RSL.1_M5', '@ Rule SL.1_M5 : Carving by slot is mandatory in wide ME5 lines.\n         COPY ME5WID\n         ']
+
+['RSL.1_M6', '@ Rule SL.1_M6 : Carving by slot is mandatory in wide ME6 lines.\n         COPY ME6WID\n         ']
+
+['RSL.2_M1', '@ Rule SL.2_M1 : Minimum slot density in wide ME1 lines = 9%.\n             DENSITY ME1WIDHOL INSIDE OF LAYER ME1WIDH BY RECTANGLE RDB dens_M1.rdb < 0.09\n         ']
+
+['RSL.2_M2', '@ Rule SL.2_M2 : Minimum slot density in wide ME2 lines = 9%.\n             DENSITY ME2WIDHOL INSIDE OF LAYER ME2WIDH BY RECTANGLE RDB dens_M2.rdb < 0.09\n         ']
+
+['RSL.2_M3', '@ Rule SL.2_M3 : Minimum slot density in wide ME3 lines = 9%.\n             DENSITY ME3WIDHOL INSIDE OF LAYER ME3WIDH BY RECTANGLE RDB dens_M3.rdb < 0.09\n         ']
+
+['RSL.2_M4', '@ Rule SL.2_M4 : Minimum slot density in wide ME4 lines = 9%.\n             DENSITY ME4WIDHOL INSIDE OF LAYER ME4WIDH BY RECTANGLE RDB dens_M4.rdb < 0.09\n         ']
+
+['RSL.2_M5', '@ Rule SL.2_M5 : Minimum slot density in wide ME5 lines = 9%.\n             DENSITY ME5WIDHOL INSIDE OF LAYER ME5WIDH BY RECTANGLE RDB dens_M5.rdb < 0.09\n         ']
+
+['RSL.2_M6', '@ Rule SL.2_M6 : Minimum slot density in wide ME6 lines = 9%.\n             DENSITY ME6WIDHOL INSIDE OF LAYER ME6WIDH BY RECTANGLE RDB dens_M6.rdb < 0.09\n         ']
+
+['RSL.3_M1', '@ Rule SL.3_M1 : Allowed no carving by ME1 slots in bond pads.\n             HOLES (M1 AND PAD)\n         ']
+
+['RSL.3_M2', '@ Rule SL.3_M2 : Allowed no carving by ME2 slots in bond pads.\n             HOLES (M2 AND PAD)\n         ']
+
+['RSL.3_M3', '@ Rule SL.3_M3 : Allowed no carving by ME3 slots in bond pads.\n             HOLES (M3 AND PAD)\n         ']
+
+['RSL.3_M4', '@ Rule SL.3_M4 : Allowed no carving by ME4 slots in bond pads.\n             HOLES (M4 AND PAD)\n         ']
+
+['RSL.3_M5', '@ Rule SL.3_M5 : Allowed no carving by ME5 slots in bond pads.\n             HOLES (M5 AND PAD)\n         ']
+
+['RSL.3_M6', '@ Rule SL.3_M6 : Allowed no carving by ME6 slots in bond pads.\n             HOLES (M6 AND PAD)\n         ']
+
+['RSLR.5a_M1', '@ Rule SLR.5a_M1 : Minimum slot space if ME1 width 12 <= W <= 30 equals 7.0.\n           EXT ME1HOL1 < 7.0\n           ']
+
+['RSLR.5a_M2', '@ Rule SLR.5a_M2 : Minimum slot space if ME2 width 12 <= W <= 30 equals 7.0.\n           EXT ME2HOL1 < 7.0\n           ']
+
+['RSLR.5a_M3', '@ Rule SLR.5a_M3 : Minimum slot space if ME3 width 12 <= W <= 30 equals 7.0.\n           EXT ME3HOL1 < 7.0\n           ']
+
+['RSLR.5a_M4', '@ Rule SLR.5a_M4 : Minimum slot space if ME4 width 12 <= W <= 30 equals 7.0.\n           EXT ME4HOL1 < 7.0\n           ']
+
+['RSLR.5a_M5', '@ Rule SLR.5a_M5 : Minimum slot space if ME5 width 12 <= W <= 30 equals 7.0.\n           EXT ME5HOL1 < 7.0\n           ']
+
+['RSLR.5a_M6', '@ Rule SLR.5a_M6 : Minimum slot space if ME6 width 12 <= W <= 30 equals 7.0.\n           EXT ME6HOL1 < 7.0\n           ']
+
+['RSLR.5b_M1', '@ Rule SLR.5b_M1 : Minimum slot space if ME1 width W > 30 equals 10.0.\n           EXT ME1HOL2 < 10.0\n           ']
+
+['RSLR.5b_M2', '@ Rule SLR.5b_M2 : Minimum slot space if ME2 width W > 30 equals 10.0.\n           EXT ME2HOL2 < 10.0\n           ']
+
+['RSLR.5b_M3', '@ Rule SLR.5b_M3 : Minimum slot space if ME3 width W > 30 equals 10.0.\n           EXT ME3HOL2 < 10.0\n           ']
+
+['RSLR.5b_M4', '@ Rule SLR.5b_M4 : Minimum slot space if ME4 width W > 30 equals 10.0.\n           EXT ME4HOL2 < 10.0\n           ']
+
+['RSLR.5b_M5', '@ Rule SLR.5b_M5 : Minimum slot space if ME5 width W > 30 equals 10.0.\n           EXT ME5HOL2 < 10.0\n           ']
+
+['RSLR.5b_M6', '@ Rule SLR.5b_M6 : Minimum slot space if ME6 width W > 30 equals 10.0.\n           EXT ME6HOL2 < 10.0\n           ']
+
+['RSLR.6b_M1', '@ Rule SLR.6b_M1 : Minimum slot length if ME1 width W > 30 equals 10.0.\n               RECTANGLE ME1HOL2 >=3.0<10.0 BY >=3.0<10.0\n           ']
+
+['RSLR.6b_M2', '@ Rule SLR.6b_M2 : Minimum slot length if ME2 width W > 30 equals 10.0.\n               RECTANGLE ME2HOL2 >=3.0<10.0 BY >=3.0<10.0\n           ']
+
+['RSLR.6b_M3', '@ Rule SLR.6b_M3 : Minimum slot length if ME3 width W > 30 equals 10.0.\n               RECTANGLE ME3HOL2 >=3.0<10.0 BY >=3.0<10.0\n           ']
+
+['RSLR.6b_M4', '@ Rule SLR.6b_M4 : Minimum slot length if ME4 width W > 30 equals 10.0.\n               RECTANGLE ME4HOL2 >=3.0<10.0 BY >=3.0<10.0\n           ']
+
+['RSLR.6b_M5', '@ Rule SLR.6b_M5 : Minimum slot length if ME5 width W > 30 equals 10.0.\n               RECTANGLE ME5HOL2 >=3.0<10.0 BY >=3.0<10.0\n           ']
+
+['RSLR.6b_M6', '@ Rule SLR.6b_M6 : Minimum slot length if ME6 width W > 30 equals 10.0.\n               RECTANGLE ME6HOL2 >=3.0<10.0 BY >=3.0<10.0\n           ']
+
+['RSLR.7a_M1', '@ Rule SLR.7a_M1 : Maximum slot length if ME1 width 12 <= W <= 30 equals 14.0.\n               RECTANGLE ME1HOL1 > 14.0\n           ']
+
+['RSLR.7a_M2', '@ Rule SLR.7a_M2 : Maximum slot length if ME2 width 12 <= W <= 30 equals 14.0.\n               RECTANGLE ME2HOL1 > 14.0\n           ']
+
+['RSLR.7a_M3', '@ Rule SLR.7a_M3 : Maximum slot length if ME3 width 12 <= W <= 30 equals 14.0.\n               RECTANGLE ME3HOL1 > 14.0\n           ']
+
+['RSLR.7a_M4', '@ Rule SLR.7a_M4 : Maximum slot length if ME4 width 12 <= W <= 30 equals 14.0.\n               RECTANGLE ME4HOL1 > 14.0\n           ']
+
+['RSLR.7a_M5', '@ Rule SLR.7a_M5 : Maximum slot length if ME5 width 12 <= W <= 30 equals 14.0.\n               RECTANGLE ME5HOL1 > 14.0\n           ']
+
+['RSLR.7a_M6', '@ Rule SLR.7a_M6 : Maximum slot length if ME6 width 12 <= W <= 30 equals 14.0.\n               RECTANGLE ME6HOL1 > 14.0\n           ']
+
+['RSLR.8a_M1', '@ Rule SLR.8a_M1 : Minimum slot enclosure by ME1 if ME1 width 12 <= W <= 30 equals 3.0.\n           ENC ME1HOL1 ME1WID18 < 3.0\n           ']
+
+['RSLR.8a_M2', '@ Rule SLR.8a_M2 : Minimum slot enclosure by ME2 if ME2 width 12 <= W <= 30 equals 3.0.\n           ENC ME2HOL1 ME2WID18 < 3.0\n           ']
+
+['RSLR.8a_M3', '@ Rule SLR.8a_M3 : Minimum slot enclosure by ME3 if ME3 width 12 <= W <= 30 equals 3.0.\n           ENC ME3HOL1 ME3WID18 < 3.0\n           ']
+
+['RSLR.8a_M4', '@ Rule SLR.8a_M4 : Minimum slot enclosure by ME4 if ME4 width 12 <= W <= 30 equals 3.0.\n           ENC ME4HOL1 ME4WID18 < 3.0\n           ']
+
+['RSLR.8a_M5', '@ Rule SLR.8a_M5 : Minimum slot enclosure by ME5 if ME5 width 12 <= W <= 30 equals 3.0.\n           ENC ME5HOL1 ME5WID18 < 3.0\n           ']
+
+['RSLR.8a_M6', '@ Rule SLR.8a_M6 : Minimum slot enclosure by ME6 if ME6 width 12 <= W <= 30 equals 3.0.\n           ENC ME6HOL1 ME6WID18 < 3.0\n           ']
+
+['RSLR.8b_M1', '@ Rule SLR.8b_M1 : Minimum slot enclosure by ME1 if ME1 width W > 30 equals 7.0.\n           ENC ME1HOL2 ME1WID28 < 7.0\n           ']
+
+['RSLR.8b_M2', '@ Rule SLR.8b_M2 : Minimum slot enclosure by ME2 if ME2 width W > 30 equals 7.0.\n           ENC ME2HOL2 ME2WID28 < 7.0\n           ']
+
+['RSLR.8b_M3', '@ Rule SLR.8b_M3 : Minimum slot enclosure by ME3 if ME3 width W > 30 equals 7.0.\n           ENC ME3HOL2 ME3WID28 < 7.0\n           ']
+
+['RSLR.8b_M4', '@ Rule SLR.8b_M4 : Minimum slot enclosure by ME4 if ME4 width W > 30 equals 7.0.\n           ENC ME4HOL2 ME4WID28 < 7.0\n           ']
+
+['RSLR.8b_M5', '@ Rule SLR.8b_M5 : Minimum slot enclosure by ME5 if ME5 width W > 30 equals 7.0.\n           ENC ME5HOL2 ME5WID28 < 7.0\n           ']
+
+['RSLR.8b_M6', '@ Rule SLR.8b_M6 : Minimum slot enclosure by ME6 if ME6 width W > 30 equals 7.0.\n           ENC ME6HOL2 ME6WID28 < 7.0\n           ']
 

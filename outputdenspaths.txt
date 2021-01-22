@@ -1,0 +1,36 @@
+17
+
+['R2.du15', './densWIN1_ACT']
+
+['R2.du16', './densTOT_ACT']
+
+['R13.12', './densTOT_POLY']
+
+['R23.6', './min_densWIN_M1']
+
+['R23.7', './max_densWIN_M1']
+
+['R27.6', './min_densWIN_M2']
+
+['R27.7', './max_densWIN_M2']
+
+['R34.6', './min_densWIN_M3']
+
+['R34.7', './max_densWIN_M3']
+
+['R36.6', './min_densWIN_M4']
+
+['R36.7', './max_densWIN_M4']
+
+['R53.6', './min_densWIN_M5']
+
+['R53.7', './max_densWIN_M5']
+
+['RMT80.8', './min_densWIN_MIM5']
+
+['RMT80.9', './max_densWIN_MIM5']
+
+['RM92.8', './min_densWIN_HKMIM5']
+
+['R55.5', './densTOT_M6']
+
