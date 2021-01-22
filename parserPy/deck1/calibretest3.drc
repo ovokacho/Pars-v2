@@ -12,7 +12,6 @@
 //
 // TITLE "CALIBRE cmos090rf DRC RULES FILE"
 
-INCLUDE /home/vbox/PycharmProjects/traning/parserPy/deck1/calibredrctest2
 INCLUDE $DKHCMOS10LP/physical/calibre/calibredrc
 INCLUDE $DKHCMOS10LP/physical/calibre/device.drc
 

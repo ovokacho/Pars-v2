@@ -13,19 +13,18 @@ class DrcFileParser:
         self.search_density_rules()
         self.search_density_paths()
 
+    #Функция поиска прикрепленных к исходному файлу ссылок. В ней же проводится поиск правил по исходному и всем вложенным файлам.
     def search_includes(self, file):
         self.initfile = file
         self.drcString = self.initfile.read()
-
         self.initfile.close()
-
-        self.search_drc_rules()
+        self.search_drc_rules() #Поиск правил в изначально указанном файле(с которым создавался класс)
         keyinclude = "INCLUDE"
         includepath = Word(alphanums + "$/.")
         fullpath = Suppress(keyinclude + ' ') + includepath
         allpaths = OneOrMore(fullpath)
         self.pathslist.extend(list(chain.from_iterable(allpaths.searchString(self.drcString).asList())))
-        #print (list(chain.from_iterable(allpaths.searchString(drcString).asList())))
+
         for i in self.pathslist:
                 if i == 'readed': continue
                 bufferi = i
@@ -33,27 +32,17 @@ class DrcFileParser:
                 indexOfReadedInclude = self.pathslist.index(i)
                 self.pathslist[indexOfReadedInclude] = 'readed'
                 try:
-                    testFile = open(bufferi, 'r')
+                    includedFile = open(bufferi, 'r')
                 except IOError:
                     print("file " + str(bufferi) + " didn't exist")
                 else:
                     print("all fine")
-                    self.search_includes(testFile)
-
-    def get_parse_results(self):
-        return self.allRuleList
-
-    def get_density_rules(self):
-        return self.densityRulesList
-
-    def get_density_paths_list(self):
-        return self.densityPathsList
+                    self.search_includes(includedFile) #Рекурсивный вызов функции с вложенным файлом как новым аргументом
 
     def search_drc_rules(self):
         keyName = Word(printables)
         params = Word(printables + " " + 'μ' + "\n", excludeChars='{}')
         paramsWord = Suppress('{') + params + Suppress('}')
-        # completeNote = keyName + paramsWord
         allNotes = OneOrMore(Group(keyName + Optional(" ") + paramsWord))
         self.allRuleList.extend(list(chain.from_iterable(allNotes.searchString(self.drcString).asList())))
 
@@ -63,12 +52,8 @@ class DrcFileParser:
                 self.densityRulesList.append(rule)
 
     def search_density_paths(self):
-        denspaths = []
-
         denspath = Word(printables + "./_", excludeChars='"')
         denspathfull = Suppress('"') + denspath + Suppress('"')
-        # completeNote = keyName + denspathfull
-        #allNotes = OneOrMore(denspathfull)
 
         for rule in enumerate(self.densityRulesList):
             self.densityPathsList.append([rule[1][0]] + list(
@@ -83,42 +68,25 @@ class DrcFileParser:
         for i in reversed(fix):
             self.densityPathsList.pop(i)
 
+    def get_parse_results(self):
+        return self.allRuleList
 
-def parse_drc_file(File):
-    drcString = File.read()
-    outputFile = open('parseddrc.txt', 'w')
+    def get_density_rules(self):
+        return self.densityRulesList
 
-    keyName = Word(printables)
-    params = Word(alphanums + "#$%&'()*+,-./:;<=>?@[\]^_`|~" + " " + "\n")
-    paramsWord = Suppress('{') + params + Suppress('}')
-    completeNote = keyName + paramsWord
-    allNotes = OneOrMore(Group(keyName + paramsWord))
-
-    #outputFile.write(str(allNotes.searchString(drcString)))
-    
-    a = allNotes.searchString(drcString).asList()
-    b = list(chain.from_iterable(a))
-    outputFile.write(str(b))
-    #completeNote.runTests(drcString)
-    #print (a)
-    print (b[11][1])
-    #a.pprint()
-    #help(a)
-    #print(len(a[1]))
-    #print(a[0][1][0])
-    #print (list(a))
-
-    return outputFile
+    def get_density_paths_list(self):
+        return self.densityPathsList
 
 
 if __name__ == "__main__":
     drcFile = open('calibretest.drc', 'r')
     drcTest = DrcFileParser(drcFile)
+
     Presults = drcTest.get_parse_results()
     DensityRules = drcTest.get_density_rules()
     DensityPaths = drcTest.get_density_paths_list()
 
-    Otuputfile = open('output.txt', 'w')
+    Otuputfile = open('outputrules.txt', 'w')
     print >> Otuputfile, len(Presults)
     print >> Otuputfile
     for element in Presults:
@@ -127,20 +95,16 @@ if __name__ == "__main__":
     Otuputfile.close()
 
     Otuputfile1 = open('outputdens.txt', 'w')
-
     print >> Otuputfile1, len(DensityRules)
     print >> Otuputfile1
-
     for element1 in DensityRules:
         print >> Otuputfile1, element1
         print >> Otuputfile1
     Otuputfile1.close()
 
     Otuputfiledenspaths = open('outputdenspaths.txt', 'w')
-
     print >> Otuputfiledenspaths, len(DensityPaths)
     print >> Otuputfiledenspaths
-
     for element2 in DensityPaths:
         print >> Otuputfiledenspaths, element2
         print >> Otuputfiledenspaths
