@@ -1,6 +1,6 @@
 17
 
-['R2.du15', './densWIN1_ACT']
+['R2.du15', './densWIN1_ACT', './densWIN1_ACT', './densWIN1_ACT']
 
 ['R2.du16', './densTOT_ACT']
 

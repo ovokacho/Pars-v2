@@ -1,0 +1,36 @@
+17
+
+DensityPath(Name='R2.du15', DensityPaths='./densWIN1_ACT')
+
+DensityPath(Name='R2.du16', DensityPaths='./densTOT_ACT')
+
+DensityPath(Name='R13.12', DensityPaths='./densTOT_POLY')
+
+DensityPath(Name='R23.6', DensityPaths='./min_densWIN_M1')
+
+DensityPath(Name='R23.7', DensityPaths='./max_densWIN_M1')
+
+DensityPath(Name='R27.6', DensityPaths='./min_densWIN_M2')
+
+DensityPath(Name='R27.7', DensityPaths='./max_densWIN_M2')
+
+DensityPath(Name='R34.6', DensityPaths='./min_densWIN_M3')
+
+DensityPath(Name='R34.7', DensityPaths='./max_densWIN_M3')
+
+DensityPath(Name='R36.6', DensityPaths='./min_densWIN_M4')
+
+DensityPath(Name='R36.7', DensityPaths='./max_densWIN_M4')
+
+DensityPath(Name='R53.6', DensityPaths='./min_densWIN_M5')
+
+DensityPath(Name='R53.7', DensityPaths='./max_densWIN_M5')
+
+DensityPath(Name='RMT80.8', DensityPaths='./min_densWIN_MIM5')
+
+DensityPath(Name='RMT80.9', DensityPaths='./max_densWIN_MIM5')
+
+DensityPath(Name='RM92.8', DensityPaths='./min_densWIN_HKMIM5')
+
+DensityPath(Name='R55.5', DensityPaths='./densTOT_M6')
+

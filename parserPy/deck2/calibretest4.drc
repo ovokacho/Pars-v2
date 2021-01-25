@@ -2686,7 +2686,7 @@ XALLACT = AND BULK ((( ACTIVE OR ACTIVE_nsz) OR ACTIVE_fsz ) OR ACTIVE_4 )
 XALLPOL = AND BULK ((( POLY OR POLY_nsz) OR POLY_fsz ) OR POLY_4 )
 
 R2.du15 { @ Rule 2.du15 : Min ACTIVE density by 1x1mm window >= 0.2.
-            DENSITY XALLACT < 0.2 WINDOW 1000 1000 STEP 500 PRINT "./densWIN1_ACT" BACKUP
+            DENSITY XALLACT < 0.2 WINDOW 1000 1000 STEP 500 PRINT "./densWIN1_ACT", "./densWIN1_ACT", "./densWIN1_ACT" BACKUP
         }
 
 R2.du16 { @ Rule 2.du16 : Min ACTIVE density across full chip >= 0.25.

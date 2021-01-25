@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from pyparsing import *
 from itertools import chain
+from collections import namedtuple
 
 l =[]
 denspaths = []
@@ -35,6 +36,19 @@ print("denspaths: ")
 #denspaths = [x for x in denspaths if x]  #удаление пустых вложенных списков
 print(denspaths)
 
+Rule = namedtuple('Rule', 'Name RuleText')
+rule = []
+for r in denspaths:
+        r2 =r
+        r2.pop(0)
+
+        rule.append(Rule(r[0], r2))
+print(rule)
+print(rule[0].Name)
+for i in rule:
+        if i.Name =='R2.du16':
+                print (i)
+                print (i.RuleText)
 # print (lis)
 # a=[a+b for a in 'list' if a != 's' for b in 'soup' if b != 'u']
 # print (a)

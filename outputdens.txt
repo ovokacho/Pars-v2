@@ -94,7 +94,7 @@
 
 ['WB.DEN.2_M6', '@ Rule WB.DEN.2_M6: M1, M2, M3, ..., Mtop-1 maximum density over local 20um x 20um areas stepped in 5um increments (if check window is within downsized bonding area): 0.8\n    DENSITY M6_WB_DENS > 0.8 WINDOW 20/Win_dev STEP 5/Step_dev INSIDE OF LAYER WB_DENS BACKUP PRINT WB.DEN.2_M6.density \n']
 
-['R2.du15', '@ Rule 2.du15 : Min ACTIVE density by 1x1mm window >= 0.2.\n            DENSITY XALLACT < 0.2 WINDOW 1000 1000 STEP 500 PRINT "./densWIN1_ACT" BACKUP\n        ']
+['R2.du15', '@ Rule 2.du15 : Min ACTIVE density by 1x1mm window >= 0.2.\n            DENSITY XALLACT < 0.2 WINDOW 1000 1000 STEP 500 PRINT "./densWIN1_ACT", "./densWIN1_ACT", "./densWIN1_ACT" BACKUP\n        ']
 
 ['R2.du16', '@ Rule 2.du16 : Min ACTIVE density across full chip >= 0.25.\n            DENSITY XALLACT < 0.25  PRINT "./densTOT_ACT"\n        ']
 
