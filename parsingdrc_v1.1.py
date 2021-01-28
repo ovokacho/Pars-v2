@@ -94,17 +94,17 @@ class DrcFileParser:
 
         return dens_rules
 
-
     def get_density_paths_list(self, type = 'list'):
         dens_paths = []
         if type == 'namedtuple':
             DensityPath = namedtuple('DensityPath', 'Name DensityPaths')
             for dp in self.densityPathsList:
+                dp2 = dp
+                dp2.pop(0)
 
-                dens_paths.append(DensityPath(dp[0], dp[1]))
+                dens_paths.append(DensityPath(dp[0], dp2))
         elif type == 'list':
             dens_paths = self.densityPathsList
-
         return dens_paths
 
 
