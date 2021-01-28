@@ -100,8 +100,9 @@ class DrcFileParser:
         if type == 'namedtuple':
             DensityPath = namedtuple('DensityPath', 'Name DensityPaths')
             for dp in self.densityPathsList:
-
-                dens_paths.append(DensityPath(dp[0], dp[1]))
+                dp2 = dp
+                dp2.pop(0)
+                dens_paths.append(DensityPath(dp[0], dp2))
         elif type == 'list':
             dens_paths = self.densityPathsList
 
