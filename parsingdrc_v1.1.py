@@ -35,7 +35,7 @@ class DrcFileParser:
                 try:
                     includedFile = open(bufferi, 'r')
                 except IOError:
-                    print("file " + str(bufferi) + " didn't exist")
+                    print("file " + str(bufferi) + " does not exist")
                 else:
                     print("all fine")
                     self.search_includes(includedFile) #Рекурсивный вызов функции с вложенным файлом как новым аргументом
@@ -49,12 +49,15 @@ class DrcFileParser:
     #Поиск правил с маркером density внутри основного списка правил
     def search_density_rules(self):
         for rule in self.allRuleList:
-            if ("density" or "DENSITY") in rule[1]:
-                self.densityRulesList.append(rule)
+            #Условие не работает. фильтр проходят правила где нет слова density
+            if "DENSITY" in rule[1]:
+                if "PRINT" in rule[1]:
+                    self.densityRulesList.append(rule)
     #Поиск ссылок на файлы в списке dens правил
     def search_density_paths(self):
-        denspath = Word(printables + "./_", excludeChars='"')
-        denspathfull = Suppress('"') + denspath + Suppress('"')
+        denspath = Word(printables + "._", excludeChars="{[]}'") #???????
+        #denspath = Word(printables + "._", excludeChars="\/")
+        denspathfull = Suppress('PRINT ') + Optional(Suppress('ONLY ')) + denspath
 
         for rule in enumerate(self.densityRulesList):
             self.densityPathsList.append([rule[1][0]] + list(
@@ -68,6 +71,10 @@ class DrcFileParser:
 
         for i in reversed(fix):
             self.densityPathsList.pop(i)
+
+        for rule in self.densityPathsList:
+            for element in range(len(rule)):
+                rule[element] = rule[element].strip("\\n")
 
     # Вывод результатов парсинга.
     # 'list' или без аргумента для вывода в формате списка,
@@ -99,17 +106,14 @@ class DrcFileParser:
         if type == 'namedtuple':
             DensityPath = namedtuple('DensityPath', 'Name DensityPaths')
             for dp in self.densityPathsList:
-                dp2 = dp
-                dp2.pop(0)
-
-                dens_paths.append(DensityPath(dp[0], dp2))
+                dens_paths.append(DensityPath(dp[0], dp[1:]))
         elif type == 'list':
             dens_paths = self.densityPathsList
         return dens_paths
 
 
 if __name__ == "__main__":
-    drcFile = open('calibretest.drc', 'r')
+    drcFile = open('calibretest4.drc', 'r')
     drcTest = DrcFileParser(drcFile)
 
     Presults = drcTest.get_parse_results()  # namedtuple/list
