@@ -113,7 +113,7 @@ class DrcFileParser:
 
 
 if __name__ == "__main__":
-    drcFile = open('calibretest4.drc', 'r')
+    drcFile = open('calibretest.drc', 'r')
     drcTest = DrcFileParser(drcFile)
 
     Presults = drcTest.get_parse_results()  # namedtuple/list

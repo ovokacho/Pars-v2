@@ -1,4 +1,96 @@
-17
+63
+
+DensityPath(Name='OD.R.3', DensityPaths=['OD.R.3.density', 'STAT_OD.R.3.density'])
+
+DensityPath(Name='OD.R.3.1', DensityPaths=['OD.R.3.1.density'])
+
+DensityPath(Name='OD.R.3.2', DensityPaths=['OD.R.3.2.density'])
+
+DensityPath(Name='OD.R.2', DensityPaths=['OD.R.2.density'])
+
+DensityPath(Name='OD.R.2.1', DensityPaths=['OD.R.2.1.density'])
+
+DensityPath(Name='PO.R.1', DensityPaths=['PO.R.1.density', 'STAT_PO.R.1.density'])
+
+DensityPath(Name='PO.R.2', DensityPaths=['PO.R.2.density'])
+
+DensityPath(Name='M1.R.2', DensityPaths=['M1.R.2.density', 'M1.R.2.ea.density', 'STAT_M1.R.2.density'])
+
+DensityPath(Name='M1.R.2.1', DensityPaths=['M1.R.2.1.density'])
+
+DensityPath(Name='M1.R.4', DensityPaths=['M1.R.4.density'])
+
+DensityPath(Name='M2.R.1', DensityPaths=['M2.R.1.density', 'M2.R.1.ea.density', 'STAT_M2.R.1.density'])
+
+DensityPath(Name='M2.R.1.1', DensityPaths=['M2.R.1.1.density'])
+
+DensityPath(Name='M2.R.4', DensityPaths=['M2.R.4.density'])
+
+DensityPath(Name='M3.R.1', DensityPaths=['M3.R.1.density', 'M3.R.1.ea.density', 'STAT_M3.R.1.density'])
+
+DensityPath(Name='M3.R.1.1', DensityPaths=['M3.R.1.1.density'])
+
+DensityPath(Name='M3.R.4', DensityPaths=['M3.R.4.density'])
+
+DensityPath(Name='M4.R.1', DensityPaths=['M4.R.1.density', 'M4.R.1.ea.density', 'STAT_M4.R.1.density'])
+
+DensityPath(Name='M4.R.1.1', DensityPaths=['M4.R.1.1.density'])
+
+DensityPath(Name='M4.R.4', DensityPaths=['M4.R.4.density'])
+
+DensityPath(Name='M5.R.1', DensityPaths=['M5.R.1.density', 'M5.R.1.ea.density', 'STAT_M5.R.1.density'])
+
+DensityPath(Name='M5.R.1.1', DensityPaths=['M5.R.1.1.density'])
+
+DensityPath(Name='M5.R.4', DensityPaths=['M5.R.4.density'])
+
+DensityPath(Name='M6.R.1', DensityPaths=['M6.R.1.density', 'M6.R.1.ea.density', 'STAT_M6.R.1.density'])
+
+DensityPath(Name='M6.R.1.1', DensityPaths=['M6.R.1.1.density'])
+
+DensityPath(Name='M6.R.4', DensityPaths=['M6.R.4.density'])
+
+DensityPath(Name='M7.R.1', DensityPaths=['M7.R.1.density', 'M7.R.1.ea.density', 'STAT_M7.R.1.density'])
+
+DensityPath(Name='M7.R.1.1', DensityPaths=['M7.R.1.1.density', 'M7.R.1.1.ea.density'])
+
+DensityPath(Name='M7.R.4', DensityPaths=['M7.R.4.density', 'M7.R.4.ea.density'])
+
+DensityPath(Name='AP.R.2', DensityPaths=['AP.R.2.density'])
+
+DensityPath(Name='AP.R.2.1', DensityPaths=['AP.R.2.1.density'])
+
+DensityPath(Name='CTM.DEN.1', DensityPaths=['CTM.DEN.1.density'])
+
+DensityPath(Name='//I_DUM.DEN.1', DensityPaths=['I_DUM.DEN.1_M1.density\\n//', 'I_DUM.DEN.1_M2.density\\n//', 'I_DUM.DEN.1_M3.density\\n//', 'I_DUM.DEN.1_M4.density\\n//', 'I_DUM.DEN.1_M5.density\\n//', 'I_DUM.DEN.1_M6.density\\n//', 'I_DUM.DEN.1_M7.density\\n//'])
+
+DensityPath(Name='//I_DUM.DEN.2', DensityPaths=['I_DUM.DEN.2_M1.density\\n//', 'I_DUM.DEN.2_M2.density\\n//', 'I_DUM.DEN.2_M3.density\\n//', 'I_DUM.DEN.2_M4.density\\n//', 'I_DUM.DEN.2_M5.density\\n//', 'I_DUM.DEN.2_M6.density\\n//', 'I_DUM.DEN.2_M7.density\\n//'])
+
+DensityPath(Name='WB.DEN.1_M1', DensityPaths=['WB.DEN.1_M1.density'])
+
+DensityPath(Name='WB.DEN.1_M2', DensityPaths=['WB.DEN.1_M2.density'])
+
+DensityPath(Name='WB.DEN.1_M3', DensityPaths=['WB.DEN.1_M3.density'])
+
+DensityPath(Name='WB.DEN.1.1_M4', DensityPaths=['WB.DEN.1.1_M4.density'])
+
+DensityPath(Name='WB.DEN.1.1_M5', DensityPaths=['WB.DEN.1.1_M5.density'])
+
+DensityPath(Name='WB.DEN.1.1_M6', DensityPaths=['WB.DEN.1.1_M6.density'])
+
+DensityPath(Name='WB.DEN.1.1_M7', DensityPaths=['WB.DEN.1.1_M7.density'])
+
+DensityPath(Name='WB.DEN.2_M1', DensityPaths=['WB.DEN.2_M1.density'])
+
+DensityPath(Name='WB.DEN.2_M2', DensityPaths=['WB.DEN.2_M2.density'])
+
+DensityPath(Name='WB.DEN.2_M3', DensityPaths=['WB.DEN.2_M3.density'])
+
+DensityPath(Name='WB.DEN.2_M4', DensityPaths=['WB.DEN.2_M4.density'])
+
+DensityPath(Name='WB.DEN.2_M5', DensityPaths=['WB.DEN.2_M5.density'])
+
+DensityPath(Name='WB.DEN.2_M6', DensityPaths=['WB.DEN.2_M6.density'])
 
 DensityPath(Name='R2.du15', DensityPaths=['"./densWIN1_ACT",'])
 
